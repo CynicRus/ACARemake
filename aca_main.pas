@@ -8,7 +8,7 @@ uses
   LCLIntf, LCLType, LMessages, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
   ComCtrls, Menus, ExtCtrls, StdCtrls, Buttons, ExtDlgs, Grids,
   SynHighlighterPas, SynEdit, SynEditHighlighter,Client,IOManager,{$IFDEF MSWINDOWS}os_windows,{$ELSE} os_linux,{$ENDIF}
-  MufasaTypes,Colour_conv,Bitmaps,aca_types,aca_utils,aca_base;
+  MufasaTypes,Colour_conv,Bitmaps,Windowselector,aca_types,aca_utils,aca_base;
 
 type
 
@@ -16,6 +16,7 @@ type
 
   TMainForm = class(TForm)
     AddProfileBtn: TButton;
+    BtnList: TImageList;
     ImgFromClient: TButton;
     DeleteProfileBtn: TButton;
     pBox: TComboBox;
@@ -33,10 +34,8 @@ type
     Open1: TMenuItem;
     Saveas1: TMenuItem;
     Client1: TMenuItem;
-    FindRS1: TMenuItem;
     Openbitmap1: TMenuItem;
     Copybitmapfromclipboard1: TMenuItem;
-    N2: TMenuItem;
     N3: TMenuItem;
     Reloadfromclient1: TMenuItem;
     Refreshimage1: TMenuItem;
@@ -48,7 +47,6 @@ type
     StringGrid1: TStringGrid;
     TolLabel: TLabel;
     ColorPopupMenu: TPopupMenu;
-    AddColor1: TMenuItem;
     DeleteColor1: TMenuItem;
     DeleteDuplicates2: TMenuItem;
     StatusBar1: TStatusBar;
@@ -63,11 +61,9 @@ type
     Colors_XYZ1: TLabeledEdit;
     Colors_XYZ3: TLabeledEdit;
     Colors_Shape: TShape;
-    Addcolor2: TMenuItem;
     GroupBox1: TGroupBox;
     Colors_Color: TLabeledEdit;
     Colors_Tolerance: TLabeledEdit;
-    New1: TMenuItem;
     GroupBox2: TGroupBox;
     Colors_HueMod: TLabeledEdit;
     Colors_RGBTol: TLabeledEdit;
@@ -97,7 +93,6 @@ type
     GroupBox3: TGroupBox;
     ClearList2: TMenuItem;
     OpenPictureDialog1: TOpenPictureDialog;
-    ResettoDesktop1: TMenuItem;
     SavePictureDialog1: TSavePictureDialog;
     SaveDialog1: TSaveDialog;
     OpenDialog1: TOpenDialog;
@@ -123,14 +118,16 @@ type
     Reloadfromclient2: TMenuItem;
     MarkColorsearharea1: TMenuItem;
     ToolBar1: TToolBar;
+    ToolButton1: TToolButton;
+    ToolButton2: TToolButton;
+    ToolButton3: TToolButton;
+    ToolButton4: TToolButton;
     Wholeclient1: TMenuItem;
     Minimap1: TMenuItem;
     Mainscreen1: TMenuItem;
     Inventory1: TMenuItem;
     Panel1: TPanel;
     Panel2: TPanel;
-    Clientwindow1: TMenuItem;
-    Findclientbyname1: TMenuItem;
     SynPasSyn1: TSynPasSyn;
     SynEdit1: TSynEdit;
     GroupBox8: TGroupBox;
@@ -157,8 +154,6 @@ type
     FindObj_UpText: TLabeledEdit;
     FindObj_Size: TLabeledEdit;
     FindObj_arLength: TCheckBox;
-    MinimizeACAonreading1: TMenuItem;
-    N7: TMenuItem;
     MarkingColor1: TMenuItem;
     MCol_Red: TMenuItem;
     MCol_Green: TMenuItem;
@@ -168,6 +163,7 @@ type
     AutoColor_SpiralSearch: TCheckBox;
     Help1: TMenuItem;
     procedure AddProfileBtnClick(Sender: TObject);
+    procedure AutoColor_CreateFunctionClick(Sender: TObject);
     procedure Btn_MarkBestClick(Sender: TObject);
     procedure Btn_MarkColorsClick(Sender: TObject);
     procedure Btn_RefreshImageClick(Sender: TObject);
@@ -182,6 +178,10 @@ type
     procedure FormCreate(Sender: TObject);
     procedure pBoxChange(Sender: TObject);
     procedure pBoxSelect(Sender: TObject);
+    procedure ToolButton1Click(Sender: TObject);
+    procedure ToolButton3Click(Sender: TObject);
+    procedure ToolButton3MouseDown(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
   private
     StatusText: string;
     procedure ResetBuffer;
@@ -216,6 +216,7 @@ var
   DefaultCTS3Mod: Extended=1;
   MinC,MaxC: TColourRec;
   OldRect: TRect;
+  Select: TMWindowSelector;
  // MarkCol, ColFormat: Integer;
 implementation
 
@@ -735,8 +736,10 @@ begin
   bmp.SetSize(w,h);
   bmpBuffer.SetSize(w,h);
   bmp.CopyClientToBitmap(MMLClient.IOManager,true,0,0,0,0,w-1,h-1);
+  select:=TMWindowSelector.Create(nil);
   //resetbuffer;
   UpdateBitmap(bmp);
+  StatusBar1.Panels.Items[2].Text := 'ACA succesfully loaded..';
 end;
 
 procedure TMainForm.pBoxChange(Sender: TObject);
@@ -750,6 +753,23 @@ begin
   if not (Storage.Count > 0) then exit;
   CurrIndex:=Pbox.ItemIndex;
   ToListBox;
+end;
+
+procedure TMainForm.ToolButton1Click(Sender: TObject);
+begin
+  Application.Terminate;
+end;
+
+procedure TMainForm.ToolButton3Click(Sender: TObject);
+begin
+
+end;
+
+procedure TMainForm.ToolButton3MouseDown(Sender: TObject; Button: TMouseButton;
+  Shift: TShiftState; X, Y: Integer);
+begin
+  MMLClient.IOManager.SetTarget(Select.Drag);
+  ImageFromClient;
 end;
 
 procedure TMainForm.ClientImageMouseDown(Sender: TObject; Button: TMouseButton;
@@ -772,6 +792,22 @@ end;
 procedure TMainForm.AddProfileBtnClick(Sender: TObject);
 begin
   AddNewProfile;
+end;
+
+procedure TMainForm.AutoColor_CreateFunctionClick(Sender: TObject);
+var
+  x1, y1, x2, y2, cx, cy: string;
+  oColor: TColorItem;
+  i: integer;
+begin
+  If not (storage.Count>0) then exit;
+  SynEdit1.Add('program AutoColor;');
+  SynEdit1.Add('{$I SRL\SRL.simba}');
+  SynEdit1.Add('');
+  for i:=0 to storage.Count -1 do
+   begin
+
+   end;
 end;
 
 procedure TMainForm.Btn_MarkBestClick(Sender: TObject);
