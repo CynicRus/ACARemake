@@ -1,0 +1,228 @@
+<?xml version="1.0"?>
+<CONFIG>
+  <ProjectOptions>
+    <Version Value="9"/>
+    <PathDelim Value="\"/>
+    <General>
+      <SessionStorage Value="InProjectDir"/>
+      <MainUnit Value="0"/>
+      <Title Value="ACA"/>
+      <ResourceType Value="res"/>
+      <UseXPManifest Value="True"/>
+      <Icon Value="0"/>
+    </General>
+    <i18n>
+      <EnableI18N LFM="False"/>
+    </i18n>
+    <VersionInfo>
+      <StringTable ProductVersion=""/>
+    </VersionInfo>
+    <BuildModes Count="1">
+      <Item1 Name="Default" Default="True"/>
+    </BuildModes>
+    <PublishOptions>
+      <Version Value="2"/>
+      <IncludeFileFilter Value="*.(pas|pp|inc|lfm|lpr|lrs|lpi|lpk|sh|xml)"/>
+      <ExcludeFileFilter Value="*.(bak|ppu|o|so);*~;backup"/>
+    </PublishOptions>
+    <RunParams>
+      <local>
+        <FormatVersion Value="1"/>
+      </local>
+    </RunParams>
+    <RequiredPackages Count="3">
+      <Item1>
+        <PackageName Value="lazmouseandkeyinput"/>
+      </Item1>
+      <Item2>
+        <PackageName Value="SynEdit"/>
+      </Item2>
+      <Item3>
+        <PackageName Value="LCL"/>
+      </Item3>
+    </RequiredPackages>
+    <Units Count="28">
+      <Unit0>
+        <Filename Value="ACA.lpr"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="ACA"/>
+      </Unit0>
+      <Unit1>
+        <Filename Value="aca_main.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="MainForm"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="ACA_main"/>
+      </Unit1>
+      <Unit2>
+        <Filename Value="aca_types.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="aca_types"/>
+      </Unit2>
+      <Unit3>
+        <Filename Value="aca_utils.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="aca_utils"/>
+      </Unit3>
+      <Unit4>
+        <Filename Value="aca_base.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="aca_base"/>
+      </Unit4>
+      <Unit5>
+        <Filename Value="..\SimbaLocal\Units\MMLCore\bitmaps.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="bitmaps"/>
+      </Unit5>
+      <Unit6>
+        <Filename Value="..\SimbaLocal\Units\MMLCore\client.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="Client"/>
+      </Unit6>
+      <Unit7>
+        <Filename Value="..\SimbaLocal\Units\MMLCore\colour_conv.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="colour_conv"/>
+      </Unit7>
+      <Unit8>
+        <Filename Value="..\SimbaLocal\Units\MMLCore\dtm.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="dtm"/>
+      </Unit8>
+      <Unit9>
+        <Filename Value="..\SimbaLocal\Units\MMLCore\dtmutil.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="dtmutil"/>
+      </Unit9>
+      <Unit10>
+        <Filename Value="..\SimbaLocal\Units\MMLCore\files.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="files"/>
+      </Unit10>
+      <Unit11>
+        <Filename Value="..\SimbaLocal\Units\MMLCore\finder.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="finder"/>
+      </Unit11>
+      <Unit12>
+        <Filename Value="..\SimbaLocal\Units\MMLCore\fontloader.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="fontloader"/>
+      </Unit12>
+      <Unit13>
+        <Filename Value="..\SimbaLocal\Units\MMLCore\iomanager.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="iomanager"/>
+      </Unit13>
+      <Unit14>
+        <Filename Value="..\SimbaLocal\Units\MMLCore\mmath.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="mmath"/>
+      </Unit14>
+      <Unit15>
+        <Filename Value="..\SimbaLocal\Units\MMLCore\mufasabase.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="mufasabase"/>
+      </Unit15>
+      <Unit16>
+        <Filename Value="..\SimbaLocal\Units\MMLCore\mufasatypes.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="mufasatypes"/>
+      </Unit16>
+      <Unit17>
+        <Filename Value="..\SimbaLocal\Units\MMLCore\mufasatypesutil.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="mufasatypesutil"/>
+      </Unit17>
+      <Unit18>
+        <Filename Value="..\SimbaLocal\Units\MMLCore\ocr.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="ocr"/>
+      </Unit18>
+      <Unit19>
+        <Filename Value="..\SimbaLocal\Units\MMLCore\ocrutil.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="ocrutil"/>
+      </Unit19>
+      <Unit20>
+        <Filename Value="..\SimbaLocal\Units\MMLCore\os_linux.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="os_linux"/>
+      </Unit20>
+      <Unit21>
+        <Filename Value="..\SimbaLocal\Units\MMLCore\os_windows.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="os_windows"/>
+      </Unit21>
+      <Unit22>
+        <Filename Value="..\SimbaLocal\Units\MMLCore\tpa.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="tpa"/>
+      </Unit22>
+      <Unit23>
+        <Filename Value="..\SimbaLocal\Units\Misc\DCPCrypt\dcpbase64.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="dcpbase64"/>
+      </Unit23>
+      <Unit24>
+        <Filename Value="..\SimbaLocal\Units\Misc\DCPCrypt\DCPblockciphers.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="DCPblockciphers"/>
+      </Unit24>
+      <Unit25>
+        <Filename Value="..\SimbaLocal\Units\Misc\DCPCrypt\DCPconst.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="DCPconst"/>
+      </Unit25>
+      <Unit26>
+        <Filename Value="..\SimbaLocal\Units\Misc\DCPCrypt\DCPcrypt2.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="DCPcrypt2"/>
+      </Unit26>
+      <Unit27>
+        <Filename Value="..\SimbaLocal\Units\MMLAddon\windowselector.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="windowselector"/>
+      </Unit27>
+    </Units>
+  </ProjectOptions>
+  <CompilerOptions>
+    <Version Value="11"/>
+    <PathDelim Value="\"/>
+    <Target>
+      <Filename Value="ACA"/>
+    </Target>
+    <SearchPaths>
+      <IncludeFiles Value="$(ProjOutDir)"/>
+      <OtherUnitFiles Value="..\SimbaLocal\Units\MMLCore;..\SimbaLocal\Units\Misc\DCPCrypt;..\SimbaLocal\Units\MMLAddon"/>
+      <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
+    </SearchPaths>
+    <Linking>
+      <Options>
+        <Win32>
+          <GraphicApplication Value="True"/>
+        </Win32>
+      </Options>
+    </Linking>
+    <Other>
+      <CompilerMessages>
+        <MsgFileName Value=""/>
+      </CompilerMessages>
+      <CompilerPath Value="$(CompPath)"/>
+    </Other>
+  </CompilerOptions>
+  <Debugging>
+    <Exceptions Count="3">
+      <Item1>
+        <Name Value="EAbort"/>
+      </Item1>
+      <Item2>
+        <Name Value="ECodetoolError"/>
+      </Item2>
+      <Item3>
+        <Name Value="EFOpenError"/>
+      </Item3>
+    </Exceptions>
+  </Debugging>
+</CONFIG>

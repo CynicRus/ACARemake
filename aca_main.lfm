@@ -1,0 +1,2832 @@
+object MainForm: TMainForm
+  Left = 267
+  Height = 627
+  Top = 187
+  Width = 795
+  BorderIcons = [biSystemMenu, biMinimize]
+  BorderStyle = bsSingle
+  Caption = 'ACA Remake by Cynic for Win(Based on ACA v2 source code)'
+  ClientHeight = 607
+  ClientWidth = 795
+  Color = clBtnFace
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Menu = MainMenu
+  OnCreate = FormCreate
+  Position = poDesktopCenter
+  LCLVersion = '1.0.4.0'
+  object PageControl: TPageControl
+    Left = 0
+    Height = 558
+    Top = 26
+    Width = 664
+    ActivePage = ClientTab
+    Align = alClient
+    TabIndex = 1
+    TabOrder = 0
+    object ColorTab: TTabSheet
+      Caption = 'Colors'
+      ClientHeight = 532
+      ClientWidth = 656
+      object Panel2: TPanel
+        Left = 0
+        Height = 254
+        Top = 291
+        Width = 657
+        BevelOuter = bvNone
+        ClientHeight = 254
+        ClientWidth = 657
+        FullRepaint = False
+        TabOrder = 0
+        object GroupBox3: TGroupBox
+          Left = 6
+          Height = 121
+          Top = 126
+          Width = 291
+          Caption = 'Color Ranges'
+          ClientHeight = 103
+          ClientWidth = 287
+          TabOrder = 0
+          object StringGrid1: TStringGrid
+            Left = 4
+            Height = 100
+            Top = 0
+            Width = 275
+            TabOrder = 0
+            TitleFont.Color = clWindowText
+            TitleFont.Height = -11
+            TitleFont.Name = 'Tahoma'
+          end
+        end
+        object GroupBox2: TGroupBox
+          Left = 348
+          Height = 121
+          Top = 126
+          Width = 291
+          Caption = 'Tolerance'
+          ClientHeight = 103
+          ClientWidth = 287
+          TabOrder = 1
+          object Colors_HueMod: TLabeledEdit
+            Left = 213
+            Height = 24
+            Top = 0
+            Width = 57
+            EditLabel.AnchorSideTop.Control = Colors_HueMod
+            EditLabel.AnchorSideTop.Side = asrCenter
+            EditLabel.AnchorSideRight.Control = Colors_HueMod
+            EditLabel.AnchorSideBottom.Control = Colors_HueMod
+            EditLabel.AnchorSideBottom.Side = asrBottom
+            EditLabel.Left = 167
+            EditLabel.Height = 14
+            EditLabel.Top = 5
+            EditLabel.Width = 43
+            EditLabel.Caption = 'Hue mod'
+            EditLabel.ParentColor = False
+            Enabled = False
+            Font.CharSet = ANSI_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -13
+            Font.Name = 'Courier New'
+            LabelPosition = lpLeft
+            ParentFont = False
+            ReadOnly = True
+            TabOrder = 1
+          end
+          object Colors_RGBTol: TLabeledEdit
+            Left = 85
+            Height = 24
+            Top = 31
+            Width = 57
+            EditLabel.AnchorSideTop.Control = Colors_RGBTol
+            EditLabel.AnchorSideTop.Side = asrCenter
+            EditLabel.AnchorSideRight.Control = Colors_RGBTol
+            EditLabel.AnchorSideBottom.Control = Colors_RGBTol
+            EditLabel.AnchorSideBottom.Side = asrBottom
+            EditLabel.Left = 11
+            EditLabel.Height = 14
+            EditLabel.Top = 36
+            EditLabel.Width = 71
+            EditLabel.Caption = 'RGB Tolerance'
+            EditLabel.ParentColor = False
+            Font.CharSet = ANSI_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -13
+            Font.Name = 'Courier New'
+            LabelPosition = lpLeft
+            ParentFont = False
+            ReadOnly = True
+            TabOrder = 0
+          end
+          object Colors_SatMod: TLabeledEdit
+            Left = 213
+            Height = 24
+            Top = 31
+            Width = 57
+            EditLabel.AnchorSideTop.Control = Colors_SatMod
+            EditLabel.AnchorSideTop.Side = asrCenter
+            EditLabel.AnchorSideRight.Control = Colors_SatMod
+            EditLabel.AnchorSideBottom.Control = Colors_SatMod
+            EditLabel.AnchorSideBottom.Side = asrBottom
+            EditLabel.Left = 170
+            EditLabel.Height = 14
+            EditLabel.Top = 36
+            EditLabel.Width = 40
+            EditLabel.Caption = 'Sat mod'
+            EditLabel.ParentColor = False
+            Enabled = False
+            Font.CharSet = ANSI_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -13
+            Font.Name = 'Courier New'
+            LabelPosition = lpLeft
+            ParentFont = False
+            ReadOnly = True
+            TabOrder = 2
+          end
+          object Colors_HSLTol: TLabeledEdit
+            Left = 213
+            Height = 24
+            Top = 63
+            Width = 57
+            EditLabel.AnchorSideTop.Control = Colors_HSLTol
+            EditLabel.AnchorSideTop.Side = asrCenter
+            EditLabel.AnchorSideRight.Control = Colors_HSLTol
+            EditLabel.AnchorSideBottom.Control = Colors_HSLTol
+            EditLabel.AnchorSideBottom.Side = asrBottom
+            EditLabel.Left = 174
+            EditLabel.Height = 14
+            EditLabel.Top = 68
+            EditLabel.Width = 36
+            EditLabel.Caption = 'HSL Tol'
+            EditLabel.ParentColor = False
+            Enabled = False
+            Font.CharSet = ANSI_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -13
+            Font.Name = 'Courier New'
+            LabelPosition = lpLeft
+            ParentFont = False
+            ReadOnly = True
+            TabOrder = 3
+          end
+          object Colors_XYZTol: TLabeledEdit
+            Left = 85
+            Height = 24
+            Top = 63
+            Width = 57
+            EditLabel.AnchorSideTop.Control = Colors_XYZTol
+            EditLabel.AnchorSideTop.Side = asrCenter
+            EditLabel.AnchorSideRight.Control = Colors_XYZTol
+            EditLabel.AnchorSideBottom.Control = Colors_XYZTol
+            EditLabel.AnchorSideBottom.Side = asrBottom
+            EditLabel.Left = 13
+            EditLabel.Height = 14
+            EditLabel.Top = 68
+            EditLabel.Width = 69
+            EditLabel.Caption = 'XYZ Tolerance'
+            EditLabel.ParentColor = False
+            Enabled = False
+            Font.CharSet = ANSI_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -13
+            Font.Name = 'Courier New'
+            LabelPosition = lpLeft
+            ParentFont = False
+            ReadOnly = True
+            TabOrder = 4
+          end
+          object Colors_BestCol: TLabeledEdit
+            Left = 85
+            Height = 21
+            Top = 4
+            Width = 57
+            EditLabel.AnchorSideTop.Control = Colors_BestCol
+            EditLabel.AnchorSideTop.Side = asrCenter
+            EditLabel.AnchorSideRight.Control = Colors_BestCol
+            EditLabel.AnchorSideBottom.Control = Colors_BestCol
+            EditLabel.AnchorSideBottom.Side = asrBottom
+            EditLabel.Left = 32
+            EditLabel.Height = 14
+            EditLabel.Top = 7
+            EditLabel.Width = 50
+            EditLabel.Caption = 'Best Color'
+            EditLabel.ParentColor = False
+            LabelPosition = lpLeft
+            ReadOnly = True
+            TabOrder = 5
+          end
+        end
+        object GroupBox1: TGroupBox
+          Left = 6
+          Height = 113
+          Top = 0
+          Width = 633
+          Caption = 'Current Color'
+          ClientHeight = 95
+          ClientWidth = 629
+          TabOrder = 2
+          object Colors_Shape: TShape
+            Left = 470
+            Height = 25
+            Top = 2
+            Width = 129
+          end
+          object Colors_HSL1: TLabeledEdit
+            Left = 366
+            Height = 24
+            Top = 3
+            Width = 57
+            Color = clWhite
+            EditLabel.AnchorSideTop.Control = Colors_HSL1
+            EditLabel.AnchorSideTop.Side = asrCenter
+            EditLabel.AnchorSideRight.Control = Colors_HSL1
+            EditLabel.AnchorSideBottom.Control = Colors_HSL1
+            EditLabel.AnchorSideBottom.Side = asrBottom
+            EditLabel.Left = 317
+            EditLabel.Height = 14
+            EditLabel.Top = 8
+            EditLabel.Width = 44
+            EditLabel.Caption = 'H - Value'
+            EditLabel.ParentColor = False
+            EditLabel.ParentFont = False
+            EditLabel.Font.CharSet = ANSI_CHARSET
+            EditLabel.Font.Color = clWindowText
+            EditLabel.Font.Height = -11
+            EditLabel.Font.Name = 'Tahoma'
+            Font.CharSet = ANSI_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -13
+            Font.Name = 'Courier New'
+            LabelPosition = lpLeft
+            LabelSpacing = 5
+            MaxLength = 5
+            ParentFont = False
+            ReadOnly = True
+            TabOrder = 0
+          end
+          object Colors_RGB1: TLabeledEdit
+            Left = 70
+            Height = 24
+            Top = 3
+            Width = 57
+            Color = clWhite
+            EditLabel.AnchorSideTop.Control = Colors_RGB1
+            EditLabel.AnchorSideTop.Side = asrCenter
+            EditLabel.AnchorSideRight.Control = Colors_RGB1
+            EditLabel.AnchorSideBottom.Control = Colors_RGB1
+            EditLabel.AnchorSideBottom.Side = asrBottom
+            EditLabel.Left = 21
+            EditLabel.Height = 14
+            EditLabel.Top = 8
+            EditLabel.Width = 44
+            EditLabel.Caption = 'R - Value'
+            EditLabel.ParentColor = False
+            EditLabel.ParentFont = False
+            EditLabel.Font.CharSet = ANSI_CHARSET
+            EditLabel.Font.Color = clWindowText
+            EditLabel.Font.Height = -11
+            EditLabel.Font.Name = 'Tahoma'
+            Font.CharSet = ANSI_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -13
+            Font.Name = 'Courier New'
+            LabelPosition = lpLeft
+            LabelSpacing = 5
+            MaxLength = 5
+            ParentFont = False
+            ReadOnly = True
+            TabOrder = 1
+          end
+          object Colors_RGB2: TLabeledEdit
+            Left = 70
+            Height = 24
+            Top = 35
+            Width = 57
+            Color = clWhite
+            EditLabel.AnchorSideTop.Control = Colors_RGB2
+            EditLabel.AnchorSideTop.Side = asrCenter
+            EditLabel.AnchorSideRight.Control = Colors_RGB2
+            EditLabel.AnchorSideBottom.Control = Colors_RGB2
+            EditLabel.AnchorSideBottom.Side = asrBottom
+            EditLabel.Left = 21
+            EditLabel.Height = 14
+            EditLabel.Top = 40
+            EditLabel.Width = 44
+            EditLabel.Caption = 'G - Value'
+            EditLabel.ParentColor = False
+            EditLabel.ParentFont = False
+            EditLabel.Font.CharSet = ANSI_CHARSET
+            EditLabel.Font.Color = clWindowText
+            EditLabel.Font.Height = -11
+            EditLabel.Font.Name = 'Tahoma'
+            Font.CharSet = ANSI_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -13
+            Font.Name = 'Courier New'
+            LabelPosition = lpLeft
+            LabelSpacing = 5
+            MaxLength = 5
+            ParentFont = False
+            ReadOnly = True
+            TabOrder = 2
+          end
+          object Colors_RGB3: TLabeledEdit
+            Left = 70
+            Height = 24
+            Top = 67
+            Width = 57
+            Color = clWhite
+            EditLabel.AnchorSideTop.Control = Colors_RGB3
+            EditLabel.AnchorSideTop.Side = asrCenter
+            EditLabel.AnchorSideRight.Control = Colors_RGB3
+            EditLabel.AnchorSideBottom.Control = Colors_RGB3
+            EditLabel.AnchorSideBottom.Side = asrBottom
+            EditLabel.Left = 22
+            EditLabel.Height = 14
+            EditLabel.Top = 72
+            EditLabel.Width = 43
+            EditLabel.Caption = 'B - Value'
+            EditLabel.ParentColor = False
+            EditLabel.ParentFont = False
+            EditLabel.Font.CharSet = ANSI_CHARSET
+            EditLabel.Font.Color = clWindowText
+            EditLabel.Font.Height = -11
+            EditLabel.Font.Name = 'Tahoma'
+            Font.CharSet = ANSI_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -13
+            Font.Name = 'Courier New'
+            LabelPosition = lpLeft
+            LabelSpacing = 5
+            MaxLength = 5
+            ParentFont = False
+            ReadOnly = True
+            TabOrder = 3
+          end
+          object Colors_HSL3: TLabeledEdit
+            Left = 366
+            Height = 24
+            Top = 67
+            Width = 57
+            Color = clWhite
+            EditLabel.AnchorSideTop.Control = Colors_HSL3
+            EditLabel.AnchorSideTop.Side = asrCenter
+            EditLabel.AnchorSideRight.Control = Colors_HSL3
+            EditLabel.AnchorSideBottom.Control = Colors_HSL3
+            EditLabel.AnchorSideBottom.Side = asrBottom
+            EditLabel.Left = 319
+            EditLabel.Height = 14
+            EditLabel.Top = 72
+            EditLabel.Width = 42
+            EditLabel.Caption = 'L - Value'
+            EditLabel.ParentColor = False
+            EditLabel.ParentFont = False
+            EditLabel.Font.CharSet = ANSI_CHARSET
+            EditLabel.Font.Color = clWindowText
+            EditLabel.Font.Height = -11
+            EditLabel.Font.Name = 'Tahoma'
+            Font.CharSet = ANSI_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -13
+            Font.Name = 'Courier New'
+            LabelPosition = lpLeft
+            LabelSpacing = 5
+            MaxLength = 5
+            ParentFont = False
+            ReadOnly = True
+            TabOrder = 4
+          end
+          object Colors_HSL2: TLabeledEdit
+            Left = 366
+            Height = 24
+            Top = 35
+            Width = 57
+            Color = clWhite
+            EditLabel.AnchorSideTop.Control = Colors_HSL2
+            EditLabel.AnchorSideTop.Side = asrCenter
+            EditLabel.AnchorSideRight.Control = Colors_HSL2
+            EditLabel.AnchorSideBottom.Control = Colors_HSL2
+            EditLabel.AnchorSideBottom.Side = asrBottom
+            EditLabel.Left = 318
+            EditLabel.Height = 14
+            EditLabel.Top = 40
+            EditLabel.Width = 43
+            EditLabel.Caption = 'S - Value'
+            EditLabel.ParentColor = False
+            EditLabel.ParentFont = False
+            EditLabel.Font.CharSet = ANSI_CHARSET
+            EditLabel.Font.Color = clWindowText
+            EditLabel.Font.Height = -11
+            EditLabel.Font.Name = 'Tahoma'
+            Font.CharSet = ANSI_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -13
+            Font.Name = 'Courier New'
+            LabelPosition = lpLeft
+            LabelSpacing = 5
+            MaxLength = 5
+            ParentFont = False
+            ReadOnly = True
+            TabOrder = 5
+          end
+          object Colors_XYZ3: TLabeledEdit
+            Left = 222
+            Height = 24
+            Top = 67
+            Width = 57
+            Color = clWhite
+            EditLabel.AnchorSideTop.Control = Colors_XYZ3
+            EditLabel.AnchorSideTop.Side = asrCenter
+            EditLabel.AnchorSideRight.Control = Colors_XYZ3
+            EditLabel.AnchorSideBottom.Control = Colors_XYZ3
+            EditLabel.AnchorSideBottom.Side = asrBottom
+            EditLabel.Left = 174
+            EditLabel.Height = 14
+            EditLabel.Top = 72
+            EditLabel.Width = 43
+            EditLabel.Caption = 'Z - Value'
+            EditLabel.ParentColor = False
+            EditLabel.ParentFont = False
+            EditLabel.Font.CharSet = ANSI_CHARSET
+            EditLabel.Font.Color = clWindowText
+            EditLabel.Font.Height = -11
+            EditLabel.Font.Name = 'Tahoma'
+            Font.CharSet = ANSI_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -13
+            Font.Name = 'Courier New'
+            LabelPosition = lpLeft
+            LabelSpacing = 5
+            MaxLength = 5
+            ParentFont = False
+            ReadOnly = True
+            TabOrder = 6
+          end
+          object Colors_XYZ1: TLabeledEdit
+            Left = 222
+            Height = 24
+            Top = 3
+            Width = 57
+            Color = clWhite
+            EditLabel.AnchorSideTop.Control = Colors_XYZ1
+            EditLabel.AnchorSideTop.Side = asrCenter
+            EditLabel.AnchorSideRight.Control = Colors_XYZ1
+            EditLabel.AnchorSideBottom.Control = Colors_XYZ1
+            EditLabel.AnchorSideBottom.Side = asrBottom
+            EditLabel.Left = 174
+            EditLabel.Height = 14
+            EditLabel.Top = 8
+            EditLabel.Width = 43
+            EditLabel.Caption = 'X - Value'
+            EditLabel.ParentColor = False
+            EditLabel.ParentFont = False
+            EditLabel.Font.CharSet = ANSI_CHARSET
+            EditLabel.Font.Color = clWindowText
+            EditLabel.Font.Height = -11
+            EditLabel.Font.Name = 'Tahoma'
+            Font.CharSet = ANSI_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -13
+            Font.Name = 'Courier New'
+            LabelPosition = lpLeft
+            LabelSpacing = 5
+            MaxLength = 5
+            ParentFont = False
+            ReadOnly = True
+            TabOrder = 7
+          end
+          object Colors_XYZ2: TLabeledEdit
+            Left = 222
+            Height = 24
+            Top = 35
+            Width = 57
+            Color = clWhite
+            EditLabel.AnchorSideTop.Control = Colors_XYZ2
+            EditLabel.AnchorSideTop.Side = asrCenter
+            EditLabel.AnchorSideRight.Control = Colors_XYZ2
+            EditLabel.AnchorSideBottom.Control = Colors_XYZ2
+            EditLabel.AnchorSideBottom.Side = asrBottom
+            EditLabel.Left = 174
+            EditLabel.Height = 14
+            EditLabel.Top = 40
+            EditLabel.Width = 43
+            EditLabel.Caption = 'Y - Value'
+            EditLabel.ParentColor = False
+            EditLabel.ParentFont = False
+            EditLabel.Font.CharSet = ANSI_CHARSET
+            EditLabel.Font.Color = clWindowText
+            EditLabel.Font.Height = -11
+            EditLabel.Font.Name = 'Tahoma'
+            Font.CharSet = ANSI_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -13
+            Font.Name = 'Courier New'
+            LabelPosition = lpLeft
+            LabelSpacing = 5
+            MaxLength = 5
+            ParentFont = False
+            ReadOnly = True
+            TabOrder = 8
+          end
+          object Colors_Color: TLabeledEdit
+            Left = 526
+            Height = 24
+            Top = 35
+            Width = 73
+            Color = clWhite
+            EditLabel.AnchorSideTop.Control = Colors_Color
+            EditLabel.AnchorSideTop.Side = asrCenter
+            EditLabel.AnchorSideRight.Control = Colors_Color
+            EditLabel.AnchorSideBottom.Control = Colors_Color
+            EditLabel.AnchorSideBottom.Side = asrBottom
+            EditLabel.Left = 495
+            EditLabel.Height = 14
+            EditLabel.Top = 40
+            EditLabel.Width = 26
+            EditLabel.Caption = 'Color'
+            EditLabel.ParentColor = False
+            EditLabel.ParentFont = False
+            EditLabel.Font.CharSet = ANSI_CHARSET
+            EditLabel.Font.Color = clWindowText
+            EditLabel.Font.Height = -11
+            EditLabel.Font.Name = 'Tahoma'
+            Font.CharSet = ANSI_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -13
+            Font.Name = 'Courier New'
+            LabelPosition = lpLeft
+            LabelSpacing = 5
+            MaxLength = 8
+            ParentFont = False
+            ReadOnly = True
+            TabOrder = 9
+          end
+          object Colors_Tolerance: TLabeledEdit
+            Left = 526
+            Height = 24
+            Top = 67
+            Width = 73
+            Color = clWhite
+            EditLabel.AnchorSideTop.Control = Colors_Tolerance
+            EditLabel.AnchorSideTop.Side = asrCenter
+            EditLabel.AnchorSideRight.Control = Colors_Tolerance
+            EditLabel.AnchorSideBottom.Control = Colors_Tolerance
+            EditLabel.AnchorSideBottom.Side = asrBottom
+            EditLabel.Left = 473
+            EditLabel.Height = 14
+            EditLabel.Top = 72
+            EditLabel.Width = 48
+            EditLabel.Caption = 'Tolerance'
+            EditLabel.ParentColor = False
+            EditLabel.ParentFont = False
+            EditLabel.Font.CharSet = ANSI_CHARSET
+            EditLabel.Font.Color = clWindowText
+            EditLabel.Font.Height = -11
+            EditLabel.Font.Name = 'Tahoma'
+            Font.CharSet = ANSI_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -13
+            Font.Name = 'Courier New'
+            LabelPosition = lpLeft
+            LabelSpacing = 5
+            MaxLength = 5
+            ParentFont = False
+            ReadOnly = True
+            TabOrder = 10
+          end
+        end
+      end
+      object ScrollBox1: TScrollBox
+        Left = 0
+        Height = 289
+        Top = 0
+        Width = 656
+        HorzScrollBar.Page = 652
+        VertScrollBar.Page = 285
+        Align = alTop
+        ClientHeight = 285
+        ClientWidth = 652
+        TabOrder = 1
+        object ColorsImage: TImage
+          Left = 0
+          Height = 90
+          Top = 0
+          Width = 90
+        end
+      end
+    end
+    object ClientTab: TTabSheet
+      Caption = 'Client'
+      ClientHeight = 532
+      ClientWidth = 656
+      ImageIndex = 1
+      object ScrollBox2: TScrollBox
+        Left = 0
+        Height = 289
+        Top = 0
+        Width = 656
+        HorzScrollBar.Page = 652
+        VertScrollBar.Page = 285
+        ClientHeight = 285
+        ClientWidth = 652
+        PopupMenu = ImagePopupMenu
+        TabOrder = 0
+        object ClientImage: TImage
+          Left = 0
+          Height = 90
+          Top = 0
+          Width = 90
+          OnMouseDown = ClientImageMouseDown
+          OnMouseMove = ClientImageMouseMove
+        end
+      end
+      object Panel1: TPanel
+        Left = 0
+        Height = 249
+        Top = 291
+        Width = 657
+        BevelOuter = bvNone
+        ClientHeight = 249
+        ClientWidth = 657
+        FullRepaint = False
+        TabOrder = 1
+        object GroupBox7: TGroupBox
+          Left = 396
+          Height = 103
+          Top = 0
+          Width = 243
+          Caption = 'Detail'
+          ClientHeight = 85
+          ClientWidth = 239
+          TabOrder = 0
+          object Client_Shape: TShape
+            Left = 137
+            Height = 70
+            Top = 6
+            Width = 70
+          end
+          object Client_ZoomImage: TImage
+            Left = 31
+            Height = 70
+            Top = 6
+            Width = 70
+          end
+        end
+        object GroupBox6: TGroupBox
+          Left = 6
+          Height = 103
+          Top = 0
+          Width = 377
+          Caption = 'Colors and Tolerances'
+          ClientHeight = 85
+          ClientWidth = 373
+          TabOrder = 1
+          object Client_Color: TLabeledEdit
+            Left = 22
+            Height = 24
+            Top = 18
+            Width = 78
+            EditLabel.AnchorSideLeft.Control = Client_Color
+            EditLabel.AnchorSideRight.Control = Client_Color
+            EditLabel.AnchorSideRight.Side = asrBottom
+            EditLabel.AnchorSideBottom.Control = Client_Color
+            EditLabel.Left = 22
+            EditLabel.Height = 14
+            EditLabel.Top = 1
+            EditLabel.Width = 78
+            EditLabel.Caption = 'Color'
+            EditLabel.ParentColor = False
+            Font.CharSet = ANSI_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -13
+            Font.Name = 'Courier New'
+            ParentFont = False
+            TabOrder = 0
+          end
+          object Client_RGBTol: TLabeledEdit
+            Left = 22
+            Height = 24
+            Top = 58
+            Width = 57
+            EditLabel.AnchorSideLeft.Control = Client_RGBTol
+            EditLabel.AnchorSideRight.Control = Client_RGBTol
+            EditLabel.AnchorSideRight.Side = asrBottom
+            EditLabel.AnchorSideBottom.Control = Client_RGBTol
+            EditLabel.Left = 22
+            EditLabel.Height = 14
+            EditLabel.Top = 41
+            EditLabel.Width = 57
+            EditLabel.Caption = 'RGB Tol'
+            EditLabel.ParentColor = False
+            Font.CharSet = ANSI_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -13
+            Font.Name = 'Courier New'
+            ParentFont = False
+            TabOrder = 1
+          end
+          object Client_XYZTol: TLabeledEdit
+            Left = 139
+            Height = 24
+            Top = 18
+            Width = 57
+            EditLabel.AnchorSideLeft.Control = Client_XYZTol
+            EditLabel.AnchorSideRight.Control = Client_XYZTol
+            EditLabel.AnchorSideRight.Side = asrBottom
+            EditLabel.AnchorSideBottom.Control = Client_XYZTol
+            EditLabel.Left = 139
+            EditLabel.Height = 14
+            EditLabel.Top = 1
+            EditLabel.Width = 57
+            EditLabel.Caption = 'XYZ Tol'
+            EditLabel.ParentColor = False
+            Enabled = False
+            Font.CharSet = ANSI_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -13
+            Font.Name = 'Courier New'
+            ParentFont = False
+            TabOrder = 2
+          end
+          object Client_HSLTol: TLabeledEdit
+            Left = 294
+            Height = 24
+            Top = 18
+            Width = 57
+            EditLabel.AnchorSideLeft.Control = Client_HSLTol
+            EditLabel.AnchorSideRight.Control = Client_HSLTol
+            EditLabel.AnchorSideRight.Side = asrBottom
+            EditLabel.AnchorSideBottom.Control = Client_HSLTol
+            EditLabel.Left = 294
+            EditLabel.Height = 14
+            EditLabel.Top = 1
+            EditLabel.Width = 57
+            EditLabel.Caption = 'HSL Tol'
+            EditLabel.ParentColor = False
+            Enabled = False
+            Font.CharSet = ANSI_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -13
+            Font.Name = 'Courier New'
+            ParentFont = False
+            TabOrder = 3
+          end
+          object Client_SatMod: TLabeledEdit
+            Left = 230
+            Height = 24
+            Top = 58
+            Width = 57
+            EditLabel.AnchorSideLeft.Control = Client_SatMod
+            EditLabel.AnchorSideRight.Control = Client_SatMod
+            EditLabel.AnchorSideRight.Side = asrBottom
+            EditLabel.AnchorSideBottom.Control = Client_SatMod
+            EditLabel.Left = 230
+            EditLabel.Height = 14
+            EditLabel.Top = 41
+            EditLabel.Width = 57
+            EditLabel.Caption = 'Sat mod'
+            EditLabel.ParentColor = False
+            Enabled = False
+            Font.CharSet = ANSI_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -13
+            Font.Name = 'Courier New'
+            ParentFont = False
+            TabOrder = 4
+          end
+          object Client_HueMod: TLabeledEdit
+            Left = 230
+            Height = 24
+            Top = 18
+            Width = 57
+            EditLabel.AnchorSideLeft.Control = Client_HueMod
+            EditLabel.AnchorSideRight.Control = Client_HueMod
+            EditLabel.AnchorSideRight.Side = asrBottom
+            EditLabel.AnchorSideBottom.Control = Client_HueMod
+            EditLabel.Left = 230
+            EditLabel.Height = 14
+            EditLabel.Top = 1
+            EditLabel.Width = 57
+            EditLabel.Caption = 'Hue mod'
+            EditLabel.ParentColor = False
+            Enabled = False
+            Font.CharSet = ANSI_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -13
+            Font.Name = 'Courier New'
+            ParentFont = False
+            TabOrder = 5
+          end
+        end
+        object GroupBox4: TGroupBox
+          Left = 6
+          Height = 129
+          Top = 110
+          Width = 377
+          Caption = 'Hover Color'
+          ClientHeight = 111
+          ClientWidth = 373
+          TabOrder = 2
+          object Client_HSL1: TLabeledEdit
+            Left = 302
+            Height = 24
+            Top = 11
+            Width = 57
+            Color = clWhite
+            EditLabel.AnchorSideTop.Control = Client_HSL1
+            EditLabel.AnchorSideTop.Side = asrCenter
+            EditLabel.AnchorSideRight.Control = Client_HSL1
+            EditLabel.AnchorSideBottom.Control = Client_HSL1
+            EditLabel.AnchorSideBottom.Side = asrBottom
+            EditLabel.Left = 253
+            EditLabel.Height = 14
+            EditLabel.Top = 16
+            EditLabel.Width = 44
+            EditLabel.Caption = 'H - Value'
+            EditLabel.ParentColor = False
+            EditLabel.ParentFont = False
+            EditLabel.Font.CharSet = ANSI_CHARSET
+            EditLabel.Font.Color = clWindowText
+            EditLabel.Font.Height = -11
+            EditLabel.Font.Name = 'Tahoma'
+            Font.CharSet = ANSI_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -13
+            Font.Name = 'Courier New'
+            LabelPosition = lpLeft
+            LabelSpacing = 5
+            MaxLength = 5
+            ParentFont = False
+            ReadOnly = True
+            TabOrder = 0
+          end
+          object Client_RGB1: TLabeledEdit
+            Left = 62
+            Height = 24
+            Top = 11
+            Width = 57
+            Color = clWhite
+            EditLabel.AnchorSideTop.Control = Client_RGB1
+            EditLabel.AnchorSideTop.Side = asrCenter
+            EditLabel.AnchorSideRight.Control = Client_RGB1
+            EditLabel.AnchorSideBottom.Control = Client_RGB1
+            EditLabel.AnchorSideBottom.Side = asrBottom
+            EditLabel.Left = 13
+            EditLabel.Height = 14
+            EditLabel.Top = 16
+            EditLabel.Width = 44
+            EditLabel.Caption = 'R - Value'
+            EditLabel.ParentColor = False
+            EditLabel.ParentFont = False
+            EditLabel.Font.CharSet = ANSI_CHARSET
+            EditLabel.Font.Color = clWindowText
+            EditLabel.Font.Height = -11
+            EditLabel.Font.Name = 'Tahoma'
+            Font.CharSet = ANSI_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -13
+            Font.Name = 'Courier New'
+            LabelPosition = lpLeft
+            LabelSpacing = 5
+            MaxLength = 5
+            ParentFont = False
+            ReadOnly = True
+            TabOrder = 1
+          end
+          object Client_RGB2: TLabeledEdit
+            Left = 62
+            Height = 24
+            Top = 43
+            Width = 57
+            Color = clWhite
+            EditLabel.AnchorSideTop.Control = Client_RGB2
+            EditLabel.AnchorSideTop.Side = asrCenter
+            EditLabel.AnchorSideRight.Control = Client_RGB2
+            EditLabel.AnchorSideBottom.Control = Client_RGB2
+            EditLabel.AnchorSideBottom.Side = asrBottom
+            EditLabel.Left = 13
+            EditLabel.Height = 14
+            EditLabel.Top = 48
+            EditLabel.Width = 44
+            EditLabel.Caption = 'G - Value'
+            EditLabel.ParentColor = False
+            EditLabel.ParentFont = False
+            EditLabel.Font.CharSet = ANSI_CHARSET
+            EditLabel.Font.Color = clWindowText
+            EditLabel.Font.Height = -11
+            EditLabel.Font.Name = 'Tahoma'
+            Font.CharSet = ANSI_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -13
+            Font.Name = 'Courier New'
+            LabelPosition = lpLeft
+            LabelSpacing = 5
+            MaxLength = 5
+            ParentFont = False
+            ReadOnly = True
+            TabOrder = 2
+          end
+          object Client_RGB3: TLabeledEdit
+            Left = 62
+            Height = 24
+            Top = 75
+            Width = 57
+            Color = clWhite
+            EditLabel.AnchorSideTop.Control = Client_RGB3
+            EditLabel.AnchorSideTop.Side = asrCenter
+            EditLabel.AnchorSideRight.Control = Client_RGB3
+            EditLabel.AnchorSideBottom.Control = Client_RGB3
+            EditLabel.AnchorSideBottom.Side = asrBottom
+            EditLabel.Left = 14
+            EditLabel.Height = 14
+            EditLabel.Top = 80
+            EditLabel.Width = 43
+            EditLabel.Caption = 'B - Value'
+            EditLabel.ParentColor = False
+            EditLabel.ParentFont = False
+            EditLabel.Font.CharSet = ANSI_CHARSET
+            EditLabel.Font.Color = clWindowText
+            EditLabel.Font.Height = -11
+            EditLabel.Font.Name = 'Tahoma'
+            Font.CharSet = ANSI_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -13
+            Font.Name = 'Courier New'
+            LabelPosition = lpLeft
+            LabelSpacing = 5
+            MaxLength = 5
+            ParentFont = False
+            ReadOnly = True
+            TabOrder = 3
+          end
+          object Client_HSL3: TLabeledEdit
+            Left = 302
+            Height = 24
+            Top = 75
+            Width = 57
+            Color = clWhite
+            EditLabel.AnchorSideTop.Control = Client_HSL3
+            EditLabel.AnchorSideTop.Side = asrCenter
+            EditLabel.AnchorSideRight.Control = Client_HSL3
+            EditLabel.AnchorSideBottom.Control = Client_HSL3
+            EditLabel.AnchorSideBottom.Side = asrBottom
+            EditLabel.Left = 255
+            EditLabel.Height = 14
+            EditLabel.Top = 80
+            EditLabel.Width = 42
+            EditLabel.Caption = 'L - Value'
+            EditLabel.ParentColor = False
+            EditLabel.ParentFont = False
+            EditLabel.Font.CharSet = ANSI_CHARSET
+            EditLabel.Font.Color = clWindowText
+            EditLabel.Font.Height = -11
+            EditLabel.Font.Name = 'Tahoma'
+            Font.CharSet = ANSI_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -13
+            Font.Name = 'Courier New'
+            LabelPosition = lpLeft
+            LabelSpacing = 5
+            MaxLength = 5
+            ParentFont = False
+            ReadOnly = True
+            TabOrder = 4
+          end
+          object Client_HSL2: TLabeledEdit
+            Left = 302
+            Height = 24
+            Top = 43
+            Width = 57
+            Color = clWhite
+            EditLabel.AnchorSideTop.Control = Client_HSL2
+            EditLabel.AnchorSideTop.Side = asrCenter
+            EditLabel.AnchorSideRight.Control = Client_HSL2
+            EditLabel.AnchorSideBottom.Control = Client_HSL2
+            EditLabel.AnchorSideBottom.Side = asrBottom
+            EditLabel.Left = 254
+            EditLabel.Height = 14
+            EditLabel.Top = 48
+            EditLabel.Width = 43
+            EditLabel.Caption = 'S - Value'
+            EditLabel.ParentColor = False
+            EditLabel.ParentFont = False
+            EditLabel.Font.CharSet = ANSI_CHARSET
+            EditLabel.Font.Color = clWindowText
+            EditLabel.Font.Height = -11
+            EditLabel.Font.Name = 'Tahoma'
+            Font.CharSet = ANSI_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -13
+            Font.Name = 'Courier New'
+            LabelPosition = lpLeft
+            LabelSpacing = 5
+            MaxLength = 5
+            ParentFont = False
+            ReadOnly = True
+            TabOrder = 5
+          end
+          object Client_XYZ3: TLabeledEdit
+            Left = 182
+            Height = 24
+            Top = 75
+            Width = 57
+            Color = clWhite
+            EditLabel.AnchorSideTop.Control = Client_XYZ3
+            EditLabel.AnchorSideTop.Side = asrCenter
+            EditLabel.AnchorSideRight.Control = Client_XYZ3
+            EditLabel.AnchorSideBottom.Control = Client_XYZ3
+            EditLabel.AnchorSideBottom.Side = asrBottom
+            EditLabel.Left = 134
+            EditLabel.Height = 14
+            EditLabel.Top = 80
+            EditLabel.Width = 43
+            EditLabel.Caption = 'Z - Value'
+            EditLabel.ParentColor = False
+            EditLabel.ParentFont = False
+            EditLabel.Font.CharSet = ANSI_CHARSET
+            EditLabel.Font.Color = clWindowText
+            EditLabel.Font.Height = -11
+            EditLabel.Font.Name = 'Tahoma'
+            Font.CharSet = ANSI_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -13
+            Font.Name = 'Courier New'
+            LabelPosition = lpLeft
+            LabelSpacing = 5
+            MaxLength = 5
+            ParentFont = False
+            ReadOnly = True
+            TabOrder = 6
+          end
+          object Client_XYZ1: TLabeledEdit
+            Left = 182
+            Height = 24
+            Top = 11
+            Width = 57
+            Color = clWhite
+            EditLabel.AnchorSideTop.Control = Client_XYZ1
+            EditLabel.AnchorSideTop.Side = asrCenter
+            EditLabel.AnchorSideRight.Control = Client_XYZ1
+            EditLabel.AnchorSideBottom.Control = Client_XYZ1
+            EditLabel.AnchorSideBottom.Side = asrBottom
+            EditLabel.Left = 134
+            EditLabel.Height = 14
+            EditLabel.Top = 16
+            EditLabel.Width = 43
+            EditLabel.Caption = 'X - Value'
+            EditLabel.ParentColor = False
+            EditLabel.ParentFont = False
+            EditLabel.Font.CharSet = ANSI_CHARSET
+            EditLabel.Font.Color = clWindowText
+            EditLabel.Font.Height = -11
+            EditLabel.Font.Name = 'Tahoma'
+            Font.CharSet = ANSI_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -13
+            Font.Name = 'Courier New'
+            LabelPosition = lpLeft
+            LabelSpacing = 5
+            MaxLength = 5
+            ParentFont = False
+            ReadOnly = True
+            TabOrder = 7
+          end
+          object Client_XYZ2: TLabeledEdit
+            Left = 182
+            Height = 24
+            Top = 43
+            Width = 57
+            Color = clWhite
+            EditLabel.AnchorSideTop.Control = Client_XYZ2
+            EditLabel.AnchorSideTop.Side = asrCenter
+            EditLabel.AnchorSideRight.Control = Client_XYZ2
+            EditLabel.AnchorSideBottom.Control = Client_XYZ2
+            EditLabel.AnchorSideBottom.Side = asrBottom
+            EditLabel.Left = 134
+            EditLabel.Height = 14
+            EditLabel.Top = 48
+            EditLabel.Width = 43
+            EditLabel.Caption = 'Y - Value'
+            EditLabel.ParentColor = False
+            EditLabel.ParentFont = False
+            EditLabel.Font.CharSet = ANSI_CHARSET
+            EditLabel.Font.Color = clWindowText
+            EditLabel.Font.Height = -11
+            EditLabel.Font.Name = 'Tahoma'
+            Font.CharSet = ANSI_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -13
+            Font.Name = 'Courier New'
+            LabelPosition = lpLeft
+            LabelSpacing = 5
+            MaxLength = 5
+            ParentFont = False
+            ReadOnly = True
+            TabOrder = 8
+          end
+        end
+        object GroupBox5: TGroupBox
+          Left = 396
+          Height = 129
+          Top = 110
+          Width = 243
+          Caption = 'Mark Colors'
+          ClientHeight = 111
+          ClientWidth = 239
+          TabOrder = 3
+          object Btn_MarkColors: TBitBtn
+            Left = 65
+            Height = 25
+            Top = 3
+            Width = 110
+            Caption = 'Mark Color'
+            Glyph.Data = {
+              36030000424D3603000000000000360000002800000010000000100000000100
+              18000000000000030000120B0000120B00000000000000000000FB00FFFB00FF
+              FB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00
+              FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB
+              00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF
+              FB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00
+              FFFB00FFFB00FFFB00FFFB00FFFB00FF7E7E7EBABABABABABABABABAFB00FFFB
+              00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF
+              BABABABABABAE0E0E0E0E0E0BA945DFB00FFFB00FFFB00FFFB00FFFB00FFFB00
+              FFFB00FFFB00FFFB00FFFB00FFFB00FFBABABAE0E0E0E0E0E0BA945DF9D79BBA
+              945DFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF
+              BABABAE0E0E0BA945DF6D199F4C57FF6D199BA945DFB00FFFB00FFFB00FFFB00
+              FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFBA945DF0C894ECBA79ECBA79EC
+              BA79F0C894BA945DFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF
+              FB00FFFB00FFBA945DEABF8FE5AF73E5AF73E5AF73EABF8FBA945DFB00FFFB00
+              FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFBA945DE5B98CDF
+              A76FDFA76FDFA76FE5B98C5654B0FB00FFFB00FFFB00FFFB00FFFB00FFFB00FF
+              FB00FFFB00FFFB00FFFB00FFBA945DE9BE8FE4AE73E4AE735654B07859F65654
+              B0FB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFBA
+              945DF9D79B5654B05345DC5345DC5654B0FB00FFFB00FFFB00FFFB00FFFB00FF
+              FB00FFFB00FFFB00FFFB00FFFB00FFFB00FF5654B07859F67859F65654B0FB00
+              FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB
+              00FFFB00FF5654B05654B0FB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF
+              FB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00
+              FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB
+              00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF
+            }
+            TabOrder = 0
+          end
+          object Btn_MarkBest: TBitBtn
+            Left = 65
+            Height = 25
+            Top = 39
+            Width = 110
+            Caption = 'Mark best color'
+            Glyph.Data = {
+              36030000424D3603000000000000360000002800000010000000100000000100
+              18000000000000030000120B0000120B00000000000000000000007FFF007FFF
+              007FFF007FFF007FFF007FFF007FFF007FFF007FFF007FFF007FFF007FFF007F
+              FF007FFF007FFF007FFF007FFF007FFF007FFF007FFF007FFF007FFF007FFF00
+              7FFF007FFF007FFF007FFF007FFF007FFF007FFF007FFF007FFF007FFF007FFF
+              007FFF007FFF007FFF007FFF007FFF007FFF007FFF007FFF007FFF007FFF007F
+              FF007FFF007FFF007FFF007FFF007FFF7E7E7EBABABABABABABABABA007FFF00
+              7FFF007FFF007FFF007FFF007FFF007FFF007FFF007FFF007FFF007FFF007FFF
+              BABABABABABAE0E0E0E0E0E0BC5AB1007FFF007FFF007FFF007FFF007FFF007F
+              FF007FFF007FFF007FFF007FFF007FFFBABABAE0E0E0E0E0E0BC5AB1F998EBBC
+              5AB1007FFF007FFF007FFF007FFF007FFF007FFF007FFF007FFF007FFF007FFF
+              BABABAE0E0E0BC5AB1F794EBF77BE8F794EBBC5AB1007FFF007FFF007FFF007F
+              FF007FFF007FFF007FFF007FFF007FFF007FFFBC5AB1F291EAEF77E5EF77E5EF
+              77E5F291EABC5AB1007FFF007FFF007FFF007FFF007FFF007FFF007FFF007FFF
+              007FFF007FFFBC5AB1EA8CE7E86FE4E86FE4E86FE4EA8CE7BC5AB1007FFF007F
+              FF007FFF007FFF007FFF007FFF007FFF007FFF007FFF007FFFBC5AB1E589E3E0
+              6BE0E06BE0E06BE0E589E34FAF81007FFF007FFF007FFF007FFF007FFF007FFF
+              007FFF007FFF007FFF007FFFBC5AB1EA8CE7E56EE1E56EE14FAF8150F4C34FAF
+              81007FFF007FFF007FFF007FFF007FFF007FFF007FFF007FFF007FFF007FFFBC
+              5AB1F998EB4FAF813EDD9D3EDD9D4FAF81007FFF007FFF007FFF007FFF007FFF
+              007FFF007FFF007FFF007FFF007FFF007FFF4FAF8150F4C350F4C34FAF81007F
+              FF007FFF007FFF007FFF007FFF007FFF007FFF007FFF007FFF007FFF007FFF00
+              7FFF007FFF4FAF814FAF81007FFF007FFF007FFF007FFF007FFF007FFF007FFF
+              007FFF007FFF007FFF007FFF007FFF007FFF007FFF007FFF007FFF007FFF007F
+              FF007FFF007FFF007FFF007FFF007FFF007FFF007FFF007FFF007FFF007FFF00
+              7FFF007FFF007FFF007FFF007FFF007FFF007FFF007FFF007FFF
+            }
+            TabOrder = 1
+          end
+          object Btn_RefreshImage: TBitBtn
+            Left = 65
+            Height = 25
+            Top = 75
+            Width = 110
+            Caption = 'Refresh image'
+            Glyph.Data = {
+              36030000424D3603000000000000360000002800000010000000100000000100
+              18000000000000030000120B0000120B00000000000000000000FFFFFFFFFFFF
+              FFFFFFF8FBF8D2E4D191BD8E5EA75E55A35455A2545DA65D89BA89CFE3D0F6FA
+              F6FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEEF7EE98C2973E973D3099313BA0383B
+              A5373EA63B3BA0373599303F963D8EBD8FEFFAEEFFFFFFFFFFFFFFFFFFF4FBF4
+              76AF7430912E3DA53849AE4448A9454FAD4E51AF4D51B04F46AD453AA4393192
+              2D74B070EDFAEFFFFFFFFBFDFBA0C8A02D8E2B3DA93C46AD4748AC478AC887AE
+              D8AF4EAE4C4EB34E56B2534FB14C3FA83F2F912B91BF92FAFCFAE0EFE13E9640
+              39A4364BAF4661B65CAEDAAEF9FDF8EEF7F1B3DAB187C68457B25252B1524EB3
+              4A3BA5383D953BDCE8DB98C4982E972E47AC4447AA44A5D4A5FFFFFFFFFCFFFC
+              FFFFFFFFFFFFFFFFB1DCAD56B0544FB15147AC4332992F8CBD8D5BA35D37A032
+              57B15660B65D6EBC6DB4DAAFF7FAF9E6F3E6ABD9ABC7E4C9FBFDFCA6D2A55BB6
+              5E58B3553A9F3857A45657A1545DB65D74C27289C787A9D9AB72BC709FD0A1BC
+              E0BA78C17775BD73ABD3A9DBEFDC83C68279C1775FB8605EA95D69B06479C27B
+              82C38387C886D4E9D2BEE3BC82C67F81C482C0E0BAB6DEB37CC27DA7D2A693CC
+              9182C58078C37775B87475B6727CC37D8FC88E8CCB8AADDAAAFBFEFCDCF0DCC3
+              E4C3EBF4E6FFFFFFD0EBD29DCF9A8FCB8D8ACA8980C67E7CB978A0CA9E78BE78
+              98D09999D29A99CF97C8E0C6FDFDFEFFFFFFFFFFFFFEFEFFFFFFFFD6ECD89BCE
+              9798D09580C37D9CC79CE3F1E177B7739AD49DA3D5A4A9D6A5A5D4A3B7DCB8CC
+              E4CAECF4EFFCFEFCD6EAD4ACDAACA2D5A0A2D49F7CBD7BDCEBDDFCFEFCA9CFA9
+              86C383B2DEAFAFDAAFAFDDAFACDDACADD9A8CFE9D2CCE8C8ADD9A7ACDAAAAFDE
+              B08CCA8BA7CAA8FAFCFAFFFFFFF3FBF698C39591C990B8E2B9C0E1BFBDDFBCBA
+              DFB8B7DCB8B5DEB6BEE4BCC0E1BB9DCD9D98C598F0F6F0FFFFFFFFFFFFFFFFFF
+              EFF7F09FC79E8DC28BA3D2A4BEE0BDC9EAC9C9EAC7C1E2C0A9D5A891C98E9DC8
+              9BEEF7EEFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF8FBF8D7E7D7A6CAA38FC08C90
+              C28E91C48F90C38FA6CDA3D5E5D5F7FAF7FFFFFFFFFFFFFFFFFF
+            }
+            TabOrder = 2
+          end
+        end
+      end
+    end
+    object AutoColorTab: TTabSheet
+      Caption = 'AutoColor Function'
+      ClientHeight = 534
+      ClientWidth = 656
+      ImageIndex = 2
+      inline SynEdit1: TSynEdit
+        Left = 0
+        Height = 417
+        Top = 0
+        Width = 656
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'Courier New'
+        Font.Pitch = fpFixed
+        Font.Quality = fqNonAntialiased
+        ParentColor = False
+        ParentFont = False
+        TabOrder = 0
+        Gutter.LeftOffset = 13
+        Gutter.Width = 70
+        Gutter.MouseActions = <>
+        RightGutter.Width = 0
+        RightGutter.MouseActions = <>
+        Highlighter = SynPasSyn1
+        Keystrokes = <>
+        MouseActions = <>
+        MouseSelActions = <>
+        Lines.Strings = (
+          'program AutoColor;'
+          'begin'
+          'end.'
+        )
+        VisibleSpecialChars = [vscSpace, vscTabAtLast]
+        SelectedColor.BackPriority = 50
+        SelectedColor.ForePriority = 50
+        SelectedColor.FramePriority = 50
+        SelectedColor.BoldPriority = 50
+        SelectedColor.ItalicPriority = 50
+        SelectedColor.UnderlinePriority = 50
+        BracketHighlightStyle = sbhsBoth
+        BracketMatchColor.Background = clNone
+        BracketMatchColor.Foreground = clNone
+        BracketMatchColor.Style = [fsBold]
+        FoldedCodeColor.Background = clNone
+        FoldedCodeColor.Foreground = clGray
+        FoldedCodeColor.FrameColor = clGray
+        MouseLinkColor.Background = clNone
+        MouseLinkColor.Foreground = clBlue
+        LineHighlightColor.Background = clNone
+        LineHighlightColor.Foreground = clNone
+        inline SynLeftGutterPartList1: TSynGutterPartList
+          object SynGutterMarks1: TSynGutterMarks
+            Width = 24
+            MouseActions = <>
+          end
+          object SynGutterLineNumber1: TSynGutterLineNumber
+            Width = 17
+            MouseActions = <>
+            MarkupInfo.Background = clBtnFace
+            MarkupInfo.Foreground = clNone
+            DigitCount = 2
+            ShowOnlyLineNumbersMultiplesOf = 1
+            ZeroStart = False
+            LeadingZeros = False
+          end
+          object SynGutterChanges1: TSynGutterChanges
+            Width = 4
+            MouseActions = <>
+            ModifiedColor = 59900
+            SavedColor = clGreen
+          end
+          object SynGutterSeparator1: TSynGutterSeparator
+            Width = 2
+            MouseActions = <>
+          end
+          object SynGutterCodeFolding1: TSynGutterCodeFolding
+            MouseActions = <>
+            MarkupInfo.Background = clNone
+            MarkupInfo.Foreground = clGray
+            MouseActionsExpanded = <>
+            MouseActionsCollapsed = <>
+          end
+        end
+      end
+      object GroupBox8: TGroupBox
+        Left = 448
+        Height = 73
+        Top = 440
+        Width = 193
+        Caption = 'Validate colors with'
+        ClientHeight = 55
+        ClientWidth = 189
+        Color = clBtnFace
+        ParentColor = False
+        TabOrder = 1
+        object AutoColor_RGBRange: TCheckBox
+          Left = 5
+          Height = 19
+          Top = 5
+          Width = 76
+          Caption = 'RGB ranges'
+          TabOrder = 0
+        end
+        object AutoColor_HSLRange: TCheckBox
+          Left = 5
+          Height = 19
+          Top = 30
+          Width = 74
+          Caption = 'HSL ranges'
+          Checked = True
+          State = cbChecked
+          TabOrder = 1
+        end
+        object AutoColor_XYZRange: TCheckBox
+          Left = 102
+          Height = 19
+          Top = 5
+          Width = 74
+          Caption = 'XYZ ranges'
+          Checked = True
+          State = cbChecked
+          TabOrder = 2
+        end
+        object AutoColor_SpiralSearch: TCheckBox
+          Left = 102
+          Height = 19
+          Top = 29
+          Width = 82
+          Caption = 'Spiral Search'
+          Checked = True
+          State = cbChecked
+          TabOrder = 3
+        end
+      end
+      object AutoColor_AreaButtons: TRadioGroup
+        Left = 229
+        Height = 73
+        Top = 440
+        Width = 193
+        AutoFill = True
+        Caption = 'Area'
+        ChildSizing.LeftRightSpacing = 6
+        ChildSizing.TopBottomSpacing = 6
+        ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+        ChildSizing.EnlargeVertical = crsHomogenousChildResize
+        ChildSizing.ShrinkHorizontal = crsScaleChilds
+        ChildSizing.ShrinkVertical = crsScaleChilds
+        ChildSizing.Layout = cclLeftToRightThenTopToBottom
+        ChildSizing.ControlsPerLine = 2
+        ClientHeight = 55
+        ClientWidth = 189
+        Columns = 2
+        ItemIndex = 1
+        Items.Strings = (
+          'Whole client'
+          'Minimap'
+          'Mainscreen'
+          'Inventory'
+        )
+        TabOrder = 2
+      end
+      object GroupBox9: TGroupBox
+        Left = 16
+        Height = 73
+        Top = 440
+        Width = 185
+        Caption = 'Function'
+        ClientHeight = 55
+        ClientWidth = 181
+        TabOrder = 3
+        object AutoColor_CreateFunction: TBitBtn
+          Left = 30
+          Height = 25
+          Top = 0
+          Width = 121
+          Caption = 'Create function'
+          Glyph.Data = {
+            36030000424D3603000000000000360000002800000010000000100000000100
+            18000000000000030000120B0000120B00000000000000000000FB00FFFB00FF
+            FB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00
+            FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB
+            00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF
+            FB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00
+            FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF64B89C64B89CFB
+            00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF
+            FB00FFFB00FF64B89C98EECA98EECA64B89CFB00FFFB00FFFB00FFFB00FFFB00
+            FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF64B89C9CF1CD60E3A560E3A59C
+            F1CD64B89CFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF
+            64B89CA1F3D166E8AB66E8AB66E8AB66E8ABA1F3D164B89CFB00FFFB00FFFB00
+            FFFB00FFFB00FFFB00FFFB00FFFB00FF64B89C6DEDB26DEDB264B89C64B89C6D
+            EDB26DEDB2A7F6D564B89CFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF
+            FB00FF64B89C64B89CFB00FFFB00FF64B89C73F3B973F3B9ABF9D964B89CFB00
+            FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB
+            00FF64B89C79F8BF79F8BFB0FBDD64B89CFB00FFFB00FFFB00FFFB00FFFB00FF
+            FB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF64B89C7EFCC47EFCC4B3FD
+            E064B89CFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB
+            00FFFB00FFFB00FF64B89C81FFC881FFC864B89CFB00FFFB00FFFB00FFFB00FF
+            FB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF64B89C64B8
+            9CFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB
+            00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF
+            FB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00
+            FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB
+            00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF
+          }
+          TabOrder = 0
+        end
+        object AutoColor_ClearFunction: TBitBtn
+          Left = 30
+          Height = 25
+          Top = 26
+          Width = 121
+          Caption = 'Clear function'
+          Glyph.Data = {
+            36030000424D3603000000000000360000002800000010000000100000000100
+            18000000000000030000120B0000120B00000000000000000000FB00FFFB00FF
+            FB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00
+            FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB
+            00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF
+            FB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00
+            FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF6464B86464B8FB00FFFB
+            00FFFB00FFFB00FF6464B86464B8FB00FFFB00FFFB00FFFB00FFFB00FFFB00FF
+            FB00FF6464B89898EE9898EE6464B8FB00FFFB00FF6464B89898EE9898EE6464
+            B8FB00FFFB00FFFB00FFFB00FFFB00FFFB00FF6464B86060E36060E39C9CF164
+            64B86464B89C9CF16060E36060E36464B8FB00FFFB00FFFB00FFFB00FFFB00FF
+            FB00FFFB00FF6464B86666E86666E8A1A1F3A1A1F36666E86666E86464B8FB00
+            FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF6464B86D6DED6D
+            6DED6D6DED6D6DED6464B8FB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF
+            FB00FFFB00FFFB00FF6464B87373F37373F37373F37373F36464B8FB00FFFB00
+            FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF6464B8B0B0FB7979F879
+            79F87979F87979F8B0B0FB6464B8FB00FFFB00FFFB00FFFB00FFFB00FFFB00FF
+            FB00FF6464B8B3B3FD7E7EFC7E7EFC6464B86464B87E7EFC7E7EFCB3B3FD6464
+            B8FB00FFFB00FFFB00FFFB00FFFB00FFFB00FF6464B88181FF8181FF6464B8FB
+            00FFFB00FF6464B88181FF8181FF6464B8FB00FFFB00FFFB00FFFB00FFFB00FF
+            FB00FFFB00FF6464B86464B8FB00FFFB00FFFB00FFFB00FF6464B86464B8FB00
+            FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB
+            00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF
+            FB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00
+            FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB
+            00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF
+          }
+          TabOrder = 1
+        end
+      end
+    end
+    object TabSheet1: TTabSheet
+      Caption = 'FindObject Function'
+      ClientHeight = 534
+      ClientWidth = 656
+      ImageIndex = 3
+      inline SynEdit2: TSynEdit
+        Left = 0
+        Height = 417
+        Top = 0
+        Width = 656
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'Courier New'
+        Font.Pitch = fpFixed
+        Font.Quality = fqNonAntialiased
+        ParentColor = False
+        ParentFont = False
+        TabOrder = 0
+        Gutter.LeftOffset = 13
+        Gutter.Width = 70
+        Gutter.MouseActions = <>
+        RightGutter.Width = 0
+        RightGutter.MouseActions = <>
+        Highlighter = SynPasSyn1
+        Keystrokes = <>
+        MouseActions = <>
+        MouseSelActions = <>
+        Lines.Strings = (
+          'program FindObject;'
+          'begin'
+          'end.'
+        )
+        VisibleSpecialChars = [vscSpace, vscTabAtLast]
+        SelectedColor.BackPriority = 50
+        SelectedColor.ForePriority = 50
+        SelectedColor.FramePriority = 50
+        SelectedColor.BoldPriority = 50
+        SelectedColor.ItalicPriority = 50
+        SelectedColor.UnderlinePriority = 50
+        BracketHighlightStyle = sbhsBoth
+        BracketMatchColor.Background = clNone
+        BracketMatchColor.Foreground = clNone
+        BracketMatchColor.Style = [fsBold]
+        FoldedCodeColor.Background = clNone
+        FoldedCodeColor.Foreground = clGray
+        FoldedCodeColor.FrameColor = clGray
+        MouseLinkColor.Background = clNone
+        MouseLinkColor.Foreground = clBlue
+        LineHighlightColor.Background = clNone
+        LineHighlightColor.Foreground = clNone
+        inline SynLeftGutterPartList1: TSynGutterPartList
+          object SynGutterMarks1: TSynGutterMarks
+            Width = 24
+            MouseActions = <>
+          end
+          object SynGutterLineNumber1: TSynGutterLineNumber
+            Width = 17
+            MouseActions = <>
+            MarkupInfo.Background = clBtnFace
+            MarkupInfo.Foreground = clNone
+            DigitCount = 2
+            ShowOnlyLineNumbersMultiplesOf = 1
+            ZeroStart = False
+            LeadingZeros = False
+          end
+          object SynGutterChanges1: TSynGutterChanges
+            Width = 4
+            MouseActions = <>
+            ModifiedColor = 59900
+            SavedColor = clGreen
+          end
+          object SynGutterSeparator1: TSynGutterSeparator
+            Width = 2
+            MouseActions = <>
+          end
+          object SynGutterCodeFolding1: TSynGutterCodeFolding
+            MouseActions = <>
+            MarkupInfo.Background = clNone
+            MarkupInfo.Foreground = clGray
+            MouseActionsExpanded = <>
+            MouseActionsCollapsed = <>
+          end
+        end
+      end
+      object GroupBox10: TGroupBox
+        Left = 16
+        Height = 73
+        Top = 440
+        Width = 185
+        Caption = 'Function'
+        ClientHeight = 55
+        ClientWidth = 181
+        TabOrder = 1
+        object FindObj_CreateFunction: TBitBtn
+          Left = 30
+          Height = 25
+          Top = 0
+          Width = 121
+          Caption = 'Create function'
+          Glyph.Data = {
+            36030000424D3603000000000000360000002800000010000000100000000100
+            18000000000000030000120B0000120B00000000000000000000FB00FFFB00FF
+            FB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00
+            FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB
+            00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF
+            FB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00
+            FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF64B89C64B89CFB
+            00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF
+            FB00FFFB00FF64B89C98EECA98EECA64B89CFB00FFFB00FFFB00FFFB00FFFB00
+            FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF64B89C9CF1CD60E3A560E3A59C
+            F1CD64B89CFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF
+            64B89CA1F3D166E8AB66E8AB66E8AB66E8ABA1F3D164B89CFB00FFFB00FFFB00
+            FFFB00FFFB00FFFB00FFFB00FFFB00FF64B89C6DEDB26DEDB264B89C64B89C6D
+            EDB26DEDB2A7F6D564B89CFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF
+            FB00FF64B89C64B89CFB00FFFB00FF64B89C73F3B973F3B9ABF9D964B89CFB00
+            FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB
+            00FF64B89C79F8BF79F8BFB0FBDD64B89CFB00FFFB00FFFB00FFFB00FFFB00FF
+            FB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF64B89C7EFCC47EFCC4B3FD
+            E064B89CFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB
+            00FFFB00FFFB00FF64B89C81FFC881FFC864B89CFB00FFFB00FFFB00FFFB00FF
+            FB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF64B89C64B8
+            9CFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB
+            00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF
+            FB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00
+            FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB
+            00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF
+          }
+          TabOrder = 0
+        end
+        object FindObj_ClearFunction: TBitBtn
+          Left = 30
+          Height = 25
+          Top = 26
+          Width = 121
+          Caption = 'Clear function'
+          Glyph.Data = {
+            36030000424D3603000000000000360000002800000010000000100000000100
+            18000000000000030000120B0000120B00000000000000000000FB00FFFB00FF
+            FB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00
+            FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB
+            00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF
+            FB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00
+            FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF6464B86464B8FB00FFFB
+            00FFFB00FFFB00FF6464B86464B8FB00FFFB00FFFB00FFFB00FFFB00FFFB00FF
+            FB00FF6464B89898EE9898EE6464B8FB00FFFB00FF6464B89898EE9898EE6464
+            B8FB00FFFB00FFFB00FFFB00FFFB00FFFB00FF6464B86060E36060E39C9CF164
+            64B86464B89C9CF16060E36060E36464B8FB00FFFB00FFFB00FFFB00FFFB00FF
+            FB00FFFB00FF6464B86666E86666E8A1A1F3A1A1F36666E86666E86464B8FB00
+            FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF6464B86D6DED6D
+            6DED6D6DED6D6DED6464B8FB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF
+            FB00FFFB00FFFB00FF6464B87373F37373F37373F37373F36464B8FB00FFFB00
+            FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF6464B8B0B0FB7979F879
+            79F87979F87979F8B0B0FB6464B8FB00FFFB00FFFB00FFFB00FFFB00FFFB00FF
+            FB00FF6464B8B3B3FD7E7EFC7E7EFC6464B86464B87E7EFC7E7EFCB3B3FD6464
+            B8FB00FFFB00FFFB00FFFB00FFFB00FFFB00FF6464B88181FF8181FF6464B8FB
+            00FFFB00FF6464B88181FF8181FF6464B8FB00FFFB00FFFB00FFFB00FFFB00FF
+            FB00FFFB00FF6464B86464B8FB00FFFB00FFFB00FFFB00FF6464B86464B8FB00
+            FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB
+            00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF
+            FB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00
+            FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB
+            00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF
+          }
+          TabOrder = 1
+        end
+      end
+      object GroupBox11: TGroupBox
+        Left = 448
+        Height = 73
+        Top = 440
+        Width = 193
+        Caption = 'Validate colors with'
+        ClientHeight = 55
+        ClientWidth = 189
+        Color = clBtnFace
+        ParentColor = False
+        TabOrder = 2
+        object FindObj_RGBRange: TCheckBox
+          Left = 5
+          Height = 19
+          Top = 5
+          Width = 76
+          Caption = 'RGB ranges'
+          TabOrder = 0
+        end
+        object FindObj_HSLRange: TCheckBox
+          Left = 5
+          Height = 19
+          Top = 30
+          Width = 74
+          Caption = 'HSL ranges'
+          Checked = True
+          State = cbChecked
+          TabOrder = 1
+        end
+        object FindObj_XYZRange: TCheckBox
+          Left = 102
+          Height = 19
+          Top = 5
+          Width = 74
+          Caption = 'XYZ ranges'
+          Checked = True
+          State = cbChecked
+          TabOrder = 2
+        end
+        object FindObj_arLength: TCheckBox
+          Left = 102
+          Height = 19
+          Top = 30
+          Width = 80
+          Caption = 'Array length'
+          Checked = True
+          State = cbChecked
+          TabOrder = 3
+        end
+      end
+      object GroupBox12: TGroupBox
+        Left = 229
+        Height = 73
+        Top = 440
+        Width = 193
+        Caption = 'Function Variables'
+        ClientHeight = 55
+        ClientWidth = 189
+        Color = clBtnFace
+        ParentColor = False
+        TabOrder = 3
+        object FindObj_UpText: TLabeledEdit
+          Left = 86
+          Height = 24
+          Top = 4
+          Width = 80
+          EditLabel.AnchorSideTop.Control = FindObj_UpText
+          EditLabel.AnchorSideTop.Side = asrCenter
+          EditLabel.AnchorSideRight.Control = FindObj_UpText
+          EditLabel.AnchorSideBottom.Control = FindObj_UpText
+          EditLabel.AnchorSideBottom.Side = asrBottom
+          EditLabel.Left = 14
+          EditLabel.Height = 14
+          EditLabel.Top = 9
+          EditLabel.Width = 69
+          EditLabel.Caption = 'Object Uptext'
+          EditLabel.ParentColor = False
+          Font.CharSet = ANSI_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Courier New'
+          LabelPosition = lpLeft
+          ParentFont = False
+          TabOrder = 0
+        end
+        object FindObj_Size: TLabeledEdit
+          Left = 86
+          Height = 24
+          Top = 28
+          Width = 80
+          EditLabel.AnchorSideTop.Control = FindObj_Size
+          EditLabel.AnchorSideTop.Side = asrCenter
+          EditLabel.AnchorSideRight.Control = FindObj_Size
+          EditLabel.AnchorSideBottom.Control = FindObj_Size
+          EditLabel.AnchorSideBottom.Side = asrBottom
+          EditLabel.Left = 18
+          EditLabel.Height = 14
+          EditLabel.Top = 33
+          EditLabel.Width = 65
+          EditLabel.Caption = 'Max Distance'
+          EditLabel.ParentColor = False
+          Font.CharSet = ANSI_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Courier New'
+          LabelPosition = lpLeft
+          ParentFont = False
+          TabOrder = 1
+        end
+      end
+    end
+  end
+  object ColorPanel: TPanel
+    Left = 664
+    Height = 558
+    Top = 26
+    Width = 131
+    Align = alRight
+    BevelOuter = bvNone
+    ClientHeight = 558
+    ClientWidth = 131
+    TabOrder = 1
+    object BestColorLabel: TLabel
+      Left = 0
+      Height = 14
+      Top = 376
+      Width = 51
+      Caption = 'Best color '
+      ParentColor = False
+    end
+    object TolLabel: TLabel
+      Left = 0
+      Height = 14
+      Top = 392
+      Width = 48
+      Caption = 'Tolerance'
+      ParentColor = False
+    end
+    object HueModLabel: TLabel
+      Left = 0
+      Height = 14
+      Top = 409
+      Width = 72
+      Caption = 'Hue mod: 0,00'
+      ParentColor = False
+      Visible = False
+    end
+    object SatModLabel: TLabel
+      Left = 0
+      Height = 14
+      Top = 426
+      Width = 69
+      Caption = 'Sat mod: 0,00'
+      ParentColor = False
+      Visible = False
+    end
+    object Colors: TListBox
+      Left = 0
+      Height = 296
+      Top = 40
+      Width = 131
+      Align = alCustom
+      ItemHeight = 0
+      OnKeyDown = ColorsKeyDown
+      PopupMenu = ColorPopupMenu
+      TabOrder = 0
+    end
+    object CTSgroup: TRadioGroup
+      Left = 14
+      Height = 108
+      Top = 448
+      Width = 97
+      AutoFill = True
+      Caption = 'CTS'
+      ChildSizing.LeftRightSpacing = 6
+      ChildSizing.TopBottomSpacing = 6
+      ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+      ChildSizing.EnlargeVertical = crsHomogenousChildResize
+      ChildSizing.ShrinkHorizontal = crsScaleChilds
+      ChildSizing.ShrinkVertical = crsScaleChilds
+      ChildSizing.Layout = cclLeftToRightThenTopToBottom
+      ChildSizing.ControlsPerLine = 1
+      ClientHeight = 90
+      ClientWidth = 93
+      ItemIndex = 1
+      Items.Strings = (
+        '0'
+        '1'
+        '2'
+        '3'
+      )
+      OnClick = CTSgroupClick
+      TabOrder = 1
+    end
+    object Label1: TLabel
+      Left = 0
+      Height = 14
+      Top = 0
+      Width = 75
+      Caption = 'Current profile:'
+      ParentColor = False
+    end
+    object pBox: TComboBox
+      Left = 0
+      Height = 21
+      Top = 16
+      Width = 128
+      ItemHeight = 13
+      OnChange = pBoxChange
+      OnSelect = pBoxSelect
+      TabOrder = 2
+    end
+    object AddProfileBtn: TButton
+      Left = 8
+      Height = 25
+      Top = 344
+      Width = 56
+      Caption = 'Add'
+      OnClick = AddProfileBtnClick
+      TabOrder = 3
+    end
+    object DeleteProfileBtn: TButton
+      Left = 72
+      Height = 25
+      Top = 344
+      Width = 55
+      Caption = 'Delete'
+      OnClick = DeleteProfileBtnClick
+      TabOrder = 4
+    end
+  end
+  object StatusBar1: TStatusBar
+    Left = 0
+    Height = 23
+    Top = 584
+    Width = 795
+    Panels = <    
+      item
+        Width = 80
+      end    
+      item
+        Width = 80
+      end    
+      item
+        Width = 80
+      end>
+    SimplePanel = False
+  end
+  object ToolBar1: TToolBar
+    Left = 0
+    Height = 26
+    Top = 0
+    Width = 795
+    Caption = 'ToolBar1'
+    TabOrder = 3
+  end
+  object MainMenu: TMainMenu
+    left = 8
+    top = 541
+    object File1: TMenuItem
+      Caption = 'File'
+      object New1: TMenuItem
+        Caption = 'New'
+        Bitmap.Data = {
+          36030000424D3603000000000000360000002800000010000000100000000100
+          18000000000000030000120B0000120B00000000000000000000FB00FFFB00FF
+          FB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00
+          FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB
+          00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF
+          FB00FFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+          AAFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFAAAAAAF8F8F8F8F8F8F8F8F8F8
+          F8F8F8F8F8F8F8F8F8F8F8F8F8F8AAAAAAFB00FFFB00FFFB00FFFB00FFFB00FF
+          FB00FFAAAAAAEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDAAAA
+          AAFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFAAAAAAE8E8E8E8E8E8E8E8E8E8
+          E8E8E8E8E8E8E8E8E8E8E8E8E8E8AAAAAAFB00FFFB00FFFB00FFFB00FFFB00FF
+          FB00FFAAAAAAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEAAAAA
+          AAFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFAAAAAAEBEBEBEBEBEBEBEBEBEB
+          EBEBEBEBEBEBEBEBEBEBEBEBEBEBAAAAAAFB00FFFB00FFFB00FFFB00FFFB00FF
+          FB00FFAAAAAAEFEFEFEFEFEFEFEFEFEFEFEFEFEFEFEFEFEFEFEFEFEFEFEFAAAA
+          AAFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFAAAAAAF3F3F3F3F3F3F3F3F3F3
+          F3F3F3F3F3F3F3F3F3F3F3F3F3F3AAAAAAFB00FFFB00FFFB00FFFB00FFFB00FF
+          FB00FFAAAAAAF7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7AAAA
+          AAFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFAAAAAAFAFAFAFAFAFAFAFAFAFA
+          FAFAFAFAFAAAAAAAAAAAAAAAAAAAAAAAAAFB00FFFB00FFFB00FFFB00FFFB00FF
+          FB00FFAAAAAAFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDAAAAAAEDEDEDEDEDEDAAAA
+          AAFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFAAAAAAFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFAAAAAAFFFFFFAAAAAAFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF
+          FB00FFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFB00FFFB00
+          FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB
+          00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF
+        }
+        ShortCut = 16462
+      end
+      object Open1: TMenuItem
+        Caption = 'Open'
+        Bitmap.Data = {
+          36030000424D3603000000000000360000002800000010000000100000000100
+          18000000000000030000120B0000120B00000000000000000000FB00FFFB00FF
+          FB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00
+          FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB
+          00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF
+          37A3CA37A3CA37A3CA37A3CA37A3CA37A3CA37A3CA37A3CA37A3CA37A3CAFB00
+          FFFB00FFFB00FFFB00FFFB00FF37A3CA37A3CAA2FFFFA2FFFFA2FFFFA2FFFFA2
+          FFFFA2FFFFA2FFFFA2FFFFA2FFFF37A3CAFB00FFFB00FFFB00FFFB00FF37A3CA
+          37A3CA8FF5FC69F2FB69F2FB69F2FB69F2FB69F2FB69F2FB69F2FB8FF5FC37A3
+          CAFB00FFFB00FFFB00FFFB00FF37A3CA80EFFA37A3CA74E9F845E1F645E1F645
+          E1F645E1F645E1F645E1F645E1F674E9F837A3CAFB00FFFB00FFFB00FF37A3CA
+          74E9F837A3CA66E2F633D8F333D8F333D8F333D8F333D8F333D8F333D8F366E2
+          F637A3CAFB00FFFB00FFFB00FF37A3CA6AE4F738DBF437A3CAA2FFFFA2FFFFA2
+          FFFFA2FFFFA2FFFFA2FFFFA2FFFFA2FFFFA2FFFF37A3CAFB00FFFB00FF37A3CA
+          66E2F633D8F3AAAAAA37A3CA37A3CA37A3CA37A3CA37A3CA37A3CA37A3CA37A3
+          CA37A3CAFB00FFFB00FFFB00FF37A3CA80EFFA55E9F8AAAAAAEBEBEBEBEBEBEB
+          EBEBEBEBEBEBEBEBEBEBEBAAAAAA37A3CAFB00FFFB00FFFB00FFFB00FF37A3CA
+          A2FFFFA2FFFFAAAAAAF0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0AAAAAAFB00
+          FFFB00FFFB00FFFB00FFFB00FFFB00FF37A3CA37A3CAAAAAAAF6F6F6F6F6F6F6
+          F6F6F6F6F6AAAAAAAAAAAAAAAAAAFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF
+          FB00FFFB00FFAAAAAAFBFBFBFBFBFBFBFBFBFBFBFBAAAAAAAAAAAAFB00FFFB00
+          FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFAAAAAAAAAAAAAAAAAAAA
+          AAAAAAAAAAAAAAAAFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF
+          FB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00
+          FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB
+          00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF
+        }
+        ShortCut = 16463
+      end
+      object Saveas1: TMenuItem
+        Caption = 'Save as'
+        Bitmap.Data = {
+          36030000424D3603000000000000360000002800000010000000100000000100
+          18000000000000030000120B0000120B00000000000000000000FB00FFFB00FF
+          FB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00
+          FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB
+          00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFA98D63
+          AF8D5BA98D63AEAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEA98D63AF8D
+          5BA98D63FB00FFFB00FFFB00FFAF8D5BF6DFC2A98D63F3F3F3F3F3F3F3F3F3F3
+          F3F3F3F3F3F3F3F3F3F3F3A98D63F6DFC2AF8D5BFB00FFFB00FFFB00FFAF8D5B
+          F0C79AA98D63F5F5F5C2C2C2C2C2C2C2C2C2C2C2C2C2C2C2F5F5F5A98D63F0C7
+          9AAF8D5BFB00FFFB00FFFB00FFAF8D5BF1C99CA98D63F8F8F8F8F8F8F8F8F8F8
+          F8F8F8F8F8F8F8F8F8F8F8A98D63F1C99CAF8D5BFB00FFFB00FFFB00FFAF8D5B
+          F3CB9DA98D63FBFBFBC2C2C2C2C2C2C2C2C2C2C2C2C2C2C2FBFBFBA98D63F3CB
+          9DAF8D5BFB00FFFB00FFFB00FFAF8D5BF5CEA1A98D63FDFDFDFDFDFDFDFDFDFD
+          FDFDFDFDFDFDFDFDFDFDFDA98D63F5CEA1AF8D5BFB00FFFB00FFFB00FFAF8D5B
+          F7D1A4A98D63A98D63A98D63A98D63A98D63A98D63A98D63A98D63A98D63F7D1
+          A4AF8D5BFB00FFFB00FFFB00FFAF8D5BF9D4A6F7C990F7C990F7C990F7C990F7
+          C990F7C990F7C990F7C990F7C990F9D4A6AF8D5BFB00FFFB00FFFB00FFAF8D5B
+          FAD7A9A98D63A98D63A98D63A98D63A98D63A98D63A98D63A98D63A98D63FAD7
+          A9AF8D5BFB00FFFB00FFFB00FFAF8D5BFDDAABA98D63F4F4F4F4F4F4F4F4F4F4
+          F4F4928780928780F4F4F4A98D63FDDAABAF8D5BFB00FFFB00FFFB00FFAF8D5B
+          FDDDADA98D63F8F8F8F8F8F8F8F8F8F8F8F8928780928780F8F8F8A98D63FDDD
+          ADAF8D5BFB00FFFB00FFFB00FFAF8D5BFFEDD3D0BE9FFDFDFDFDFDFDFDFDFDFD
+          FDFDC1BAB5C1BAB5FDFDFDD0BE9FAF8D5BFB00FFFB00FFFB00FFFB00FFA98D63
+          AF8D5BA98D63AEAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEAEA98D63FB00
+          FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB
+          00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF
+        }
+        ShortCut = 16467
+      end
+      object N1: TMenuItem
+        Caption = '-'
+      end
+      object Exit1: TMenuItem
+        Caption = 'Exit'
+      end
+    end
+    object Client1: TMenuItem
+      Caption = 'Client'
+      object Clientwindow1: TMenuItem
+        Caption = 'Client Window'
+        object FindRS1: TMenuItem
+          Caption = 'Find RS'
+          Bitmap.Data = {
+            8E020000424D8E0200000000000036000000280000000D0000000F0000000100
+            1800000000005802000000000000000000000000000000000000FFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FF00FEFFFF98A2A4FAF7F7FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFF00FFFFFF6A6C722F4040FFFEFFF3F7F7E5EBECFEFEFEFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00FFFFFFFCF9F84F5F6D4A5A627492
+            96598186F8F8F7FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00FFFFFFFFFFFF
+            E1E7EB235262415D65BFBEBEFBFAFAFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FF00FFFFFFFCFCFC90A8AA43686D57505250484EA7A7A8F6F6F7FFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFF00FFFFFFF9FAFA9DAFB1B4B3B78C8587201A245B5A5CDC
+            DCDDFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00FFFFFFFFFFFFFFFFFFFFFFFFCBCB
+            CD7270745E5E5D727273E6E6E6FFFFFFFFFFFFFFFFFFFFFFFF00FFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFEF7F8F7AFAFAE3F4040808081F0F1F1FFFFFFFFFFFFFFFF
+            FF00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFAFAFAA4A3A4605E57969493
+            F8F8F9FFFFFFFFFFFF00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFA
+            FAFAA8A9A7817070A29898F9FCFCFFFFFF00FFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFF5F8FAB5AAAAA08989B1A7A7FCFEFE00FFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEFEFDCACACA836F6FE7E4
+            E400FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FDFEFEC9C8C8F9FAFA00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00
+          }
+          ShortCut = 113
+        end
+        object Findclientbyname1: TMenuItem
+          Caption = 'Find client by Name'
+          Bitmap.Data = {
+            36030000424D3603000000000000360000002800000010000000100000000100
+            18000000000000030000C40E0000C40E00000000000000000000FFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF196B37196B37196B
+            37196B37196B37FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFF196B37288C5364BA8D95D2B264BA8D288C53196B37A97151C38E68
+            C08B66BE8864BB8561B9835FB47E5CB27C5AB17B58206C3A62BA8B60BA87FFFF
+            FF60B98767BC8F196B37C8926CFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFF317B4C9CD4B6FFFFFFFFFFFFFFFFFF95D2B2196B37CA946EFFFFFF
+            FFFFFFFFFFFEFFFFFDFEFEFDFEFEFCFEFEFCFEFEFC4A8B6290D3B192D6B1FFFF
+            FF65BC8C67BC8F196B37CC976FFFFFFFFFFFFCFFFFFDFEFEFCFEFEFCFEFEFBFD
+            FDFAFDFDFAA7C6B161AB8195D4B4BAE6D06ABB8F2D8F57196B37D19C73FFFFFF
+            FEFEFCFEFEFCFEFEFCFDFDFBFDFDFBFDFDFAFDFDF8FBFBF9ACC8B56099754F8E
+            664A8A61717951FFFFFFD49E75FFFFFFFEFEFCFDFDFBFDFDFCFDFDFBFDFDF9FC
+            FCF8FBF9F7FBF9F5FBF8F4FBF7F2FBF5F2FFFFFFB27C5AFFFFFFD5A076FFFFFF
+            FDFDFCFDFDFBFDFDFAFCFCF9FCFBF7FBF9F5FBF8F4FBF7F3FBF5F2FAF3EFF8F2
+            ECFFFFFFB57E5CFFFFFFD8A279FFFFFFFDFDFAFCFCFAFCFBF9FBFAF6FBF8F5FB
+            F7F4FBF6F1F8F4EEF7F2EBF7F0EAF6ECE8FFFFFFB7815EFFFFFFD9A379FFFFFF
+            FCFBF9FCFBF8FBF9F7FBF7F4FAF7F2F9F5F0F7F3EDF6EFEAF5EBE7F3EAE4F2E7
+            DEFFFFFFBA8560FFFFFFDBA47AFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFBD8763FFFFFFDCA77BDCA77B
+            DCA77BDCA77BDCA77BDCA77BDCA77BDCA77BDCA77BDCA77BDCA77BDCA77BDCA7
+            7BDCA77BC08B66FFFFFFDDAC85E8B992E8B992E8B992E8B992E8B992E8B992E8
+            B992E8B992E8B992E8B992E8B992E8B992E8B992C1906FFFFFFFA97151DDB18D
+            DCA77BDCA67ADAA47AD8A279D5A076D49E75D29D73CF9A72CE9970CB966FC994
+            6CC49A7AA97151FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          }
+          ShortCut = 114
+        end
+        object ResettoDesktop1: TMenuItem
+          Caption = 'Reset to Desktop'
+          Bitmap.Data = {
+            36030000424D3603000000000000360000002800000010000000100000000100
+            18000000000000030000C40E0000C40E00000000000000000000FFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF1D57C40345B90442
+            BC0345B90345B8FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFF1A57C32564C92177E60579EA0164DD044DBD0345B8A97151C38E68
+            C08B66BE8864BB8561B9835FB47E5CB27C5AB17B58164BAE639DF4187FFF0076
+            F80076EE0368E10345B9C8926CFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFF0543BCAECDFEFFFFFFFFFFFFFFFFFF187FEF0442BCCA946EFFFFFF
+            FFFFFFFFFFFEFFFFFDFEFEFDFEFEFCFEFEFCFEFEFC245DC28DB5F64D92FF1177
+            FF2186FF408AEB0344B9CC976FFFFFFFFFFFFCFFFFFDFEFEFCFEFEFCFEFEFBFD
+            FDFAFDFDFA95B0E13D76D28DB5F7B8D6FE72A8F52E6BCA0443BAD19C73FFFFFF
+            FEFEFCFEFEFCFEFEFCFDFDFBFDFDFBFDFDFAFDFDF8FBFBF993AEDF2A61C60543
+            BC205AC15F6186FFFFFFD49E75FFFFFFFEFEFCFDFDFBFDFDFCFDFDFBFDFDF9FC
+            FCF8FBF9F7FBF9F5FBF8F4FBF7F2FBF5F2FFFFFFB27C5AFFFFFFD5A076FFFFFF
+            FDFDFCFDFDFBFDFDFAFCFCF9FCFBF7FBF9F5FBF8F4FBF7F3FBF5F2FAF3EFF8F2
+            ECFFFFFFB57E5CFFFFFFD8A279FFFFFFFDFDFAFCFCFAFCFBF9FBFAF6FBF8F5FB
+            F7F4FBF6F1F8F4EEF7F2EBF7F0EAF6ECE8FFFFFFB7815EFFFFFFD9A379FFFFFF
+            FCFBF9FCFBF8FBF9F7FBF7F4FAF7F2F9F5F0F7F3EDF6EFEAF5EBE7F3EAE4F2E7
+            DEFFFFFFBA8560FFFFFFDBA47AFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFBD8763FFFFFFDCA77BDCA77B
+            DCA77BDCA77BDCA77BDCA77BDCA77BDCA77BDCA77BDCA77BDCA77BDCA77BDCA7
+            7BDCA77BC08B66FFFFFFDDAC85E8B992E8B992E8B992E8B992E8B992E8B992E8
+            B992E8B992E8B992E8B992E8B992E8B992E8B992C1906FFFFFFFA97151DDB18D
+            DCA77BDCA67ADAA47AD8A279D5A076D49E75D29D73CF9A72CE9970CB966FC994
+            6CC49A7AA97151FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          }
+          ShortCut = 115
+        end
+        object N7: TMenuItem
+          Caption = '-'
+        end
+        object MinimizeACAonreading1: TMenuItem
+          AutoCheck = True
+          Caption = 'Minimize on capture'
+        end
+      end
+      object N2: TMenuItem
+        Caption = '-'
+      end
+      object Openbitmap1: TMenuItem
+        Caption = 'Load bitmap'
+        Bitmap.Data = {
+          36030000424D3603000000000000360000002800000010000000100000000100
+          18000000000000030000C40E0000C40E00000000000000000000FFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF007D21037B1E0079
+          15FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFF01832B43A15F007B1F007919FFFFFFFFFFFFCEAF9CCFAE9A
+          CEAB94CEAA93CEAA93CEAA932297511C9149168F43108B3B3A9F5E80C19646A3
+          620C8026007919FFFFFFCDAB96F1EFEDF7F3F1F8F4F1F8F4F0F7F4F0299B5B90
+          CAA98DC8A58AC6A188C59E6AB68582C29748A566007D2100791BCCA68EF6F1ED
+          BFDCC2BFDCC2BFDCC2BFDCC2319F6394CDAD6FBA8E6BB88966B68561B38067B5
+          8283C2983CA05C007F25CCA68DF7F1EDBFDCC2BFDCC2BFDCC2AFD3C537A36B96
+          CEB094CDAD91CBAA90CBA874BC908AC7A146A56807873501832DCDA78EF7F1EC
+          4EAA7A4CA8774AA674357B9A3DA56F37A36E33A1682F9D6155AF7C91CBAA4FAB
+          74188F46118B3DFFFFFFCDA78EF7F2EDE8BDA1E7BB9FD0B3925E8276448E8641
+          8B87568380C7A68238A0655AB381289857C7AA91FFFFFFFFFFFFCDA78FF7F3EE
+          E7BB9FD1B6939FAA786FB28765BD8A61BB876BAB7B9193643DA36C319F65EFEB
+          E2CEAB94FFFFFFFFFFFFCDA78FF7F4EFE6B99DB6B38788C29363C58F53BE804F
+          BA7A58BD7F78B07CA3966ADCA784F6EEE7CEAB94FFFFFFFFFFFFCDA78FF7F5F0
+          E5B89BA1B37F7DCDA05EC59056C08752BE8152BC7E6CBD8789905EDAA481F5EF
+          E7CEAB94FFFFFFFFFFFFCDA78FF7F5F2E4B799A3B68082D0A765C9985DC69159
+          C28B58C18771C28E8C925FD9A27DF6F0E8CEAB94FFFFFFFFFFFFCDA78FF7F5F4
+          E3B597B8B78793CBA174D2A867CB9B63C8976AC99883BB8BA5996AD79F7AF7F0
+          E9CFAB94FFFFFFFFFFFFCDAB95F4F3F2E3B495D0B48DA9B58093CCA184D1AA82
+          D0A68BC2949A9E69C39D73D69D77F7F2EBCFAB94FFFFFFFFFFFFCFB29FECECEB
+          F4F4F3F7F5F4F7F5F4F7F5F4F7F5F4F7F5F4F7F5F4F7F5F4F7F5F4F7F3ECF2EF
+          E9CEAD97FFFFFFFFFFFFCEB3A1CFB19FCDAB95CDA78ECDA78ECDA78ECDA78ECD
+          A78ECDA68ECDA68ECDA68ECDA68ECDAA93CDAF9BFFFFFFFFFFFF
+        }
+        ShortCut = 49231
+      end
+      object Savebitmap1: TMenuItem
+        Caption = 'Save bitmap'
+        Bitmap.Data = {
+          36030000424D3603000000000000360000002800000010000000100000000100
+          18000000000000030000C40E0000C40E00000000000000000000FFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFBA6833C38458D38B68E18F70DC8D6CDA8B6DD78A
+          6ECD8B6CAB6D44A65F2EFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFC68355EF
+          CEBADDFFFF87EEC7A2F4D7A2F6D78CEEC7E0FFFFDDA285AB6A3ECEAF9CCFAE9A
+          CEAB94CEAA93CEAA93CEAA93C37F51EFB69AEAF3E851BF846FC99871C99954BF
+          84E4F4E9DD9C7BAA693ACDAB96F1EFEDF7F3F1F8F4F1F8F4F0F7F4F0C48154EA
+          B697F3F3EAEDF1E6EFF1E6EFF0E6EDF1E5F3F5EDD59C79B07044CCA68EF6F1ED
+          BFDCC2BFDCC2BFDCC2BFDCC2C98B61E6B592E2A781E1A781DEA37DDCA17BDB9F
+          79D99E77D49A73BB7E57CCA68DF7F1EDBFDCC2BFDCC2BFDCC2AFD3C5CA8D65EA
+          B899DDA57EDDA680DBA37CD9A07AD9A079D89F78D89E78BF845DCDA78EF7F1EC
+          4EAA7A4CA8774AA674357B9AC8885DEFBFA1FDFCFAFEFCFBFEFDFDFEFDFCFDFB
+          FAFDFCFBDDA885C17F53CDA78EF7F2EDE8BDA1E7BB9FD0B3925E8276C7865BEF
+          C09EFFFFFFCC936EFFFFFFFFFFFFFFFBF7FFF8F1E4AF8CC78A61CDA78FF7F3EE
+          E7BB9FD1B6939FAA786FB287CC8D65F3CDB0FFFFFFE3C7B3FFFFFFFFFFFFFFFF
+          FFFFFFFFEABFA1C98960CDA78FF7F4EFE6B99DB6B38788C29363C58FD4976ED4
+          9E7BD09871D6A482CD8E68CD9069D09A75D19973C88B62AD5A20CDA78FF7F5F0
+          E5B89BA1B37F7DCDA05EC59056C08752BE8152BC7E6CBD8789905EDAA481F5EF
+          E7CEAB94FFFFFFFFFFFFCDA78FF7F5F2E4B799A3B68082D0A765C9985DC69159
+          C28B58C18771C28E8C925FD9A27DF6F0E8CEAB94FFFFFFFFFFFFCDA78FF7F5F4
+          E3B597B8B78793CBA174D2A867CB9B63C8976AC99883BB8BA5996AD79F7AF7F0
+          E9CFAB94FFFFFFFFFFFFCDAB95F4F3F2E3B495D0B48DA9B58093CCA184D1AA82
+          D0A68BC2949A9E69C39D73D69D77F7F2EBCFAB94FFFFFFFFFFFFCFB29FECECEB
+          F4F4F3F7F5F4F7F5F4F7F5F4F7F5F4F7F5F4F7F5F4F7F5F4F7F5F4F7F3ECF2EF
+          E9CEAD97FFFFFFFFFFFFCEB3A1CFB19FCDAB95CDA78ECDA78ECDA78ECDA78ECD
+          A78ECDA68ECDA68ECDA68ECDA68ECDAA93CDAF9BFFFFFFFFFFFF
+        }
+        ShortCut = 49235
+      end
+      object Copybitmapfromclipboard1: TMenuItem
+        Caption = 'Paste bitmap'
+        Bitmap.Data = {
+          36030000424D3603000000000000360000002800000010000000100000000100
+          18000000000000030000C40E0000C40E00000000000000000000FFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF196B37196B37196B
+          37196B37196B37FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFF196B37288C5364BA8D95D2B264BA8D288C53196B37CEAF9CCFAE9A
+          CEAB94CEAA93CEAA93CEAA93CEAA93CEAA93CEAA93216E3C62BA8B60BA87FFFF
+          FF60B98767BC8F196B37CDAB96F1EFEDF7F3F1F8F4F1F8F4F0F7F4F0F7F3F0F7
+          F3EFF7F3EF317B4C9CD4B6FFFFFFFFFFFFFFFFFF95D2B2196B37CCA68EF6F1ED
+          BFDCC2BFDCC2BFDCC2BFDCC2BFDCC2BFDCC2BFDCC2488A6090D3B192D6B1FFFF
+          FF65BC8C67BC8F196B37CCA68DF7F1EDBFDCC2BFDCC2BFDCC2AFD3C59CC8C96E
+          AFD1BAD9C388B59561AB8195D4B4BAE6D06ABB8F2D8F57196B37CDA78EF7F1EC
+          4EAA7A4CA8774AA674357B9A549FD3549FD13F86AF409A674B966A57946D4F8E
+          6647865C2E7849FFFFFFCDA78EF7F2EDE8BDA1E7BB9FD0B3925E8276448E8641
+          8B87568380C7A682E0AE8EDEAC8BF6EEE6CEAB94FFFFFFFFFFFFCDA78FF7F3EE
+          E7BB9FD1B6939FAA786FB28765BD8A61BB876BAB7B919364C5A27DDDA988F6EE
+          E7CEAB94FFFFFFFFFFFFCDA78FF7F4EFE6B99DB6B38788C29363C58F53BE804F
+          BA7A58BD7F78B07CA3966ADCA784F6EEE7CEAB94FFFFFFFFFFFFCDA78FF7F5F0
+          E5B89BA1B37F7DCDA05EC59056C08752BE8152BC7E6CBD8789905EDAA481F5EF
+          E7CEAB94FFFFFFFFFFFFCDA78FF7F5F2E4B799A3B68082D0A765C9985DC69159
+          C28B58C18771C28E8C925FD9A27DF6F0E8CEAB94FFFFFFFFFFFFCDA78FF7F5F4
+          E3B597B8B78793CBA174D2A867CB9B63C8976AC99883BB8BA5996AD79F7AF7F0
+          E9CFAB94FFFFFFFFFFFFCDAB95F4F3F2E3B495D0B48DA9B58093CCA184D1AA82
+          D0A68BC2949A9E69C39D73D69D77F7F2EBCFAB94FFFFFFFFFFFFCFB29FECECEB
+          F4F4F3F7F5F4F7F5F4F7F5F4F7F5F4F7F5F4F7F5F4F7F5F4F7F5F4F7F3ECF2EF
+          E9CEAD97FFFFFFFFFFFFCEB3A1CFB19FCDAB95CDA78ECDA78ECDA78ECDA78ECD
+          A78ECDA68ECDA68ECDA68ECDA68ECDAA93CDAF9BFFFFFFFFFFFF
+        }
+        ShortCut = 49229
+      end
+      object N3: TMenuItem
+        Caption = '-'
+      end
+      object Reloadfromclient1: TMenuItem
+        Caption = 'Reload from client'
+        Bitmap.Data = {
+          36030000424D3603000000000000360000002800000010000000100000000100
+          18000000000000030000120B0000120B00000000000000000000FB00FFFB00FF
+          FB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00
+          FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB
+          00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF
+          FB00FF64B89C64B89C64B89C64B89C64B89C64B89C64B89C64B89C64B89CFB00
+          FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF64B89C81FFC881FFC881FFC881
+          FFC881FFC881FFC881FFC864B89CFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF
+          FB00FF64B89C64B89C64B89C64B89C64B89C64B89C64B89C64B89C64B89CFB00
+          FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF64
+          B89CFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF
+          FB00FFFB00FFFB00FFFB00FF64B89CADEFD064B89CFB00FFFB00FFFB00FFFB00
+          FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF64B89CB0F1D260
+          E3A5B0F1D264B89CFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF
+          FB00FFFB00FF64B89CB3F4D566E8AB66E8AB66E8ABB3F4D564B89CFB00FFFB00
+          FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF64B89CB6F6D96DEDB26DEDB26D
+          EDB26DEDB26DEDB2B6F6D964B89CFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF
+          FB00FF64B89C64B89C64B89C73F3B973F3B973F3B964B89C64B89C64B89CFB00
+          FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF64B89C79F8BF79
+          F8BF79F8BF64B89CFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF
+          FB00FFFB00FFFB00FF64B89C7EFCC47EFCC47EFCC464B89CFB00FFFB00FFFB00
+          FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF64B89C81FFC881
+          FFC881FFC864B89CFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF
+          FB00FFFB00FFFB00FF64B89C64B89C64B89C64B89C64B89CFB00FFFB00FFFB00
+          FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB
+          00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF
+        }
+        ShortCut = 116
+      end
+      object Refreshimage1: TMenuItem
+        Caption = 'Refresh image'
+        Bitmap.Data = {
+          36030000424D3603000000000000360000002800000010000000100000000100
+          18000000000000030000120B0000120B00000000000000000000FFFFFFFFFFFF
+          FFFFFFF8FBF8D2E4D191BD8E5EA75E55A35455A2545DA65D89BA89CFE3D0F6FA
+          F6FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEEF7EE98C2973E973D3099313BA0383B
+          A5373EA63B3BA0373599303F963D8EBD8FEFFAEEFFFFFFFFFFFFFFFFFFF4FBF4
+          76AF7430912E3DA53849AE4448A9454FAD4E51AF4D51B04F46AD453AA4393192
+          2D74B070EDFAEFFFFFFFFBFDFBA0C8A02D8E2B3DA93C46AD4748AC478AC887AE
+          D8AF4EAE4C4EB34E56B2534FB14C3FA83F2F912B91BF92FAFCFAE0EFE13E9640
+          39A4364BAF4661B65CAEDAAEF9FDF8EEF7F1B3DAB187C68457B25252B1524EB3
+          4A3BA5383D953BDCE8DB98C4982E972E47AC4447AA44A5D4A5FFFFFFFFFCFFFC
+          FFFFFFFFFFFFFFFFB1DCAD56B0544FB15147AC4332992F8CBD8D5BA35D37A032
+          57B15660B65D6EBC6DB4DAAFF7FAF9E6F3E6ABD9ABC7E4C9FBFDFCA6D2A55BB6
+          5E58B3553A9F3857A45657A1545DB65D74C27289C787A9D9AB72BC709FD0A1BC
+          E0BA78C17775BD73ABD3A9DBEFDC83C68279C1775FB8605EA95D69B06479C27B
+          82C38387C886D4E9D2BEE3BC82C67F81C482C0E0BAB6DEB37CC27DA7D2A693CC
+          9182C58078C37775B87475B6727CC37D8FC88E8CCB8AADDAAAFBFEFCDCF0DCC3
+          E4C3EBF4E6FFFFFFD0EBD29DCF9A8FCB8D8ACA8980C67E7CB978A0CA9E78BE78
+          98D09999D29A99CF97C8E0C6FDFDFEFFFFFFFFFFFFFEFEFFFFFFFFD6ECD89BCE
+          9798D09580C37D9CC79CE3F1E177B7739AD49DA3D5A4A9D6A5A5D4A3B7DCB8CC
+          E4CAECF4EFFCFEFCD6EAD4ACDAACA2D5A0A2D49F7CBD7BDCEBDDFCFEFCA9CFA9
+          86C383B2DEAFAFDAAFAFDDAFACDDACADD9A8CFE9D2CCE8C8ADD9A7ACDAAAAFDE
+          B08CCA8BA7CAA8FAFCFAFFFFFFF3FBF698C39591C990B8E2B9C0E1BFBDDFBCBA
+          DFB8B7DCB8B5DEB6BEE4BCC0E1BB9DCD9D98C598F0F6F0FFFFFFFFFFFFFFFFFF
+          EFF7F09FC79E8DC28BA3D2A4BEE0BDC9EAC9C9EAC7C1E2C0A9D5A891C98E9DC8
+          9BEEF7EEFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF8FBF8D7E7D7A6CAA38FC08C90
+          C28E91C48F90C38FA6CDA3D5E5D5F7FAF7FFFFFFFFFFFFFFFFFF
+        }
+        ShortCut = 117
+      end
+    end
+    object Colors1: TMenuItem
+      Caption = 'Colors'
+      object Addcolor2: TMenuItem
+        Caption = 'Add color'
+        Bitmap.Data = {
+          36030000424D3603000000000000360000002800000010000000100000000100
+          18000000000000030000120B0000120B00000000000000000000FB00FFFB00FF
+          FB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00
+          FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB
+          00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF
+          FB00FFFB00FFFB00FFFB00FFFB00FF64B89C64B89CFB00FFFB00FFFB00FFFB00
+          FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF64B89C98
+          EEC998EEC964B89CFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF
+          FB00FFFB00FFFB00FFFB00FF64B89C5EE1A35EE1A364B89CFB00FFFB00FFFB00
+          FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF64B89C63
+          E5A863E5A864B89CFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF
+          FB00FF64B89C64B89C64B89C64B89C67E9AD67E9AD64B89C64B89C64B89C64B8
+          9CFB00FFFB00FFFB00FFFB00FFFB00FF64B89CA7F6D5A7F6D5A7F6D5A7F6D56D
+          EDB26DEDB2A7F6D5A7F6D5A7F6D5A7F6D564B89CFB00FFFB00FFFB00FFFB00FF
+          64B89C72F2B872F2B872F2B872F2B872F2B872F2B872F2B872F2B872F2B872F2
+          B864B89CFB00FFFB00FFFB00FFFB00FFFB00FF64B89C64B89C64B89C64B89C76
+          F6BD76F6BD64B89C64B89C64B89C64B89CFB00FFFB00FFFB00FFFB00FFFB00FF
+          FB00FFFB00FFFB00FFFB00FF64B89C7BFAC27BFAC264B89CFB00FFFB00FFFB00
+          FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF64B89C7E
+          FDC57EFDC564B89CFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF
+          FB00FFFB00FFFB00FFFB00FF64B89C81FFC881FFC864B89CFB00FFFB00FFFB00
+          FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF64
+          B89C64B89CFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF
+          FB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00
+          FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB
+          00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF
+        }
+        ShortCut = 49217
+      end
+      object Deleteduplicates1: TMenuItem
+        Caption = 'Delete duplicates'
+        Bitmap.Data = {
+          36030000424D3603000000000000360000002800000010000000100000000100
+          18000000000000030000120B0000120B00000000000000000000FB00FFFB00FF
+          FB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00
+          FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB
+          00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF
+          FB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00
+          FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB
+          00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF
+          FB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00
+          FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB
+          00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF
+          FB00FF6464B86464B86464B86464B86464B86464B86464B86464B86464B86464
+          B8FB00FFFB00FFFB00FFFB00FFFB00FF6464B8A7A7F6A7A7F6A7A7F6A7A7F6A7
+          A7F6A7A7F6A7A7F6A7A7F6A7A7F6A7A7F66464B8FB00FFFB00FFFB00FFFB00FF
+          6464B88181FF8181FF8181FF8181FF8181FF8181FF8181FF8181FF8181FF8181
+          FF6464B8FB00FFFB00FFFB00FFFB00FFFB00FF6464B86464B86464B86464B864
+          64B86464B86464B86464B86464B86464B8FB00FFFB00FFFB00FFFB00FFFB00FF
+          FB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00
+          FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB
+          00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF
+          FB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00
+          FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB
+          00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF
+          FB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00
+          FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB
+          00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF
+        }
+        ShortCut = 16452
+      end
+      object ClearList2: TMenuItem
+        Caption = 'Clear List'
+        Bitmap.Data = {
+          36030000424D3603000000000000360000002800000010000000100000000100
+          18000000000000030000C40E0000C40E00000000000000000000FFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFA97151C38E68
+          C08B66BE8864BB8561B9835FB47E5CB27C5AB17B58AE7957AD7656AB7554A973
+          53A97151A97151FFFFFFC8926CFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFA97251FFFFFFCA946EFFFFFF
+          FFFFFFFFFFFEFFFFFDFEFEFDFEFEFCFEFEFCFEFEFCFEFEFCFEFEFAFEFEFAFCFC
+          F9FFFFFFAA7353FFFFFFCC976FFFFFFFFFFFFCFFFFFDFEFEFCFEFEFCFEFEFBFD
+          FDFAFDFDFAFDFDFAFDFDFAFCFCF7FBFBF6FFFFFFAC7554FFFFFFD19C73FFFFFF
+          FEFEFCFEFEFCFEFEFCFDFDFBFDFDFBFDFDFAFDFDF8FBFBF9FBFAF7FBFAF6FBF8
+          F4FFFFFFB07A58FFFFFFD49E75FFFFFFFEFEFCFDFDFBFDFDFCFDFDFBFDFDF9FC
+          FCF8FBF9F7FBF9F5FBF8F4FBF7F2FBF5F2FFFFFFB27C5AFFFFFFD5A076FFFFFF
+          FDFDFCFDFDFBFDFDFAFCFCF9FCFBF7FBF9F5FBF8F4FBF7F3FBF5F2FAF3EFF8F2
+          ECFFFFFFB57E5CFFFFFFD8A279FFFFFFFDFDFAFCFCFAFCFBF9FBFAF6FBF8F5FB
+          F7F4FBF6F1F8F4EEF7F2EBF7F0EAF6ECE8FFFFFFB7815EFFFFFFD9A379FFFFFF
+          FCFBF9FCFBF8FBF9F7FBF7F4FAF7F2F9F5F0F7F3EDF6EFEAF5EBE7F3EAE4F2E7
+          DEFFFFFFBA8560FFFFFFDBA47AFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFBD8763FFFFFFDCA77BDCA77B
+          DCA77BDCA77BDCA77BDCA77BDCA77BDCA77BDCA77BDCA77BDCA77BDCA77BDCA7
+          7BDCA77BC08B66FFFFFFDDAC85E8B992E8B992E8B992E8B992E8B992E8B992E8
+          B992E8B992E8B992E8B992E8B992E8B992E8B992C1906FFFFFFFA97151DDB18D
+          DCA77BDCA67ADAA47AD8A279D5A076D49E75D29D73CF9A72CE9970CB966FC994
+          6CC49A7AA97151FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        }
+        ShortCut = 16460
+      end
+    end
+    object Help1: TMenuItem
+      Caption = 'Help'
+    end
+  end
+  object ColorPopupMenu: TPopupMenu
+    left = 760
+    top = 8
+    object AddColor1: TMenuItem
+      Caption = 'Add Color'
+      Bitmap.Data = {
+        36030000424D3603000000000000360000002800000010000000100000000100
+        18000000000000030000120B0000120B00000000000000000000FB00FFFB00FF
+        FB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00
+        FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB
+        00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF
+        FB00FFFB00FFFB00FFFB00FFFB00FF64B89C64B89CFB00FFFB00FFFB00FFFB00
+        FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF64B89C98
+        EEC998EEC964B89CFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF
+        FB00FFFB00FFFB00FFFB00FF64B89C5EE1A35EE1A364B89CFB00FFFB00FFFB00
+        FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF64B89C63
+        E5A863E5A864B89CFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF
+        FB00FF64B89C64B89C64B89C64B89C67E9AD67E9AD64B89C64B89C64B89C64B8
+        9CFB00FFFB00FFFB00FFFB00FFFB00FF64B89CA7F6D5A7F6D5A7F6D5A7F6D56D
+        EDB26DEDB2A7F6D5A7F6D5A7F6D5A7F6D564B89CFB00FFFB00FFFB00FFFB00FF
+        64B89C72F2B872F2B872F2B872F2B872F2B872F2B872F2B872F2B872F2B872F2
+        B864B89CFB00FFFB00FFFB00FFFB00FFFB00FF64B89C64B89C64B89C64B89C76
+        F6BD76F6BD64B89C64B89C64B89C64B89CFB00FFFB00FFFB00FFFB00FFFB00FF
+        FB00FFFB00FFFB00FFFB00FF64B89C7BFAC27BFAC264B89CFB00FFFB00FFFB00
+        FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF64B89C7E
+        FDC57EFDC564B89CFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF
+        FB00FFFB00FFFB00FFFB00FF64B89C81FFC881FFC864B89CFB00FFFB00FFFB00
+        FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF64
+        B89C64B89CFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF
+        FB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00
+        FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB
+        00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF
+      }
+    end
+    object DeleteColor1: TMenuItem
+      Caption = 'Delete Color'
+      Bitmap.Data = {
+        36030000424D3603000000000000360000002800000010000000100000000100
+        18000000000000030000120B0000120B00000000000000000000FB00FFFB00FF
+        FB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00
+        FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB
+        00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF
+        FB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00
+        FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF6464B86464B8FB00FFFB
+        00FFFB00FFFB00FF6464B86464B8FB00FFFB00FFFB00FFFB00FFFB00FFFB00FF
+        FB00FF6464B89898EE9898EE6464B8FB00FFFB00FF6464B89898EE9898EE6464
+        B8FB00FFFB00FFFB00FFFB00FFFB00FFFB00FF6464B86060E36060E39C9CF164
+        64B86464B89C9CF16060E36060E36464B8FB00FFFB00FFFB00FFFB00FFFB00FF
+        FB00FFFB00FF6464B86666E86666E8A1A1F3A1A1F36666E86666E86464B8FB00
+        FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF6464B86D6DED6D
+        6DED6D6DED6D6DED6464B8FB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF
+        FB00FFFB00FFFB00FF6464B87373F37373F37373F37373F36464B8FB00FFFB00
+        FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF6464B8B0B0FB7979F879
+        79F87979F87979F8B0B0FB6464B8FB00FFFB00FFFB00FFFB00FFFB00FFFB00FF
+        FB00FF6464B8B3B3FD7E7EFC7E7EFC6464B86464B87E7EFC7E7EFCB3B3FD6464
+        B8FB00FFFB00FFFB00FFFB00FFFB00FFFB00FF6464B88181FF8181FF6464B8FB
+        00FFFB00FF6464B88181FF8181FF6464B8FB00FFFB00FFFB00FFFB00FFFB00FF
+        FB00FFFB00FF6464B86464B8FB00FFFB00FFFB00FFFB00FF6464B86464B8FB00
+        FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB
+        00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF
+        FB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00
+        FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB
+        00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF
+      }
+    end
+    object DeleteDuplicates2: TMenuItem
+      Caption = 'Delete Duplicates'
+      Bitmap.Data = {
+        36030000424D3603000000000000360000002800000010000000100000000100
+        18000000000000030000120B0000120B00000000000000000000FB00FFFB00FF
+        FB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00
+        FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB
+        00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF
+        FB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00
+        FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB
+        00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF
+        FB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00
+        FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB
+        00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF
+        FB00FF6464B86464B86464B86464B86464B86464B86464B86464B86464B86464
+        B8FB00FFFB00FFFB00FFFB00FFFB00FF6464B8A7A7F6A7A7F6A7A7F6A7A7F6A7
+        A7F6A7A7F6A7A7F6A7A7F6A7A7F6A7A7F66464B8FB00FFFB00FFFB00FFFB00FF
+        6464B88181FF8181FF8181FF8181FF8181FF8181FF8181FF8181FF8181FF8181
+        FF6464B8FB00FFFB00FFFB00FFFB00FFFB00FF6464B86464B86464B86464B864
+        64B86464B86464B86464B86464B86464B8FB00FFFB00FFFB00FFFB00FFFB00FF
+        FB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00
+        FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB
+        00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF
+        FB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00
+        FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB
+        00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF
+        FB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00
+        FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB
+        00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF
+      }
+    end
+    object ClearList1: TMenuItem
+      Caption = 'Clear List'
+      Bitmap.Data = {
+        36030000424D3603000000000000360000002800000010000000100000000100
+        18000000000000030000C40E0000C40E00000000000000000000FFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFA97151C38E68
+        C08B66BE8864BB8561B9835FB47E5CB27C5AB17B58AE7957AD7656AB7554A973
+        53A97151A97151FFFFFFC8926CFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFA97251FFFFFFCA946EFFFFFF
+        FFFFFFFFFFFEFFFFFDFEFEFDFEFEFCFEFEFCFEFEFCFEFEFCFEFEFAFEFEFAFCFC
+        F9FFFFFFAA7353FFFFFFCC976FFFFFFFFFFFFCFFFFFDFEFEFCFEFEFCFEFEFBFD
+        FDFAFDFDFAFDFDFAFDFDFAFCFCF7FBFBF6FFFFFFAC7554FFFFFFD19C73FFFFFF
+        FEFEFCFEFEFCFEFEFCFDFDFBFDFDFBFDFDFAFDFDF8FBFBF9FBFAF7FBFAF6FBF8
+        F4FFFFFFB07A58FFFFFFD49E75FFFFFFFEFEFCFDFDFBFDFDFCFDFDFBFDFDF9FC
+        FCF8FBF9F7FBF9F5FBF8F4FBF7F2FBF5F2FFFFFFB27C5AFFFFFFD5A076FFFFFF
+        FDFDFCFDFDFBFDFDFAFCFCF9FCFBF7FBF9F5FBF8F4FBF7F3FBF5F2FAF3EFF8F2
+        ECFFFFFFB57E5CFFFFFFD8A279FFFFFFFDFDFAFCFCFAFCFBF9FBFAF6FBF8F5FB
+        F7F4FBF6F1F8F4EEF7F2EBF7F0EAF6ECE8FFFFFFB7815EFFFFFFD9A379FFFFFF
+        FCFBF9FCFBF8FBF9F7FBF7F4FAF7F2F9F5F0F7F3EDF6EFEAF5EBE7F3EAE4F2E7
+        DEFFFFFFBA8560FFFFFFDBA47AFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFBD8763FFFFFFDCA77BDCA77B
+        DCA77BDCA77BDCA77BDCA77BDCA77BDCA77BDCA77BDCA77BDCA77BDCA77BDCA7
+        7BDCA77BC08B66FFFFFFDDAC85E8B992E8B992E8B992E8B992E8B992E8B992E8
+        B992E8B992E8B992E8B992E8B992E8B992E8B992C1906FFFFFFFA97151DDB18D
+        DCA77BDCA67ADAA47AD8A279D5A076D49E75D29D73CF9A72CE9970CB966FC994
+        6CC49A7AA97151FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      }
+    end
+  end
+  object OpenPictureDialog1: TOpenPictureDialog
+    Filter = 'Bitmaps (*.bmp)|*.bmp'
+    left = 96
+    top = 541
+  end
+  object SavePictureDialog1: TSavePictureDialog
+    Filter = 'Bitmaps (*.bmp)|*.bmp'
+    Options = [ofOverwritePrompt, ofHideReadOnly, ofEnableSizing]
+    left = 126
+    top = 541
+  end
+  object SaveDialog1: TSaveDialog
+    Filter = 'Auto Color Aid files|*.aca'
+    Options = [ofOverwritePrompt, ofHideReadOnly, ofEnableSizing]
+    left = 66
+    top = 541
+  end
+  object OpenDialog1: TOpenDialog
+    Filter = 'Auto Color Aid files|*.aca'
+    left = 36
+    top = 541
+  end
+  object ImagePopupMenu: TPopupMenu
+    left = 12
+    top = 35
+    object PickColor1: TMenuItem
+      Caption = 'Pick Color'
+      Bitmap.Data = {
+        36030000424D3603000000000000360000002800000010000000100000000100
+        18000000000000030000120B0000120B00000000000000000000FB00FFFB00FF
+        FB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00
+        FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB
+        00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF
+        FB00FFFB00FFFB00FFFB00FFFB00FF64B89C64B89CFB00FFFB00FFFB00FFFB00
+        FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF64B89C98
+        EEC998EEC964B89CFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF
+        FB00FFFB00FFFB00FFFB00FF64B89C5EE1A35EE1A364B89CFB00FFFB00FFFB00
+        FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF64B89C63
+        E5A863E5A864B89CFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF
+        FB00FF64B89C64B89C64B89C64B89C67E9AD67E9AD64B89C64B89C64B89C64B8
+        9CFB00FFFB00FFFB00FFFB00FFFB00FF64B89CA7F6D5A7F6D5A7F6D5A7F6D56D
+        EDB26DEDB2A7F6D5A7F6D5A7F6D5A7F6D564B89CFB00FFFB00FFFB00FFFB00FF
+        64B89C72F2B872F2B872F2B872F2B872F2B872F2B872F2B872F2B872F2B872F2
+        B864B89CFB00FFFB00FFFB00FFFB00FFFB00FF64B89C64B89C64B89C64B89C76
+        F6BD76F6BD64B89C64B89C64B89C64B89CFB00FFFB00FFFB00FFFB00FFFB00FF
+        FB00FFFB00FFFB00FFFB00FF64B89C7BFAC27BFAC264B89CFB00FFFB00FFFB00
+        FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF64B89C7E
+        FDC57EFDC564B89CFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF
+        FB00FFFB00FFFB00FFFB00FF64B89C81FFC881FFC864B89CFB00FFFB00FFFB00
+        FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF64
+        B89C64B89CFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF
+        FB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00
+        FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB
+        00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF
+      }
+    end
+    object MarkingColor1: TMenuItem
+      Caption = 'Marking Color'
+      object MCol_Red: TMenuItem
+        AutoCheck = True
+        Caption = 'Red'
+        Checked = True
+        RadioItem = True
+      end
+      object MCol_Green: TMenuItem
+        AutoCheck = True
+        Caption = 'Green'
+        RadioItem = True
+      end
+      object MCol_Blue: TMenuItem
+        AutoCheck = True
+        Caption = 'Blue'
+        RadioItem = True
+      end
+      object MCol_White: TMenuItem
+        AutoCheck = True
+        Caption = 'White'
+        RadioItem = True
+      end
+      object MCol_Black: TMenuItem
+        AutoCheck = True
+        Caption = 'Black'
+        RadioItem = True
+      end
+    end
+    object MarkColorsearharea1: TMenuItem
+      Caption = 'Search area'
+      object Wholeclient1: TMenuItem
+        AutoCheck = True
+        Caption = 'Whole client'
+        Checked = True
+        RadioItem = True
+      end
+      object Minimap1: TMenuItem
+        AutoCheck = True
+        Caption = 'Minimap'
+        RadioItem = True
+      end
+      object Mainscreen1: TMenuItem
+        AutoCheck = True
+        Caption = 'Mainscreen'
+        RadioItem = True
+      end
+      object Inventory1: TMenuItem
+        AutoCheck = True
+        Caption = 'Inventory'
+        RadioItem = True
+      end
+      object N6: TMenuItem
+        Caption = '-'
+      end
+      object CustomArea: TMenuItem
+        AutoCheck = True
+        Caption = 'Custom Area'
+        RadioItem = True
+      end
+    end
+    object N4: TMenuItem
+      Caption = '-'
+    end
+    object Savebitmap2: TMenuItem
+      Caption = 'Save bitmap'
+      Bitmap.Data = {
+        36030000424D3603000000000000360000002800000010000000100000000100
+        18000000000000030000C40E0000C40E00000000000000000000FFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFBA6833C38458D38B68E18F70DC8D6CDA8B6DD78A
+        6ECD8B6CAB6D44A65F2EFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFC68355EF
+        CEBADDFFFF87EEC7A2F4D7A2F6D78CEEC7E0FFFFDDA285AB6A3ECEAF9CCFAE9A
+        CEAB94CEAA93CEAA93CEAA93C37F51EFB69AEAF3E851BF846FC99871C99954BF
+        84E4F4E9DD9C7BAA693ACDAB96F1EFEDF7F3F1F8F4F1F8F4F0F7F4F0C48154EA
+        B697F3F3EAEDF1E6EFF1E6EFF0E6EDF1E5F3F5EDD59C79B07044CCA68EF6F1ED
+        BFDCC2BFDCC2BFDCC2BFDCC2C98B61E6B592E2A781E1A781DEA37DDCA17BDB9F
+        79D99E77D49A73BB7E57CCA68DF7F1EDBFDCC2BFDCC2BFDCC2AFD3C5CA8D65EA
+        B899DDA57EDDA680DBA37CD9A07AD9A079D89F78D89E78BF845DCDA78EF7F1EC
+        4EAA7A4CA8774AA674357B9AC8885DEFBFA1FDFCFAFEFCFBFEFDFDFEFDFCFDFB
+        FAFDFCFBDDA885C17F53CDA78EF7F2EDE8BDA1E7BB9FD0B3925E8276C7865BEF
+        C09EFFFFFFCC936EFFFFFFFFFFFFFFFBF7FFF8F1E4AF8CC78A61CDA78FF7F3EE
+        E7BB9FD1B6939FAA786FB287CC8D65F3CDB0FFFFFFE3C7B3FFFFFFFFFFFFFFFF
+        FFFFFFFFEABFA1C98960CDA78FF7F4EFE6B99DB6B38788C29363C58FD4976ED4
+        9E7BD09871D6A482CD8E68CD9069D09A75D19973C88B62AD5A20CDA78FF7F5F0
+        E5B89BA1B37F7DCDA05EC59056C08752BE8152BC7E6CBD8789905EDAA481F5EF
+        E7CEAB94FFFFFFFFFFFFCDA78FF7F5F2E4B799A3B68082D0A765C9985DC69159
+        C28B58C18771C28E8C925FD9A27DF6F0E8CEAB94FFFFFFFFFFFFCDA78FF7F5F4
+        E3B597B8B78793CBA174D2A867CB9B63C8976AC99883BB8BA5996AD79F7AF7F0
+        E9CFAB94FFFFFFFFFFFFCDAB95F4F3F2E3B495D0B48DA9B58093CCA184D1AA82
+        D0A68BC2949A9E69C39D73D69D77F7F2EBCFAB94FFFFFFFFFFFFCFB29FECECEB
+        F4F4F3F7F5F4F7F5F4F7F5F4F7F5F4F7F5F4F7F5F4F7F5F4F7F5F4F7F3ECF2EF
+        E9CEAD97FFFFFFFFFFFFCEB3A1CFB19FCDAB95CDA78ECDA78ECDA78ECDA78ECD
+        A78ECDA68ECDA68ECDA68ECDA68ECDAA93CDAF9BFFFFFFFFFFFF
+      }
+    end
+    object Loadbitmap1: TMenuItem
+      Caption = 'Load bitmap'
+      Bitmap.Data = {
+        36030000424D3603000000000000360000002800000010000000100000000100
+        18000000000000030000C40E0000C40E00000000000000000000FFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF007D21037B1E0079
+        15FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFF01832B43A15F007B1F007919FFFFFFFFFFFFCEAF9CCFAE9A
+        CEAB94CEAA93CEAA93CEAA932297511C9149168F43108B3B3A9F5E80C19646A3
+        620C8026007919FFFFFFCDAB96F1EFEDF7F3F1F8F4F1F8F4F0F7F4F0299B5B90
+        CAA98DC8A58AC6A188C59E6AB68582C29748A566007D2100791BCCA68EF6F1ED
+        BFDCC2BFDCC2BFDCC2BFDCC2319F6394CDAD6FBA8E6BB88966B68561B38067B5
+        8283C2983CA05C007F25CCA68DF7F1EDBFDCC2BFDCC2BFDCC2AFD3C537A36B96
+        CEB094CDAD91CBAA90CBA874BC908AC7A146A56807873501832DCDA78EF7F1EC
+        4EAA7A4CA8774AA674357B9A3DA56F37A36E33A1682F9D6155AF7C91CBAA4FAB
+        74188F46118B3DFFFFFFCDA78EF7F2EDE8BDA1E7BB9FD0B3925E8276448E8641
+        8B87568380C7A68238A0655AB381289857C7AA91FFFFFFFFFFFFCDA78FF7F3EE
+        E7BB9FD1B6939FAA786FB28765BD8A61BB876BAB7B9193643DA36C319F65EFEB
+        E2CEAB94FFFFFFFFFFFFCDA78FF7F4EFE6B99DB6B38788C29363C58F53BE804F
+        BA7A58BD7F78B07CA3966ADCA784F6EEE7CEAB94FFFFFFFFFFFFCDA78FF7F5F0
+        E5B89BA1B37F7DCDA05EC59056C08752BE8152BC7E6CBD8789905EDAA481F5EF
+        E7CEAB94FFFFFFFFFFFFCDA78FF7F5F2E4B799A3B68082D0A765C9985DC69159
+        C28B58C18771C28E8C925FD9A27DF6F0E8CEAB94FFFFFFFFFFFFCDA78FF7F5F4
+        E3B597B8B78793CBA174D2A867CB9B63C8976AC99883BB8BA5996AD79F7AF7F0
+        E9CFAB94FFFFFFFFFFFFCDAB95F4F3F2E3B495D0B48DA9B58093CCA184D1AA82
+        D0A68BC2949A9E69C39D73D69D77F7F2EBCFAB94FFFFFFFFFFFFCFB29FECECEB
+        F4F4F3F7F5F4F7F5F4F7F5F4F7F5F4F7F5F4F7F5F4F7F5F4F7F5F4F7F3ECF2EF
+        E9CEAD97FFFFFFFFFFFFCEB3A1CFB19FCDAB95CDA78ECDA78ECDA78ECDA78ECD
+        A78ECDA68ECDA68ECDA68ECDA68ECDAA93CDAF9BFFFFFFFFFFFF
+      }
+    end
+    object Pastebitmap1: TMenuItem
+      Caption = 'Paste bitmap'
+      Bitmap.Data = {
+        36030000424D3603000000000000360000002800000010000000100000000100
+        18000000000000030000C40E0000C40E00000000000000000000FFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF196B37196B37196B
+        37196B37196B37FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFF196B37288C5364BA8D95D2B264BA8D288C53196B37CEAF9CCFAE9A
+        CEAB94CEAA93CEAA93CEAA93CEAA93CEAA93CEAA93216E3C62BA8B60BA87FFFF
+        FF60B98767BC8F196B37CDAB96F1EFEDF7F3F1F8F4F1F8F4F0F7F4F0F7F3F0F7
+        F3EFF7F3EF317B4C9CD4B6FFFFFFFFFFFFFFFFFF95D2B2196B37CCA68EF6F1ED
+        BFDCC2BFDCC2BFDCC2BFDCC2BFDCC2BFDCC2BFDCC2488A6090D3B192D6B1FFFF
+        FF65BC8C67BC8F196B37CCA68DF7F1EDBFDCC2BFDCC2BFDCC2AFD3C59CC8C96E
+        AFD1BAD9C388B59561AB8195D4B4BAE6D06ABB8F2D8F57196B37CDA78EF7F1EC
+        4EAA7A4CA8774AA674357B9A549FD3549FD13F86AF409A674B966A57946D4F8E
+        6647865C2E7849FFFFFFCDA78EF7F2EDE8BDA1E7BB9FD0B3925E8276448E8641
+        8B87568380C7A682E0AE8EDEAC8BF6EEE6CEAB94FFFFFFFFFFFFCDA78FF7F3EE
+        E7BB9FD1B6939FAA786FB28765BD8A61BB876BAB7B919364C5A27DDDA988F6EE
+        E7CEAB94FFFFFFFFFFFFCDA78FF7F4EFE6B99DB6B38788C29363C58F53BE804F
+        BA7A58BD7F78B07CA3966ADCA784F6EEE7CEAB94FFFFFFFFFFFFCDA78FF7F5F0
+        E5B89BA1B37F7DCDA05EC59056C08752BE8152BC7E6CBD8789905EDAA481F5EF
+        E7CEAB94FFFFFFFFFFFFCDA78FF7F5F2E4B799A3B68082D0A765C9985DC69159
+        C28B58C18771C28E8C925FD9A27DF6F0E8CEAB94FFFFFFFFFFFFCDA78FF7F5F4
+        E3B597B8B78793CBA174D2A867CB9B63C8976AC99883BB8BA5996AD79F7AF7F0
+        E9CFAB94FFFFFFFFFFFFCDAB95F4F3F2E3B495D0B48DA9B58093CCA184D1AA82
+        D0A68BC2949A9E69C39D73D69D77F7F2EBCFAB94FFFFFFFFFFFFCFB29FECECEB
+        F4F4F3F7F5F4F7F5F4F7F5F4F7F5F4F7F5F4F7F5F4F7F5F4F7F5F4F7F3ECF2EF
+        E9CEAD97FFFFFFFFFFFFCEB3A1CFB19FCDAB95CDA78ECDA78ECDA78ECDA78ECD
+        A78ECDA68ECDA68ECDA68ECDA68ECDAA93CDAF9BFFFFFFFFFFFF
+      }
+    end
+    object N5: TMenuItem
+      Caption = '-'
+    end
+    object Refreshimage2: TMenuItem
+      Caption = 'Refresh image'
+      Bitmap.Data = {
+        36030000424D3603000000000000360000002800000010000000100000000100
+        18000000000000030000120B0000120B00000000000000000000FFFFFFFFFFFF
+        FFFFFFF8FBF8D2E4D191BD8E5EA75E55A35455A2545DA65D89BA89CFE3D0F6FA
+        F6FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEEF7EE98C2973E973D3099313BA0383B
+        A5373EA63B3BA0373599303F963D8EBD8FEFFAEEFFFFFFFFFFFFFFFFFFF4FBF4
+        76AF7430912E3DA53849AE4448A9454FAD4E51AF4D51B04F46AD453AA4393192
+        2D74B070EDFAEFFFFFFFFBFDFBA0C8A02D8E2B3DA93C46AD4748AC478AC887AE
+        D8AF4EAE4C4EB34E56B2534FB14C3FA83F2F912B91BF92FAFCFAE0EFE13E9640
+        39A4364BAF4661B65CAEDAAEF9FDF8EEF7F1B3DAB187C68457B25252B1524EB3
+        4A3BA5383D953BDCE8DB98C4982E972E47AC4447AA44A5D4A5FFFFFFFFFCFFFC
+        FFFFFFFFFFFFFFFFB1DCAD56B0544FB15147AC4332992F8CBD8D5BA35D37A032
+        57B15660B65D6EBC6DB4DAAFF7FAF9E6F3E6ABD9ABC7E4C9FBFDFCA6D2A55BB6
+        5E58B3553A9F3857A45657A1545DB65D74C27289C787A9D9AB72BC709FD0A1BC
+        E0BA78C17775BD73ABD3A9DBEFDC83C68279C1775FB8605EA95D69B06479C27B
+        82C38387C886D4E9D2BEE3BC82C67F81C482C0E0BAB6DEB37CC27DA7D2A693CC
+        9182C58078C37775B87475B6727CC37D8FC88E8CCB8AADDAAAFBFEFCDCF0DCC3
+        E4C3EBF4E6FFFFFFD0EBD29DCF9A8FCB8D8ACA8980C67E7CB978A0CA9E78BE78
+        98D09999D29A99CF97C8E0C6FDFDFEFFFFFFFFFFFFFEFEFFFFFFFFD6ECD89BCE
+        9798D09580C37D9CC79CE3F1E177B7739AD49DA3D5A4A9D6A5A5D4A3B7DCB8CC
+        E4CAECF4EFFCFEFCD6EAD4ACDAACA2D5A0A2D49F7CBD7BDCEBDDFCFEFCA9CFA9
+        86C383B2DEAFAFDAAFAFDDAFACDDACADD9A8CFE9D2CCE8C8ADD9A7ACDAAAAFDE
+        B08CCA8BA7CAA8FAFCFAFFFFFFF3FBF698C39591C990B8E2B9C0E1BFBDDFBCBA
+        DFB8B7DCB8B5DEB6BEE4BCC0E1BB9DCD9D98C598F0F6F0FFFFFFFFFFFFFFFFFF
+        EFF7F09FC79E8DC28BA3D2A4BEE0BDC9EAC9C9EAC7C1E2C0A9D5A891C98E9DC8
+        9BEEF7EEFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF8FBF8D7E7D7A6CAA38FC08C90
+        C28E91C48F90C38FA6CDA3D5E5D5F7FAF7FFFFFFFFFFFFFFFFFF
+      }
+    end
+    object Reloadfromclient2: TMenuItem
+      Caption = 'Reload from client'
+      Bitmap.Data = {
+        36030000424D3603000000000000360000002800000010000000100000000100
+        18000000000000030000120B0000120B00000000000000000000FB00FFFB00FF
+        FB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00
+        FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB
+        00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF
+        FB00FF64B89C64B89C64B89C64B89C64B89C64B89C64B89C64B89C64B89CFB00
+        FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF64B89C81FFC881FFC881FFC881
+        FFC881FFC881FFC881FFC864B89CFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF
+        FB00FF64B89C64B89C64B89C64B89C64B89C64B89C64B89C64B89C64B89CFB00
+        FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF64
+        B89CFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF
+        FB00FFFB00FFFB00FFFB00FF64B89CADEFD064B89CFB00FFFB00FFFB00FFFB00
+        FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF64B89CB0F1D260
+        E3A5B0F1D264B89CFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF
+        FB00FFFB00FF64B89CB3F4D566E8AB66E8AB66E8ABB3F4D564B89CFB00FFFB00
+        FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF64B89CB6F6D96DEDB26DEDB26D
+        EDB26DEDB26DEDB2B6F6D964B89CFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF
+        FB00FF64B89C64B89C64B89C73F3B973F3B973F3B964B89C64B89C64B89CFB00
+        FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF64B89C79F8BF79
+        F8BF79F8BF64B89CFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF
+        FB00FFFB00FFFB00FF64B89C7EFCC47EFCC47EFCC464B89CFB00FFFB00FFFB00
+        FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF64B89C81FFC881
+        FFC881FFC864B89CFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF
+        FB00FFFB00FFFB00FF64B89C64B89C64B89C64B89C64B89CFB00FFFB00FFFB00
+        FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB
+        00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF
+      }
+    end
+  end
+  object SynPasSyn1: TSynPasSyn
+    DefaultFilter = 'Scar Files|*scar'
+    Enabled = False
+    AsmAttri.FrameEdges = sfeAround
+    CommentAttri.Foreground = clGreen
+    CommentAttri.FrameEdges = sfeAround
+    CommentAttri.Style = []
+    IDEDirectiveAttri.FrameEdges = sfeAround
+    IdentifierAttri.FrameEdges = sfeAround
+    KeyAttri.FrameEdges = sfeAround
+    NumberAttri.Foreground = clNavy
+    NumberAttri.FrameEdges = sfeAround
+    SpaceAttri.FrameEdges = sfeAround
+    StringAttri.Foreground = clFuchsia
+    StringAttri.FrameEdges = sfeAround
+    SymbolAttri.FrameEdges = sfeAround
+    CaseLabelAttri.FrameEdges = sfeAround
+    DirectiveAttri.FrameEdges = sfeAround
+    CompilerMode = pcmDelphi
+    NestedComments = False
+    left = 12
+    top = 67
+  end
+  object Timer: TTimer
+    Interval = 50
+    left = 44
+    top = 35
+  end
+end

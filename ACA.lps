@@ -1,0 +1,406 @@
+<?xml version="1.0"?>
+<CONFIG>
+  <ProjectSession>
+    <PathDelim Value="\"/>
+    <Version Value="9"/>
+    <BuildModes Active="Default"/>
+    <Units Count="35">
+      <Unit0>
+        <Filename Value="ACA.lpr"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="ACA"/>
+        <EditorIndex Value="8"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="87" Y="12"/>
+        <UsageCount Value="119"/>
+        <Loaded Value="True"/>
+      </Unit0>
+      <Unit1>
+        <Filename Value="aca_main.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="MainForm"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="ACA_main"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="0"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="679"/>
+        <CursorPos X="50" Y="688"/>
+        <UsageCount Value="119"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit1>
+      <Unit2>
+        <Filename Value="aca_types.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="aca_types"/>
+        <EditorIndex Value="4"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="2"/>
+        <CursorPos X="9" Y="16"/>
+        <UsageCount Value="119"/>
+        <Loaded Value="True"/>
+      </Unit2>
+      <Unit3>
+        <Filename Value="aca_utils.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="aca_utils"/>
+        <EditorIndex Value="5"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="36"/>
+        <CursorPos X="1" Y="58"/>
+        <UsageCount Value="119"/>
+        <Loaded Value="True"/>
+      </Unit3>
+      <Unit4>
+        <Filename Value="aca_base.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="aca_base"/>
+        <EditorIndex Value="7"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="9"/>
+        <CursorPos X="67" Y="92"/>
+        <UsageCount Value="119"/>
+        <Loaded Value="True"/>
+      </Unit4>
+      <Unit5>
+        <Filename Value="..\SimbaLocal\Units\MMLCore\bitmaps.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="bitmaps"/>
+        <EditorIndex Value="1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1079"/>
+        <CursorPos X="14" Y="99"/>
+        <UsageCount Value="119"/>
+        <Loaded Value="True"/>
+      </Unit5>
+      <Unit6>
+        <Filename Value="..\SimbaLocal\Units\MMLCore\client.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="Client"/>
+        <EditorIndex Value="2"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="23"/>
+        <CursorPos X="1" Y="1"/>
+        <UsageCount Value="119"/>
+        <Loaded Value="True"/>
+      </Unit6>
+      <Unit7>
+        <Filename Value="..\SimbaLocal\Units\MMLCore\colour_conv.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="colour_conv"/>
+        <UsageCount Value="119"/>
+      </Unit7>
+      <Unit8>
+        <Filename Value="..\SimbaLocal\Units\MMLCore\dtm.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="dtm"/>
+        <UsageCount Value="119"/>
+      </Unit8>
+      <Unit9>
+        <Filename Value="..\SimbaLocal\Units\MMLCore\dtmutil.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="dtmutil"/>
+        <UsageCount Value="119"/>
+      </Unit9>
+      <Unit10>
+        <Filename Value="..\SimbaLocal\Units\MMLCore\files.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="files"/>
+        <UsageCount Value="119"/>
+      </Unit10>
+      <Unit11>
+        <Filename Value="..\SimbaLocal\Units\MMLCore\finder.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="finder"/>
+        <EditorIndex Value="3"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="727"/>
+        <CursorPos X="32" Y="738"/>
+        <UsageCount Value="119"/>
+        <Loaded Value="True"/>
+      </Unit11>
+      <Unit12>
+        <Filename Value="..\SimbaLocal\Units\MMLCore\fontloader.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="fontloader"/>
+        <UsageCount Value="119"/>
+      </Unit12>
+      <Unit13>
+        <Filename Value="..\SimbaLocal\Units\MMLCore\iomanager.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="iomanager"/>
+        <UsageCount Value="119"/>
+      </Unit13>
+      <Unit14>
+        <Filename Value="..\SimbaLocal\Units\MMLCore\libloader.pas"/>
+        <UnitName Value="libloader"/>
+        <UsageCount Value="10"/>
+      </Unit14>
+      <Unit15>
+        <Filename Value="..\SimbaLocal\Units\MMLCore\mmath.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="mmath"/>
+        <UsageCount Value="119"/>
+      </Unit15>
+      <Unit16>
+        <Filename Value="..\SimbaLocal\Units\MMLCore\mufasabase.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="mufasabase"/>
+        <UsageCount Value="119"/>
+      </Unit16>
+      <Unit17>
+        <Filename Value="..\SimbaLocal\Units\MMLCore\mufasatypes.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="mufasatypes"/>
+        <UsageCount Value="119"/>
+      </Unit17>
+      <Unit18>
+        <Filename Value="..\SimbaLocal\Units\MMLCore\mufasatypesutil.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="mufasatypesutil"/>
+        <UsageCount Value="119"/>
+      </Unit18>
+      <Unit19>
+        <Filename Value="..\SimbaLocal\Units\MMLCore\ocr.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="ocr"/>
+        <UsageCount Value="119"/>
+      </Unit19>
+      <Unit20>
+        <Filename Value="..\SimbaLocal\Units\MMLCore\ocrutil.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="ocrutil"/>
+        <UsageCount Value="119"/>
+      </Unit20>
+      <Unit21>
+        <Filename Value="..\SimbaLocal\Units\MMLCore\os_linux.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="os_linux"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="1" Y="1"/>
+        <UsageCount Value="119"/>
+      </Unit21>
+      <Unit22>
+        <Filename Value="..\SimbaLocal\Units\MMLCore\os_windows.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="os_windows"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="1" Y="1"/>
+        <UsageCount Value="119"/>
+      </Unit22>
+      <Unit23>
+        <Filename Value="..\SimbaLocal\Units\MMLCore\tpa.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="tpa"/>
+        <UsageCount Value="119"/>
+      </Unit23>
+      <Unit24>
+        <Filename Value="..\SimbaLocal\Units\Misc\DCPCrypt\dcpbase64.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="dcpbase64"/>
+        <UsageCount Value="119"/>
+      </Unit24>
+      <Unit25>
+        <Filename Value="..\SimbaLocal\Units\Misc\DCPCrypt\DCPblockciphers.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="DCPblockciphers"/>
+        <UsageCount Value="119"/>
+      </Unit25>
+      <Unit26>
+        <Filename Value="..\SimbaLocal\Units\Misc\DCPCrypt\DCPconst.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="DCPconst"/>
+        <UsageCount Value="119"/>
+      </Unit26>
+      <Unit27>
+        <Filename Value="..\SimbaLocal\Units\Misc\DCPCrypt\DCPcrypt2.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="DCPcrypt2"/>
+        <UsageCount Value="119"/>
+      </Unit27>
+      <Unit28>
+        <Filename Value="..\SimbaLocal\Units\MMLAddon\windowselector.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="windowselector"/>
+        <UsageCount Value="119"/>
+      </Unit28>
+      <Unit29>
+        <Filename Value="C:\lazarus\fpc\2.6.0\source\rtl\objpas\math.pp"/>
+        <UnitName Value="math"/>
+        <EditorIndex Value="6"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="258"/>
+        <CursorPos X="10" Y="320"/>
+        <UsageCount Value="59"/>
+        <Loaded Value="True"/>
+      </Unit29>
+      <Unit30>
+        <Filename Value="C:\lazarus\lcl\controls.pp"/>
+        <UnitName Value="Controls"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="161"/>
+        <CursorPos X="19" Y="175"/>
+        <UsageCount Value="6"/>
+      </Unit30>
+      <Unit31>
+        <Filename Value="C:\lazarus\lcl\include\control.inc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="2704"/>
+        <CursorPos X="1" Y="2718"/>
+        <UsageCount Value="10"/>
+      </Unit31>
+      <Unit32>
+        <Filename Value="C:\lazarus\lcl\include\canvas.inc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1658"/>
+        <CursorPos X="1" Y="1672"/>
+        <UsageCount Value="5"/>
+      </Unit32>
+      <Unit33>
+        <Filename Value="C:\lazarus\lcl\lcltype.pp"/>
+        <UnitName Value="LCLType"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1247"/>
+        <CursorPos X="3" Y="1261"/>
+        <UsageCount Value="5"/>
+      </Unit33>
+      <Unit34>
+        <Filename Value="C:\lazarus\lcl\include\wincontrol.inc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="5542"/>
+        <CursorPos X="1" Y="5556"/>
+        <UsageCount Value="11"/>
+      </Unit34>
+    </Units>
+    <General>
+      <ActiveWindowIndexAtStart Value="0"/>
+    </General>
+    <JumpHistory Count="30" HistoryIndex="29">
+      <Position1>
+        <Filename Value="aca_main.pas"/>
+        <Caret Line="493" Column="19" TopLine="504"/>
+      </Position1>
+      <Position2>
+        <Filename Value="aca_main.pas"/>
+        <Caret Line="518" Column="62" TopLine="505"/>
+      </Position2>
+      <Position3>
+        <Filename Value="aca_main.pas"/>
+        <Caret Line="558" Column="31" TopLine="537"/>
+      </Position3>
+      <Position4>
+        <Filename Value="aca_main.pas"/>
+        <Caret Line="543" Column="3" TopLine="541"/>
+      </Position4>
+      <Position5>
+        <Filename Value="aca_main.pas"/>
+        <Caret Line="567" Column="6" TopLine="539"/>
+      </Position5>
+      <Position6>
+        <Filename Value="aca_main.pas"/>
+        <Caret Line="575" Column="17" TopLine="573"/>
+      </Position6>
+      <Position7>
+        <Filename Value="aca_main.pas"/>
+        <Caret Line="611" Column="12" TopLine="602"/>
+      </Position7>
+      <Position8>
+        <Filename Value="aca_main.pas"/>
+        <Caret Line="606" Column="5" TopLine="592"/>
+      </Position8>
+      <Position9>
+        <Filename Value="aca_main.pas"/>
+        <Caret Line="609" Column="36" TopLine="595"/>
+      </Position9>
+      <Position10>
+        <Filename Value="aca_main.pas"/>
+        <Caret Line="606" Column="11" TopLine="556"/>
+      </Position10>
+      <Position11>
+        <Filename Value="aca_main.pas"/>
+        <Caret Line="571" Column="25" TopLine="560"/>
+      </Position11>
+      <Position12>
+        <Filename Value="aca_main.pas"/>
+        <Caret Line="511" Column="22" TopLine="496"/>
+      </Position12>
+      <Position13>
+        <Filename Value="aca_main.pas"/>
+        <Caret Line="387" Column="20" TopLine="381"/>
+      </Position13>
+      <Position14>
+        <Filename Value="aca_main.pas"/>
+        <Caret Line="569" Column="25" TopLine="554"/>
+      </Position14>
+      <Position15>
+        <Filename Value="aca_main.pas"/>
+        <Caret Line="566" Column="8" TopLine="553"/>
+      </Position15>
+      <Position16>
+        <Filename Value="aca_main.pas"/>
+        <Caret Line="569" Column="35" TopLine="552"/>
+      </Position16>
+      <Position17>
+        <Filename Value="aca_main.pas"/>
+        <Caret Line="558" Column="20" TopLine="540"/>
+      </Position17>
+      <Position18>
+        <Filename Value="aca_main.pas"/>
+        <Caret Line="458" Column="63" TopLine="501"/>
+      </Position18>
+      <Position19>
+        <Filename Value="aca_main.pas"/>
+        <Caret Line="514" Column="1" TopLine="502"/>
+      </Position19>
+      <Position20>
+        <Filename Value="aca_main.pas"/>
+        <Caret Line="516" Column="1" TopLine="502"/>
+      </Position20>
+      <Position21>
+        <Filename Value="aca_main.pas"/>
+        <Caret Line="518" Column="1" TopLine="502"/>
+      </Position21>
+      <Position22>
+        <Filename Value="aca_main.pas"/>
+        <Caret Line="519" Column="1" TopLine="502"/>
+      </Position22>
+      <Position23>
+        <Filename Value="aca_main.pas"/>
+        <Caret Line="520" Column="1" TopLine="502"/>
+      </Position23>
+      <Position24>
+        <Filename Value="aca_main.pas"/>
+        <Caret Line="532" Column="7" TopLine="505"/>
+      </Position24>
+      <Position25>
+        <Filename Value="aca_main.pas"/>
+        <Caret Line="529" Column="4" TopLine="515"/>
+      </Position25>
+      <Position26>
+        <Filename Value="aca_main.pas"/>
+        <Caret Line="521" Column="17" TopLine="521"/>
+      </Position26>
+      <Position27>
+        <Filename Value="aca_main.pas"/>
+        <Caret Line="673" Column="27" TopLine="657"/>
+      </Position27>
+      <Position28>
+        <Filename Value="aca_main.pas"/>
+        <Caret Line="677" Column="14" TopLine="684"/>
+      </Position28>
+      <Position29>
+        <Filename Value="aca_main.pas"/>
+        <Caret Line="675" Column="14" TopLine="670"/>
+      </Position29>
+      <Position30>
+        <Filename Value="aca_main.pas"/>
+        <Caret Line="653" Column="3" TopLine="648"/>
+      </Position30>
+    </JumpHistory>
+  </ProjectSession>
+</CONFIG>
