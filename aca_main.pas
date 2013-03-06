@@ -16,6 +16,7 @@ type
 
   TMainForm = class(TForm)
     AddProfileBtn: TButton;
+    ImgFromClient: TButton;
     DeleteProfileBtn: TButton;
     pBox: TComboBox;
     ColorsImage: TImage;
@@ -167,6 +168,10 @@ type
     AutoColor_SpiralSearch: TCheckBox;
     Help1: TMenuItem;
     procedure AddProfileBtnClick(Sender: TObject);
+    procedure Btn_MarkBestClick(Sender: TObject);
+    procedure Btn_MarkColorsClick(Sender: TObject);
+    procedure Btn_RefreshImageClick(Sender: TObject);
+    procedure ImgFromClientClick(Sender: TObject);
     procedure DeleteProfileBtnClick(Sender: TObject);
     procedure ClientImageMouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
@@ -190,7 +195,9 @@ type
     function GetTolerance(aColor: Integer): Integer;
     procedure DisplayCurrentColor(aColor: Integer);
     procedure CalculateBestColor(P: TColorProfile);
+    procedure MarkColors(aColor, Tolerance: Integer);
     Procedure ClearAll;
+    procedure ImageFromClient;
     { Private declarations }
   public
 
@@ -208,12 +215,102 @@ var
   Storage: TColorEngine;
   DefaultCTS3Mod: Extended=1;
   MinC,MaxC: TColourRec;
+  OldRect: TRect;
  // MarkCol, ColFormat: Integer;
 implementation
 
  uses math;
 
 {$R *.lfm}
+
+ procedure TMainForm.MarkColors(aColor, Tolerance: Integer);
+ var
+   x, y: Integer;
+   SearchArea: TRect;
+   R, G, B: Byte;
+   H, S, L, cH, cS, cL, hTol, sTol: Extended;
+   Bitmap: TBitmap;
+   MarkColor: TRGB32;
+   c: TPRGB32Array;
+ begin
+   MarkColor.R := 0;
+   MarkColor.G := 0;
+   MarkColor.B := 0;
+   MarkColor.A := 0;
+   if (MCol_Red.Checked) then
+     MarkColor.R := 255;
+   if (MCol_Green.Checked) then
+     MarkColor.G := 255;
+   if (MCol_Blue.Checked) then
+     MarkColor.B := 255;
+   if (MCol_White.Checked) then
+     begin MarkColor.R:= 255; MarkColor.G := 255; MarkColor.B := 255; end;
+
+   R := 0; G := 0; B := 0; hTol := 0.0; sTol := 0.0;
+   if (CTSGroup.ItemIndex = 2) then
+   begin
+     ColorToHSL(aColor, H, S, L);
+     if (StrToFloatDef(Trim(Client_HueMod.Text), -1) > -1) then
+       hTol := (StrToFloat(Trim(Client_HueMod.Text)) * Tolerance)
+     else
+       hTol := (HueMod * Tolerance);
+     if (StrToFloatDef(Trim(Client_SatMod.Text), -1) > -1) then
+       sTol := (StrToFloat(Trim(Client_SatMod.Text)) * Tolerance)
+     else
+       sTol := (SatMod * Tolerance);
+   end else
+   begin
+     R := (aColor and $ff);
+     G := ((aColor and $ff00) shr 8);
+     B := ((aColor and $ff0000) shr 16);
+   end;
+   if (CustomArea.Checked) and ((OldRect.Bottom - OldRect.Top) > 0) and ((OldRect.Right - OldRect.Left) > 0) then
+   begin
+     SearchArea := OldRect;
+     InFlateRect(SearchArea, -1, -1);
+   end else
+   if (WholeClient1.Checked) or (BmpBuffer.Width < 738) or (BmpBuffer.Height < 467) then
+     SearchArea := Rect(0, 0, BmpBuffer.Width -1, BmpBuffer.Height -1)
+   else
+   if (Minimap1.Checked) then
+     SearchArea := Rect(550, 8, 703, 161)
+   else
+   if (MainScreen1.Checked) then
+     SearchArea := Rect(1, 1, 516, 338)
+   else
+   if (Inventory1.Checked) then
+     SearchArea := Rect(547, 202, 737, 466)
+   else
+     SearchArea := Rect(0, 0, BmpBuffer.Width -1, BmpBuffer.Height -1);
+   {Bitmap := TBitmap.Create;
+   Bitmap.PixelFormat := pf32Bit;
+   Bitmap.Assign(Buffer);}
+   c := BMPBuffer.RowPtrs;
+   for y := SearchArea.Top to SearchArea.Bottom do
+   begin
+     for x := SearchArea.Left to SearchArea.Right do
+       case CTSGroup.ItemIndex of
+         0: if  (Abs(c[y][x].R   - R) <= Tolerance) and
+                (Abs(c[y][x].G - G) <= Tolerance) and
+                (Abs(c[y][x].B  - B) <= Tolerance) then c[y][x] := MarkColor;
+         1: if (Sqrt(Sqr(c[y][x].R   - R) +
+                     Sqr(c[y][x].G - G) +
+                     Sqr(c[y][x].B  - B)) <= Tolerance) then c[y][x] := MarkColor;
+         2:
+           begin
+             ColorToHSL(c[y][x].R + (c[y][x].G shl 8) + (c[y][x].B shl 16), cH, cS, cL);
+             if (Abs(H - cH) <= hTol) and
+                (Abs(S - cS) <= sTol) and
+                (Abs(L - cL) <= Tolerance) then c[y][x] := MarkColor;
+           end;
+       end;
+   end;
+   UpdateBitmap(BMPBuffer);
+  // ClientImage.Canvas.Draw(0, 0, Bitmap);
+ //  DrawSelection;
+ //  Bitmap.Free;
+ end;
+
 
 procedure TMainForm.ResetBuffer;
 begin
@@ -615,6 +712,16 @@ begin
     Colors_Shape.Brush.Color := clWhite; client_Shape.Brush.Color := clWhite;
   end;
 
+procedure TMainForm.ImageFromClient;
+var
+  w,h: integer;
+begin
+  MMLClient.IOManager.GetDimensions(w,h);
+  bmp.CopyClientToBitmap(MMLClient.IOManager,true,0,0,0,0,w-1,h-1);
+  //resetbuffer;
+  UpdateBitmap(bmp);
+end;
+
 
 procedure TMainForm.FormCreate(Sender: TObject);
 var
@@ -629,7 +736,7 @@ begin
   bmpBuffer.SetSize(w,h);
   bmp.CopyClientToBitmap(MMLClient.IOManager,true,0,0,0,0,w-1,h-1);
   //resetbuffer;
-  UpdateBitmap(bmp)
+  UpdateBitmap(bmp);
 end;
 
 procedure TMainForm.pBoxChange(Sender: TObject);
@@ -665,6 +772,53 @@ end;
 procedure TMainForm.AddProfileBtnClick(Sender: TObject);
 begin
   AddNewProfile;
+end;
+
+procedure TMainForm.Btn_MarkBestClick(Sender: TObject);
+begin
+  If not (storage.Count>0) then exit;
+    Client_Color.Text := IntToStr(BestColor);
+    case CTSgroup.ItemIndex of
+      0, 1,3: Client_RGBTol.Text := IntToStr(BestTolerance);
+      2:
+        begin
+          Client_HueMod.Text := FloatToStrF(HueMod, ffFixed, 5, 2);
+          Client_SatMod.Text := FloatToStrF(SatMod, ffFixed, 5, 2);
+          Client_HSLTol.Text := IntToStr(BestTolerance);
+        end;
+    end;
+    MarkColors(BestColor, BestTolerance);
+    StatusBar1.Panels.Items[2].Text := 'Marked best colors';
+end;
+
+procedure TMainForm.Btn_MarkColorsClick(Sender: TObject);
+begin
+  If not (storage.Count>0) then exit;
+    if (StrToIntDef(Client_Color.Text, -1) > -1) then
+    begin
+      case CTSGroup.ItemIndex of
+        0, 1:
+          if (StrToIntDef(Trim(Client_RGBTol.Text), -1) > -1) then
+            MarkColors(StrToInt(Trim(Client_Color.Text)), StrToInt(Trim(Client_RGBTol.Text)));
+        2:
+          if (StrToIntDef(Trim(Client_HSLTol.Text), -1) > -1) then
+            MarkColors(StrToInt(Trim(Client_Color.Text)), StrToInt(Trim(Client_HSLTol.Text)));
+        3:
+          if (StrToIntDef(Trim(Client_XYZTol.Text), -1) > -1) then
+            MarkColors(StrToInt(Trim(Client_Color.Text)), StrToInt(Trim(Client_XYZTol.Text)));
+      end;
+      StatusBar1.Panels.Items[2].Text := 'Marked colors';
+    end;
+end;
+
+procedure TMainForm.Btn_RefreshImageClick(Sender: TObject);
+begin
+  UpdateBitmap(BMP);
+end;
+
+procedure TMainForm.ImgFromClientClick(Sender: TObject);
+begin
+  ImageFromClient;
 end;
 
 procedure TMainForm.DeleteProfileBtnClick(Sender: TObject);
