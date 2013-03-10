@@ -5,7 +5,7 @@ unit ACA_main;
 interface
 
 uses
-  LCLIntf, LCLType, LMessages, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
+  LCLIntf, LCLType, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
   ComCtrls, Menus, ExtCtrls, StdCtrls, Buttons, ExtDlgs, Grids, Spin,
   SynHighlighterPas, SynEdit, SynEditHighlighter,Client,IOManager,{$IFDEF MSWINDOWS}os_windows,{$ELSE} os_linux,{$ENDIF}
   MufasaTypes,Colour_conv,Bitmaps,Windowselector,aca_types,aca_utils,aca_base;
@@ -165,10 +165,13 @@ type
     AutoColor_SpiralSearch: TCheckBox;
     Help1: TMenuItem;
     procedure AddProfileBtnClick(Sender: TObject);
+    procedure AutoColor_ClearFunctionClick(Sender: TObject);
     procedure AutoColor_CreateFunctionClick(Sender: TObject);
     procedure Btn_MarkBestClick(Sender: TObject);
     procedure Btn_MarkColorsClick(Sender: TObject);
     procedure Btn_RefreshImageClick(Sender: TObject);
+    procedure CTS3ModChange(Sender: TObject);
+    procedure FindObj_CreateFunctionClick(Sender: TObject);
     procedure ImgFromClientClick(Sender: TObject);
     procedure DeleteProfileBtnClick(Sender: TObject);
     procedure ClientImageMouseDown(Sender: TObject; Button: TMouseButton;
@@ -178,8 +181,10 @@ type
     procedure ColorsKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure CTSgroupClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure Openbitmap1Click(Sender: TObject);
     procedure pBoxChange(Sender: TObject);
     procedure pBoxSelect(Sender: TObject);
+    procedure Savebitmap1Click(Sender: TObject);
     procedure ToolButton1Click(Sender: TObject);
     procedure ToolButton3Click(Sender: TObject);
     procedure ToolButton3MouseDown(Sender: TObject; Button: TMouseButton;
@@ -199,6 +204,8 @@ type
     procedure MarkColors(aColor, Tolerance: Integer);
     Procedure ClearAll;
     procedure ImageFromClient;
+    procedure CreateAutoColor(Engine: TColorEngine;var Script: TStringList);
+    procedure CreateFindObject(Engine: TColorEngine;var Script: TStringList);
     { Private declarations }
   public
 
@@ -359,6 +366,7 @@ begin
   for i:=0 to storage.Count -1 do
      begin
        pbox.Items.Add(Storage.Items[i].Name);
+       ctsgroup.ItemIndex:=Storage.Items[CurrIndex].CTS;
        //ToListView(sps_path.Items[i]);
      end;
   pBox.ItemIndex:=i;
@@ -375,6 +383,7 @@ begin
    begin
     Prof:=Storage.AddItem;
     prof.Name:=UserString;
+    prof.CTS:=CTSGroup.ItemIndex;
     ToComboBox;
     ToListBox;
    end
@@ -684,6 +693,265 @@ begin
   UpdateBitmap(bmp);
 end;
 
+procedure TMainForm.CreateAutoColor(Engine: TColorEngine;
+  var Script: TStringList);
+var
+  i,CTS: integer;
+  prof: TColorProfile;
+  x1, y1, x2, y2, cx, cy: string;
+  HSLSpace, XYZSpace, ResultSpace: string;
+begin
+  case AutoColor_AreaButtons.ItemIndex of
+        0: begin x1 := '0';    y1 := '0';    x2 := IntToStr(BMPBuffer.Width); y2 := IntToStr(BMPBuffer.Height); cx := IntToStr(Round(BMPBuffer.Width / 2)); cy := IntToStr(Round(BMPBuffer.Height / 2)); end;
+        1: begin x1 := 'MMX1'; y1 := 'MMY1'; x2 := 'MMX2';                 y2 := 'MMY2';                  cx := 'MMCX';                            cy := 'MMCY';                             end;
+        2: begin x1 := 'MSX1'; y1 := 'MSY1'; x2 := 'MSX2';                 y2 := 'MSY2';                  cx := 'MSCX';                            cy := 'MSCY';                             end;
+        3: begin x1 := 'MIX1'; y1 := 'MIY1'; x2 := 'MIX2';                 y2 := 'MIY2';                  cx := 'MICX';                            cy := 'MICY';                             end;
+      end;
+
+      if (AutoColor_RGBRange.Checked) and (AutoColor_RGBRange.Enabled) then
+        HSLSpace := GenSpaces(2);
+
+      if (AutoColor_HSLRange.Checked) and (AutoColor_HSLRange.Enabled) then
+        XYZSpace := GenSpaces(2);
+
+      if (AutoColor_XYZRange.Checked) and (AutoColor_XYZRange.Enabled) then
+        ResultSpace := GenSpaces(2);
+
+   with Script do
+      begin
+        Add('program AutoColor;');
+        Add('{$I SRL\SRL.simba}');
+        Add('');
+         for i:=0 to Engine.Count-1 do
+          begin
+            prof:=Engine.Items[i];
+            CalculateBestColor(prof);
+            CTS:=Prof.CTS;
+            Add('function '+GenSpaces(1)+Prof.Name+GenSpaces(1)+': Integer;');
+            Add('var');
+            Add('  arP: TPointArray;');
+            Add('  arC: TIntegerArray;');
+            Add('  tmpCTS, i, arL: Integer;');
+            if (AutoColor_RGBRange.Checked) and (AutoColor_RGBRange.Enabled) then
+              Add('  R, G, B: Integer;');
+            if (AutoColor_HSLRange.Checked) and (AutoColor_HSLRange.Enabled) then
+              Add('  H, S, L: Extended;');
+            if (AutoColor_XYZRange.Checked) and (AutoColor_XYZRange.Enabled) then
+              Add('  X, Y, Z: Extended;');
+            Add('begin');
+            Add('  tmpCTS := GetColorToleranceSpeed;');
+            Add('  ColorToleranceSpeed(' + IntToStr(CTS) + ');');
+            if (CTS = 2) then
+               Add('  SetColorSpeed2Modifiers(' + StringReplace(FloatToStrF(HueMod, ffFixed, 5, 2), ',', '.', [rfReplaceAll])  + ', ' + StringReplace(FloatToStrF(SatMod, ffFixed, 5, 2), ',', '.', [rfReplaceAll])  + ');');
+            if (CTS = 3) then
+               Add('  SetColorSpeed3Modifiers('+FloatToStr(DefaultCTS3Mod)+');');
+               Add('');
+            if (AutoColor_SpiralSearch.Checked) then
+              begin
+               Add('  FindColorsSpiralTolerance(' + cx + ', ' + cy + ', arP, ' + IntToStr(BestColor) + ', ' + x1 + ', ' + y1 + ', ' + x2 + ', ' + y2 + ', ' + IntToStr(BestTolerance) + ');');
+               Add('  if (Length(arP) = 0) then');
+              end else
+              Add('  if not (FindColorsTolerance(arP, ' + IntToStr(BestColor) + ', ' + x1 + ', ' + y1 + ', ' + x2 + ', ' + y2 + ', ' + IntToStr(BestTolerance) + ')) then');
+              Add('  begin');
+              Add('    Writeln(''Failed to find the color, no result.'');');
+              Add('    ColorToleranceSpeed(tmpCTS);');
+              if (CTS = 2) then
+                 Add('    SetColorSpeed2Modifiers(0.2, 0.2);');
+              Add('    Exit;');
+              Add('  end;');
+              Add('');
+              Add('  arC := GetColors(arP);');
+              Add('  ClearSameIntegers(arC);');
+              Add('  arL := High(arC);');
+              Add('');
+              Add('  for i := 0 to arL do');
+              Add('  begin');
+              if (AutoColor_RGBRange.Checked) and (AutoColor_RGBRange.Enabled) then
+               begin
+                 Add('    ColorToRGB(arC[i], R, G, B);');
+                 Add('');
+                 Add('    if (R >= ' + IntToStr(Max(MinC.r - 1, 0)) + ') and (R <= ' + IntToStr(MaxC.r + 1) + ') and (G >= ' + IntToStr(Max(MinC.G - 1, 0)) + ') and (G <= ' + IntToStr(Maxc.G + 1) + ') and (B >= ' + IntToStr(Max(Minc.B - 1, 0)) + ') and (B <= ' + IntToStr(Maxc.B + 1) + ') then');
+                 Add('    begin');
+               end;
+              if (AutoColor_HSLRange.Checked) and (AutoColor_HSLRange.Enabled) then
+               begin
+                Add(HSLSpace + '    ColorToHSL(arC[i], H, S, L);');
+                Add('');
+                Add(HSLSpace + '    if (H >= ' + StringReplace(FloatToStrF(Max(Minc.H - 0.02, 0.0), ffFixed, 5, 2), ',', '.', [rfReplaceAll])  + ') and (H <= ' + StringReplace(FloatToStrF(Maxc.H + 0.02, ffFixed, 5, 2), ',', '.', [rfReplaceAll])  + ') and (S >= ' + StringReplace(FloatToStrF(Max(Minc.S - 0.02, 0.0), ffFixed, 5, 2), ',', '.', [rfReplaceAll])  + ') and (S <= ' + StringReplace(FloatToStrF(Maxc.S + 0.02, ffFixed, 5, 2), ',', '.', [rfReplaceAll])  + ') and (L >= ' + StringReplace(FloatToStrF(Max(Minc.L - 0.02, 0.0), ffFixed, 5, 2), ',', '.', [rfReplaceAll])  + ') and (L <= ' + StringReplace(FloatToStrF(Maxc.L + 0.02, ffFixed, 5, 2), ',', '.', [rfReplaceAll])  + ') then');
+                Add(HSLSpace + '    begin');
+               end;
+             if (AutoColor_XYZRange.Checked) and (AutoColor_XYZRange.Enabled) then
+               begin
+                 Add(HSLSpace + XYZSpace + '    ColorToXYZ(arC[i], X, Y, Z);');
+                 Add('');
+                 Add(HSLSpace + XYZSpace + '    if (X >= ' + StringReplace(FloatToStrF(Max(Minc.X - 0.02, 0.0), ffFixed, 5, 2), ',', '.', [rfReplaceAll])  + ') and (X <= ' + StringReplace(FloatToStrF(Maxc.X + 0.02, ffFixed, 5, 2), ',', '.', [rfReplaceAll])  + ') and (Y >= ' + StringReplace(FloatToStrF(Max(Minc.Y - 0.02, 0.0), ffFixed, 5, 2), ',', '.', [rfReplaceAll])  + ') and (Y <= ' + StringReplace(FloatToStrF(Maxc.Y + 0.02, ffFixed, 5, 2), ',', '.', [rfReplaceAll])  + ') and (Z >= ' + StringReplace(FloatToStrF(Max(Minc.Z - 0.02, 0.0), ffFixed, 5, 2), ',', '.', [rfReplaceAll])  + ') and (Z <= ' + StringReplace(FloatToStrF(Maxc.Z + 0.02, ffFixed, 5, 2), ',', '.', [rfReplaceAll])  + ') then');
+                 Add(HSLSpace + XYZSpace + '    begin');
+               end;
+            Add(HSLSpace + XYZSpace + ResultSpace + '    Result := arC[i];');
+            Add(HSLSpace + XYZSpace + ResultSpace + '    Writeln(''AutoColor = '' + IntToStr(arC[i]));');
+            Add(HSLSpace + XYZSpace + ResultSpace + '    Break;');
+            if (AutoColor_XYZRange.Checked) and (AutoColor_XYZRange.Enabled) then
+               Add(HSLSpace + XYZSpace + '    end;');
+            if (AutoColor_HSLRange.Checked) and (AutoColor_HSLRange.Enabled) then
+               Add(HSLSpace + '    end;');
+            if (AutoColor_RGBRange.Checked) and (AutoColor_RGBRange.Enabled) then
+               Add('    end;');
+            Add('  end;');
+            Add('');
+            Add('  ColorToleranceSpeed(tmpCTS);');
+            if (CTS = 2) then
+               Add('  SetColorSpeed2Modifiers(0.2, 0.2);');
+            Add('');
+            Add('  if (i = arL + 1) then');
+            Add('    Writeln(''AutoColor failed in finding the color.'');');
+            Add('end;');
+            Add('');
+          end;
+         Add('begin');
+         Add('  SetupSRL;');
+         //Add('  AutoColor;');
+          for i:=0 to Engine.Count-1 do
+            Add(genspaces(2)+Engine.Items[i].Name+';');
+         Add('end.');
+        StatusBar1.Panels.Items[2].Text := 'Generated function';
+      end;
+  CalculateBestColor(Storage.Items[CurrIndex]);
+
+end;
+
+procedure TMainForm.CreateFindObject(Engine: TColorEngine;
+  var Script: TStringList);
+var
+  i,j,CTS: integer;
+  prof: TColorProfile;
+  x1, y1, x2, y2, cx, cy: string;
+  HSLSpace, XYZSpace, ResultSpace: string;
+begin
+  case AutoColor_AreaButtons.ItemIndex of
+        0: begin x1 := '0';    y1 := '0';    x2 := IntToStr(BMPBuffer.Width); y2 := IntToStr(BMPBuffer.Height); cx := IntToStr(Round(BMPBuffer.Width / 2)); cy := IntToStr(Round(BMPBuffer.Height / 2)); end;
+        1: begin x1 := 'MMX1'; y1 := 'MMY1'; x2 := 'MMX2';                 y2 := 'MMY2';                  cx := 'MMCX';                            cy := 'MMCY';                             end;
+        2: begin x1 := 'MSX1'; y1 := 'MSY1'; x2 := 'MSX2';                 y2 := 'MSY2';                  cx := 'MSCX';                            cy := 'MSCY';                             end;
+        3: begin x1 := 'MIX1'; y1 := 'MIY1'; x2 := 'MIX2';                 y2 := 'MIY2';                  cx := 'MICX';                            cy := 'MICY';                             end;
+      end;
+
+      if (AutoColor_RGBRange.Checked) and (AutoColor_RGBRange.Enabled) then
+        HSLSpace := GenSpaces(2);
+
+      if (AutoColor_HSLRange.Checked) and (AutoColor_HSLRange.Enabled) then
+        XYZSpace := GenSpaces(2);
+
+      if (AutoColor_XYZRange.Checked) and (AutoColor_XYZRange.Enabled) then
+        ResultSpace := GenSpaces(2);
+
+   with Script do
+      begin
+        Add('program FindObjects;');
+        Add('{$I SRL\SRL.simba}');
+        Add('');
+        Add('var');
+        Add('  x, y: Integer;');
+         for i:=0 to Engine.Count-1 do
+          begin
+            prof:=Engine.Items[i];
+            CalculateBestColor(prof);
+            CTS:=Prof.CTS;
+            Add('function '+GenSpaces(1)+Prof.Name+'(var x,y: integer)'+GenSpaces(1)+': Integer;');
+               Add('var');
+        if (FindObj_RGBRange.Checked and FindObj_RGBRange.Enabled) or (FindObj_HSLRange.Checked and FindObj_HSLRange.Enabled) or (FindObj_XYZRange.Checked and FindObj_XYZRange.Enabled) then
+          Add('  arP, arAP: TPointArray;')
+        else
+          Add('  arP: TPointArray;');
+        if (FindObj_RGBRange.Checked and FindObj_RGBRange.Enabled) or (FindObj_HSLRange.Checked and FindObj_HSLRange.Enabled) or (FindObj_XYZRange.Checked and FindObj_XYZRange.Enabled) then
+          Add('  arC, arUC: TIntegerArray;');
+        Add('  ararP: T2DPointArray;');
+        if (FindObj_RGBRange.Checked and FindObj_RGBRange.Enabled) or (FindObj_HSLRange.Checked and FindObj_HSLRange.Enabled) or (FindObj_XYZRange.Checked and FindObj_XYZRange.Enabled) then
+          Add('  tmpCTS, i, j, arL, arL2: Integer;')
+        else
+          Add('  tmpCTS, i, arL: Integer;');
+        Add('  P: TPoint;');
+        if (FindObj_RGBRange.Checked) and (FindObj_RGBRange.Enabled) then
+          Add('  R, G, B: Integer;');
+        if (FindObj_HSLRange.Checked) and (FindObj_HSLRange.Enabled) then
+          Add('  H, S, L: Extended;');
+        if (FindObj_XYZRange.Checked) and (FindObj_XYZRange.Enabled) then
+          Add('  X, Y, Z: Extended;');
+        Add('begin');
+        Add('  tmpCTS := GetColorToleranceSpeed;');
+        Add('  ColorToleranceSpeed(' + IntToStr(CTS) + ');');
+        if (CTS = 2) then
+          Add('  SetColorSpeed2Modifiers(' + StringReplace(FloatToStrF(HueMod, ffFixed, 5, 2), ',', '.', [rfReplaceAll])  + ', ' + StringReplace(FloatToStrF(SatMod, ffFixed, 5, 2), ',', '.', [rfReplaceAll])  + ');');
+        if (CTS = 3) then
+          Add('  SetColorSpeed3Modifiers('+FloatToStr(DefaultCTS3Mod)+');');
+        Add('');
+        Add('  if not(FindColorsTolerance(arP, ' + IntToStr(BestColor) + ', MSX1, MSY1, MSX2, MSY2, ' + IntToStr(BestTolerance) + ')) then');
+        Add('  begin');
+        Add('    Writeln(''Failed to find the color, no object found.'');');
+        Add('    ColorToleranceSpeed(tmpCTS);');
+        if (CTS = 2) then
+          Add('    SetColorSpeed2Modifiers(0.2, 0.2);');
+        Add('    Exit;');
+        Add('  end;');
+        Add('');
+        if (FindObj_RGBRange.Checked and FindObj_RGBRange.Enabled) or (FindObj_HSLRange.Checked and FindObj_HSLRange.Enabled) or (FindObj_XYZRange.Checked and FindObj_XYZRange.Enabled) then
+        begin
+          Add('  arC := GetColors(arP);');
+          Add('  arUC := arC;');
+          Add('  ClearSameIntegers(arUC);');
+          Add('  arL := High(arUC);');
+          Add('  arL2 := High(arC);');
+          Add('');
+          Add('  for i := 0 to arL do');
+          Add('  begin');
+         if (FindObj_RGBRange.Checked) and (FindObj_RGBRange.Enabled) then
+         begin
+            Add('    ColorToRGB(arC[i], R, G, B);');
+            Add('');
+            Add('    if (R >= ' + IntToStr(Max(Minc.R - 1, 0)) + ') and (R <= ' + IntToStr(Maxc.R + 1) + ') and (G >= ' + IntToStr(Max(Minc.G - 1, 0)) + ') and (G <= ' + IntToStr(Maxc.G + 1) + ') and (B >= ' + IntToStr(Max(Minc.B - 1, 0)) + ') and (B <= ' + IntToStr(Maxc.B + 1) + ') then');
+            Add('    begin');
+          end;
+          if (FindObj_HSLRange.Checked) and (FindObj_HSLRange.Enabled) then
+          begin
+            Add(HSLSpace + '    ColorToHSL(arC[i], H, S, L);');
+            Add('');
+            Add(HSLSpace + '    if (H >= ' + StringReplace(FloatToStrF(Max(Minc.H - 0.02, 0.0), ffFixed, 5, 2), ',', '.', [rfReplaceAll])  + ') and (H <= ' + StringReplace(FloatToStrF(Maxc.H + 0.02, ffFixed, 5, 2), ',', '.', [rfReplaceAll])  + ') and (S >= ' + StringReplace(FloatToStrF(Max(Minc.S - 0.02, 0.0), ffFixed, 5, 2), ',', '.', [rfReplaceAll])  + ') and (S <= ' + StringReplace(FloatToStrF(Maxc.S + 0.02, ffFixed, 5, 2), ',', '.', [rfReplaceAll])  + ') and (L >= ' + StringReplace(FloatToStrF(Max(Minc.L - 0.02, 0.0), ffFixed, 5, 2), ',', '.', [rfReplaceAll])  + ') and (L <= ' + StringReplace(FloatToStrF(Maxc.L + 0.02, ffFixed, 5, 2), ',', '.', [rfReplaceAll])  + ') then');
+            Add(HSLSpace + '    begin');
+          end;
+          if (FindObj_XYZRange.Checked) and (FindObj_XYZRange.Enabled) then
+          begin
+            Add(HSLSpace + XYZSpace + '    ColorToXYZ(arC[i], X, Y, Z);');
+            Add('');
+            Add(HSLSpace + XYZSpace + '    if (X >= ' + StringReplace(FloatToStrF(Max(Minc.X - 0.02, 0.0), ffFixed, 5, 2), ',', '.', [rfReplaceAll])  + ') and (X <= ' + StringReplace(FloatToStrF(Maxc.X + 0.02, ffFixed, 5, 2), ',', '.', [rfReplaceAll])  + ') and (Y >= ' + StringReplace(FloatToStrF(Max(Minc.Y - 0.02, 0.0), ffFixed, 5, 2), ',', '.', [rfReplaceAll])  + ') and (Y <= ' + StringReplace(FloatToStrF(Maxc.Y + 0.02, ffFixed, 5, 2), ',', '.', [rfReplaceAll])  + ') and (Z >= ' + StringReplace(FloatToStrF(Max(Minc.Z - 0.02, 0.0), ffFixed, 5, 2), ',', '.', [rfReplaceAll])  + ') and (Z <= ' + StringReplace(FloatToStrF(Maxc.Z + 0.02, ffFixed, 5, 2), ',', '.', [rfReplaceAll])  + ') then');
+            Add(HSLSpace + XYZSpace + '    begin');
+          end;
+          Add(HSLSpace + XYZSpace + ResultSpace + '    for j := 0 to arL2 do');
+          Add(HSLSpace + XYZSpace + ResultSpace + '    begin');
+          Add(HSLSpace + XYZSpace + ResultSpace + '      if (arUC[i] = arC[j]) then');
+          Add(HSLSpace + XYZSpace + ResultSpace + '      begin');
+          Add(HSLSpace + XYZSpace + ResultSpace + '        SetLength(arAP, Length(arAP) + 1);');
+          Add(HSLSpace + XYZSpace + ResultSpace + '        arAP[High(arAP)] := arP[j];');
+          Add(HSLSpace + XYZSpace + ResultSpace + '      end;');
+          Add(HSLSpace + XYZSpace + ResultSpace + '    end;');
+          if (FindObj_XYZRange.Checked) and (FindObj_XYZRange.Enabled) then
+            Add(HSLSpace + XYZSpace + '    end;');
+          if (FindObj_HSLRange.Checked) and (FindObj_HSLRange.Enabled) then
+            Add(HSLSpace + '    end;');
+          if (FindObj_RGBRange.Checked) and (FindObj_RGBRange.Enabled) then
+            Add('    end;');
+          Add('  end;');
+          Add('');
+        end;
+      end;
+       Add('begin');
+         Add('  SetupSRL;');
+         //Add('  AutoColor;');
+         for j:=0 to Engine.Count-1 do
+            Add(genspaces(2)+Engine.Items[i].Name+'(x,y)'+';');
+         Add('end.');
+        StatusBar1.Panels.Items[2].Text := 'Generated function';
+      end;
+  CalculateBestColor(Storage.Items[CurrIndex]);
+end;
+
 
 procedure TMainForm.FormCreate(Sender: TObject);
 var
@@ -694,14 +962,25 @@ begin
   bmpBuffer:=TMufasabitmap.Create;
   MMLClient:=TClient.Create;
   MMLClient.IOManager.GetDimensions(w,h);
+  Self.Caption:='ACA Remake by Cynic for'+ {$IFDEF WINDOWS}'Win'{$ELSE}'*nix'{$ENDIF}+'(Based on ACA v2 source code)';
   bmp.SetSize(w,h);
   bmpBuffer.SetSize(w,h);
   bmp.CopyClientToBitmap(MMLClient.IOManager,true,0,0,0,0,w-1,h-1);
   select:=TMWindowSelector.Create(nil);
   DefaultCTS3Mod:=CTS3Mod.Value;
+  //CTS:=CTSGroup.ItemIndex;
   //resetbuffer;
   UpdateBitmap(bmp);
   StatusBar1.Panels.Items[2].Text := 'ACA succesfully loaded..';
+end;
+
+procedure TMainForm.Openbitmap1Click(Sender: TObject);
+begin
+  if OpenPictureDialog1.Execute then
+   begin
+   BMP.LoadFromFile(OpenPictureDialog1.FileName);
+   UpdateBitmap(BMP);
+   end else exit;
 end;
 
 procedure TMainForm.pBoxChange(Sender: TObject);
@@ -714,7 +993,16 @@ procedure TMainForm.pBoxSelect(Sender: TObject);
 begin
   if not (Storage.Count > 0) then exit;
   CurrIndex:=Pbox.ItemIndex;
+  CTSGroup.ItemIndex:=Storage.Items[CurrIndex].CTS;
   ToListBox;
+end;
+
+procedure TMainForm.Savebitmap1Click(Sender: TObject);
+begin
+ if SavePictureDialog1.Execute then
+   begin
+   BMP.ToTbitmap.SaveToFile(SavePictureDialog1.FileName);
+   end else exit;
 end;
 
 procedure TMainForm.ToolButton1Click(Sender: TObject);
@@ -756,20 +1044,21 @@ begin
   AddNewProfile;
 end;
 
+procedure TMainForm.AutoColor_ClearFunctionClick(Sender: TObject);
+begin
+  SynEdit1.Lines.Clear;
+end;
+
 procedure TMainForm.AutoColor_CreateFunctionClick(Sender: TObject);
 var
-  x1, y1, x2, y2, cx, cy: string;
-  oColor: TColorItem;
-  i: integer;
+ ST: TStringList;
 begin
   If not (storage.Count>0) then exit;
- // SynEdit1.Add('program AutoColor;');
- // SynEdit1.Add('{$I SRL\SRL.simba}');
-//  SynEdit1.Add('');
-  for i:=0 to storage.Count -1 do
-   begin
-
-   end;
+  SynEdit1.Lines.Clear;
+  St:=TStringList.Create;
+  CreateAutoColor(Storage,ST);
+  SynEdit1.Text:=St.Text;
+  st.Free;
 end;
 
 procedure TMainForm.Btn_MarkBestClick(Sender: TObject);
@@ -812,6 +1101,23 @@ end;
 procedure TMainForm.Btn_RefreshImageClick(Sender: TObject);
 begin
   UpdateBitmap(BMP);
+end;
+
+procedure TMainForm.CTS3ModChange(Sender: TObject);
+begin
+  DefaultCTS3Mod:=CTS3Mod.Value;
+end;
+
+procedure TMainForm.FindObj_CreateFunctionClick(Sender: TObject);
+var
+ ST: TStringList;
+begin
+  If not (storage.Count>0) then exit;
+  SynEdit2.Lines.Clear;
+  St:=TStringList.Create;
+  CreateFindObject(Storage,ST);
+  SynEdit2.Text:=St.Text;
+  st.Free;
 end;
 
 procedure TMainForm.ImgFromClientClick(Sender: TObject);
@@ -871,6 +1177,7 @@ var
   i: integer;
 begin
   if not (Storage.Count > 0) then exit;
+    Storage.Items[CurrIndex].CTS:=CTSGroup.ItemIndex;
     CalculateBestColor(Storage.Items[CurrIndex]);
     i := StrToIntDef(Trim(Colors_Color.Text), -1);
     if (i > -1) then

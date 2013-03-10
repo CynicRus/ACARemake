@@ -49,6 +49,7 @@ type
   TColorProfile = class(TCollectionItem)
     public
       Name: string;
+      CTS: integer;
       ColorList: TColorItemList;
       constructor Create(Col: TCollection); override;
       destructor Destroy; override;

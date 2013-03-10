@@ -47,6 +47,7 @@ procedure TColorEngine.LoadFromFile(aFileName: string);
        Profile:=AddItem;
        oNode:=aParentNode.ChildNodes[i];
        Profile.Name:= oNode.Attributes.GetNamedItem('name').NodeValue;
+       Profile.CTS:= StrToInt(oNode.Attributes.GetNamedItem('cts').NodeValue);
        DoLoadColors(oNode, Profile);
      end;
    end;
@@ -77,6 +78,7 @@ begin
      begin
        ProfileNode:=oXmlDocument.CreateElement('profile');
        TDOMElement(ProfileNode).SetAttribute('name',Items[i].Name);
+       TDOMElement(ProfileNode).SetAttribute('cts',IntToStr(Items[i].CTS));
          for d:=0 to Items[i].ColorList.Count - 1 do
             begin
               oColor:=Items[i].ColorList.Items[d];
