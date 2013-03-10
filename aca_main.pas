@@ -47,6 +47,8 @@ type
     Colors: TListBox;
     BestColorLabel: TLabel;
     StringGrid1: TStringGrid;
+    SynEdit1: TSynEdit;
+    SynEdit2: TSynEdit;
     TolLabel: TLabel;
     ColorPopupMenu: TPopupMenu;
     DeleteColor1: TMenuItem;
@@ -131,7 +133,6 @@ type
     Panel1: TPanel;
     Panel2: TPanel;
     SynPasSyn1: TSynPasSyn;
-    SynEdit1: TSynEdit;
     GroupBox8: TGroupBox;
     AutoColor_RGBRange: TCheckBox;
     AutoColor_HSLRange: TCheckBox;
@@ -144,7 +145,6 @@ type
     AutoColor_CreateFunction: TBitBtn;
     AutoColor_ClearFunction: TBitBtn;
     TabSheet1: TTabSheet;
-    SynEdit2: TSynEdit;
     GroupBox10: TGroupBox;
     FindObj_CreateFunction: TBitBtn;
     FindObj_ClearFunction: TBitBtn;
@@ -171,6 +171,7 @@ type
     procedure Btn_MarkColorsClick(Sender: TObject);
     procedure Btn_RefreshImageClick(Sender: TObject);
     procedure CTS3ModChange(Sender: TObject);
+    procedure FindObj_ClearFunctionClick(Sender: TObject);
     procedure FindObj_CreateFunctionClick(Sender: TObject);
     procedure ImgFromClientClick(Sender: TObject);
     procedure DeleteProfileBtnClick(Sender: TObject);
@@ -1106,6 +1107,11 @@ end;
 procedure TMainForm.CTS3ModChange(Sender: TObject);
 begin
   DefaultCTS3Mod:=CTS3Mod.Value;
+end;
+
+procedure TMainForm.FindObj_ClearFunctionClick(Sender: TObject);
+begin
+  SynEdit2.Lines.Clear;
 end;
 
 procedure TMainForm.FindObj_CreateFunctionClick(Sender: TObject);
