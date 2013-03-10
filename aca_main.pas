@@ -6,7 +6,7 @@ interface
 
 uses
   LCLIntf, LCLType, LMessages, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  ComCtrls, Menus, ExtCtrls, StdCtrls, Buttons, ExtDlgs, Grids,
+  ComCtrls, Menus, ExtCtrls, StdCtrls, Buttons, ExtDlgs, Grids, Spin,
   SynHighlighterPas, SynEdit, SynEditHighlighter,Client,IOManager,{$IFDEF MSWINDOWS}os_windows,{$ELSE} os_linux,{$ENDIF}
   MufasaTypes,Colour_conv,Bitmaps,Windowselector,aca_types,aca_utils,aca_base;
 
@@ -17,8 +17,10 @@ type
   TMainForm = class(TForm)
     AddProfileBtn: TButton;
     BtnList: TImageList;
+    CTS3Mod: TFloatSpinEdit;
     ImgFromClient: TButton;
     DeleteProfileBtn: TButton;
+    Label2: TLabel;
     pBox: TComboBox;
     ColorsImage: TImage;
     ClientImage: TImage;
@@ -192,7 +194,6 @@ type
     procedure AddNewProfile();
     procedure FillColorValues(C: TColourRec);
     function SimilarColors(Color1, Color2, Tolerance: Integer): Boolean;
-    function GetTolerance(aColor: Integer): Integer;
     procedure DisplayCurrentColor(aColor: Integer);
     procedure CalculateBestColor(P: TColorProfile);
     procedure MarkColors(aColor, Tolerance: Integer);
@@ -228,29 +229,13 @@ implementation
  var
    x, y: Integer;
    SearchArea: TRect;
-   R, G, B: Byte;
-   H, S, L, cH, cS, cL, hTol, sTol: Extended;
-   Bitmap: TBitmap;
-   MarkColor: TRGB32;
-   c: TPRGB32Array;
+   TPA: TPointArray;
+   TempClient: TClient;
+   //hTol,sTol: extended;
  begin
-   MarkColor.R := 0;
-   MarkColor.G := 0;
-   MarkColor.B := 0;
-   MarkColor.A := 0;
-   if (MCol_Red.Checked) then
-     MarkColor.R := 255;
-   if (MCol_Green.Checked) then
-     MarkColor.G := 255;
-   if (MCol_Blue.Checked) then
-     MarkColor.B := 255;
-   if (MCol_White.Checked) then
-     begin MarkColor.R:= 255; MarkColor.G := 255; MarkColor.B := 255; end;
 
-   R := 0; G := 0; B := 0; hTol := 0.0; sTol := 0.0;
-   if (CTSGroup.ItemIndex = 2) then
+  { if (CTSGroup.ItemIndex = 2) then
    begin
-     ColorToHSL(aColor, H, S, L);
      if (StrToFloatDef(Trim(Client_HueMod.Text), -1) > -1) then
        hTol := (StrToFloat(Trim(Client_HueMod.Text)) * Tolerance)
      else
@@ -259,12 +244,8 @@ implementation
        sTol := (StrToFloat(Trim(Client_SatMod.Text)) * Tolerance)
      else
        sTol := (SatMod * Tolerance);
-   end else
-   begin
-     R := (aColor and $ff);
-     G := ((aColor and $ff00) shr 8);
-     B := ((aColor and $ff0000) shr 16);
-   end;
+   end;}
+   UpdateBitmap(BMP);
    if (CustomArea.Checked) and ((OldRect.Bottom - OldRect.Top) > 0) and ((OldRect.Right - OldRect.Left) > 0) then
    begin
      SearchArea := OldRect;
@@ -283,30 +264,40 @@ implementation
      SearchArea := Rect(547, 202, 737, 466)
    else
      SearchArea := Rect(0, 0, BmpBuffer.Width -1, BmpBuffer.Height -1);
-   {Bitmap := TBitmap.Create;
-   Bitmap.PixelFormat := pf32Bit;
-   Bitmap.Assign(Buffer);}
-   c := BMPBuffer.RowPtrs;
-   for y := SearchArea.Top to SearchArea.Bottom do
-   begin
-     for x := SearchArea.Left to SearchArea.Right do
-       case CTSGroup.ItemIndex of
-         0: if  (Abs(c[y][x].R   - R) <= Tolerance) and
-                (Abs(c[y][x].G - G) <= Tolerance) and
-                (Abs(c[y][x].B  - B) <= Tolerance) then c[y][x] := MarkColor;
-         1: if (Sqrt(Sqr(c[y][x].R   - R) +
-                     Sqr(c[y][x].G - G) +
-                     Sqr(c[y][x].B  - B)) <= Tolerance) then c[y][x] := MarkColor;
-         2:
-           begin
-             ColorToHSL(c[y][x].R + (c[y][x].G shl 8) + (c[y][x].B shl 16), cH, cS, cL);
-             if (Abs(H - cH) <= hTol) and
-                (Abs(S - cS) <= sTol) and
-                (Abs(L - cL) <= Tolerance) then c[y][x] := MarkColor;
-           end;
-       end;
-   end;
+
+   TempClient:=Tclient.Create();
+   TempClient.IOManager.SetTarget(BmpBuffer);
+   TempClient.MFinder.WarnOnly:=true;
+   case CTSGroup.ItemIndex of
+     0:
+       begin
+         TempClient.MFinder.FindColorsTolerance(TPA,aColor,SearchArea.Left,SearchArea.Right,SearchArea.Bottom,SearchArea.Top,Tolerance);
+         BMPBuffer.DrawTPA(TPA,clRed);
+         end;
+     1:
+       begin
+         TempClient.MFinder.FindColorsTolerance(TPA,aColor,SearchArea.Left,SearchArea.Right,SearchArea.Bottom,SearchArea.Top,Tolerance);
+         BMPBuffer.DrawTPA(TPA,clRed);
+         end;
+     2:
+       begin
+         TempClient.MFinder.SetToleranceSpeed(2);
+         TempClient.MFinder.SetToleranceSpeed2Modifiers(HueMod,SatMod);
+         TempClient.MFinder.FindColorsTolerance(TPA,aColor,SearchArea.Left,SearchArea.Right,SearchArea.Bottom,SearchArea.Top,Tolerance);
+         BMPBuffer.DrawTPA(TPA,clRed);
+         end;
+
+     3:
+        begin
+          DefaultCTS3Mod:=CTS3Mod.Value;
+         TempClient.MFinder.SetToleranceSpeed(3);
+         TempClient.MFinder.SetToleranceSpeed3Modifier(DefaultCTS3Mod);
+         TempClient.MFinder.FindColorsTolerance(TPA,aColor,SearchArea.Left,SearchArea.Right,SearchArea.Bottom,SearchArea.Top,Tolerance);
+         BMPBuffer.DrawTPA(TPA,clRed);
+         end;
+     end;
    UpdateBitmap(BMPBuffer);
+   TempClient.Free;
   // ClientImage.Canvas.Draw(0, 0, Bitmap);
  //  DrawSelection;
  //  Bitmap.Free;
@@ -441,41 +432,11 @@ begin
   end;
 end;
 
-function TMainForm.GetTolerance(aColor: Integer): Integer;
-var
-  a, b, c: Integer;
-  d, e, f: Extended;
-begin
-  Result := 0;
-  case CTSgroup.ItemIndex of
-    0:
-      begin
-        a := Abs((aColor and $ff) - (BestColor  and $ff));
-        b := Abs(((aColor and $ff00) shr 8) - ((BestColor and $ff00) shr 8));
-        c := Abs(((aColor and $ff0000) shr 16) - ((BestColor and $ff0000) shr 16));
-        Result := Max(Max(a, b), c);
-      end;
-    1:
-      begin
-        a := Abs((aColor and $ff) - (BestColor  and $ff));
-        b := Abs(((aColor and $ff00) shr 8) - ((BestColor and $ff00) shr 8));
-        c := Abs(((aColor and $ff0000) shr 16) - ((BestColor and $ff0000) shr 16));
-        Result := Ceil(Sqrt(Sqr(a)+Sqr(b)+Sqr(c)));
-      end;
-    2, 3:
-      begin
-        ColorToHSL(BestColor, d, d, e);
-        ColorToHSL(aColor, d, d, f);
-        Result := Ceil(Abs(e - f));
-      end;
-  end;
-end;
-
 procedure TMainForm.DisplayCurrentColor(aColor: Integer);
 begin
   Client_Color.Text := IntToStr(aColor);
   Colors_Color.Text := IntTostr(aColor);
-  Colors_Tolerance.Text := FloatToStr(GetTolerance(aColor));
+  Colors_Tolerance.Text := IntToStr(BestTolerance);
   Colors_Shape.Brush.Color := aColor;
   Client_Shape.Brush.Color := aColor;
   Colors_Shape.Repaint;
@@ -737,6 +698,7 @@ begin
   bmpBuffer.SetSize(w,h);
   bmp.CopyClientToBitmap(MMLClient.IOManager,true,0,0,0,0,w-1,h-1);
   select:=TMWindowSelector.Create(nil);
+  DefaultCTS3Mod:=CTS3Mod.Value;
   //resetbuffer;
   UpdateBitmap(bmp);
   StatusBar1.Panels.Items[2].Text := 'ACA succesfully loaded..';
@@ -801,9 +763,9 @@ var
   i: integer;
 begin
   If not (storage.Count>0) then exit;
-  SynEdit1.Add('program AutoColor;');
-  SynEdit1.Add('{$I SRL\SRL.simba}');
-  SynEdit1.Add('');
+ // SynEdit1.Add('program AutoColor;');
+ // SynEdit1.Add('{$I SRL\SRL.simba}');
+//  SynEdit1.Add('');
   for i:=0 to storage.Count -1 do
    begin
 
@@ -912,7 +874,7 @@ begin
     CalculateBestColor(Storage.Items[CurrIndex]);
     i := StrToIntDef(Trim(Colors_Color.Text), -1);
     if (i > -1) then
-      Colors_Tolerance.Text := IntToStr(GetTolerance(i));
+      Colors_Tolerance.Text := IntToStr(BestTolerance);
     HueModLabel.Visible := (CTSGroup.ItemIndex = 2);
     SatModLabel.Visible := (CTSGroup.ItemIndex = 2);
     case CTSgroup.ItemIndex of
