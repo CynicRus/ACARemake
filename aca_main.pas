@@ -22,11 +22,9 @@ type
     DeleteProfileBtn: TButton;
     Label2: TLabel;
     pBox: TComboBox;
-    ColorsImage: TImage;
     ClientImage: TImage;
     Label1: TLabel;
     PageControl: TPageControl;
-    ColorTab: TTabSheet;
     ClientTab: TTabSheet;
     AutoColorTab: TTabSheet;
     MainMenu: TMainMenu;
@@ -46,34 +44,12 @@ type
     ColorPanel: TPanel;
     Colors: TListBox;
     BestColorLabel: TLabel;
-    StringGrid1: TStringGrid;
     SynEdit1: TSynEdit;
     SynEdit2: TSynEdit;
     TolLabel: TLabel;
     ColorPopupMenu: TPopupMenu;
-    DeleteColor1: TMenuItem;
     DeleteDuplicates2: TMenuItem;
     StatusBar1: TStatusBar;
-    ScrollBox1: TScrollBox;
-    Colors_RGB1: TLabeledEdit;
-    Colors_RGB2: TLabeledEdit;
-    Colors_RGB3: TLabeledEdit;
-    Colors_HSL2: TLabeledEdit;
-    Colors_HSL1: TLabeledEdit;
-    Colors_HSL3: TLabeledEdit;
-    Colors_XYZ2: TLabeledEdit;
-    Colors_XYZ1: TLabeledEdit;
-    Colors_XYZ3: TLabeledEdit;
-    Colors_Shape: TShape;
-    GroupBox1: TGroupBox;
-    Colors_Color: TLabeledEdit;
-    Colors_Tolerance: TLabeledEdit;
-    GroupBox2: TGroupBox;
-    Colors_HueMod: TLabeledEdit;
-    Colors_RGBTol: TLabeledEdit;
-    Colors_SatMod: TLabeledEdit;
-    Colors_HSLTol: TLabeledEdit;
-    Colors_XYZTol: TLabeledEdit;
     ScrollBox2: TScrollBox;
     GroupBox4: TGroupBox;
     Client_HSL1: TLabeledEdit;
@@ -92,9 +68,6 @@ type
     CTSgroup: TRadioGroup;
     HueModLabel: TLabel;
     SatModLabel: TLabel;
-    Colors_BestCol: TLabeledEdit;
-    ClearList1: TMenuItem;
-    GroupBox3: TGroupBox;
     ClearList2: TMenuItem;
     OpenPictureDialog1: TOpenPictureDialog;
     SavePictureDialog1: TSavePictureDialog;
@@ -131,7 +104,6 @@ type
     Mainscreen1: TMenuItem;
     Inventory1: TMenuItem;
     Panel1: TPanel;
-    Panel2: TPanel;
     SynPasSyn1: TSynPasSyn;
     GroupBox8: TGroupBox;
     AutoColor_RGBRange: TCheckBox;
@@ -170,7 +142,9 @@ type
     procedure Btn_MarkBestClick(Sender: TObject);
     procedure Btn_MarkColorsClick(Sender: TObject);
     procedure Btn_RefreshImageClick(Sender: TObject);
+    procedure ClearList1Click(Sender: TObject);
     procedure CTS3ModChange(Sender: TObject);
+    procedure DeleteDuplicates2Click(Sender: TObject);
     procedure FindObj_ClearFunctionClick(Sender: TObject);
     procedure FindObj_CreateFunctionClick(Sender: TObject);
     procedure ImgFromClientClick(Sender: TObject);
@@ -183,7 +157,6 @@ type
     procedure CTSgroupClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Openbitmap1Click(Sender: TObject);
-    procedure pBoxChange(Sender: TObject);
     procedure pBoxSelect(Sender: TObject);
     procedure Savebitmap1Click(Sender: TObject);
     procedure ToolButton1Click(Sender: TObject);
@@ -199,7 +172,6 @@ type
     procedure ToComboBox();
     procedure AddNewProfile();
     procedure FillColorValues(C: TColourRec);
-    function SimilarColors(Color1, Color2, Tolerance: Integer): Boolean;
     procedure DisplayCurrentColor(aColor: Integer);
     procedure CalculateBestColor(P: TColorProfile);
     procedure MarkColors(aColor, Tolerance: Integer);
@@ -318,20 +290,18 @@ begin
 end;
 
 procedure TMainForm.UpdateBitmap(aBmp: TMufasaBitmap);
+var
+  b: tBitmap;
 begin
   bmpBuffer:=aBMP.Copy;
-  with ColorsImage do
-     begin
-       width:=abmp.Width;
-       height:=abmp.Height;
-     end;
    with ClientImage do
      begin
        width:=abmp.Width;
        height:=abmp.Height;
      end;
-  ColorsImage.Picture.Bitmap.Handle:=bmp.ToTBitmap.Handle;
-  ClientImage.Picture.Bitmap.Handle:=bmpbuffer.ToTBitmap.Handle;
+  b:= bmpbuffer.ToTBitmap;
+  ClientImage.Picture.Bitmap.Assign(b);
+  b.Free;
 end;
 
 procedure TMainForm.PickColor(aColor: TColor);
@@ -403,53 +373,15 @@ begin
   //z
   Client_HSL1.Text := FloatToStrF(C.h, ffFixed, 5, 3);               //h
   Client_HSL2.Text := FloatToStrF(C.s, ffFixed, 5, 3);               //s
-  Client_HSL3.Text := FloatToStrF(C.l, ffFixed, 5, 3);               //l             //z
-  Colors_RGB1.Text := IntToStr(C.r);                   //r
-  Colors_RGB2.Text := IntToStr(C.g);         //g
-  Colors_RGB3.Text := IntToStr(C.b);      //b
-
-  Colors_XYZ1.Text := FloatToStrF(C.x, ffFixed, 5, 3);               //x
-  Colors_XYZ2.Text := FloatToStrF(C.y, ffFixed, 5, 3);               //y
-  Colors_XYZ3.Text := FloatToStrF(C.z, ffFixed, 5, 3);
-  //z
-  Colors_HSL1.Text := FloatToStrF(C.h, ffFixed, 5, 3);               //h
-  Colors_HSL2.Text := FloatToStrF(C.s, ffFixed, 5, 3);               //s
-  Colors_HSL3.Text := FloatToStrF(C.l, ffFixed, 5, 3);
-end;
-
-function TMainForm.SimilarColors(Color1, Color2, Tolerance: Integer): Boolean;
-var
-  H1, S1, L1, H2, S2, L2: Extended;
-begin
-  Result := False;
-  case CTSgroup.ItemIndex of
-    0: Result := (Abs((Color1 and $ff)             -  (Color2 and $ff))             <= Tolerance) and
-                (Abs(((Color1 and $ff00) shr 8)    - ((Color2 and $ff00) shr 8))    <= Tolerance) and
-                (Abs(((Color1 and $ff0000) shr 16) - ((Color2 and $ff0000) shr 16)) <= Tolerance);
-
-    1: Result := Round(Sqrt(Sqr((Color1 and $ff)              -  (Color2 and $ff)) +
-                            Sqr(((Color1 and $ff00) shr 8)    - ((Color2 and $ff00) shr 8)) +
-                            Sqr(((Color1 and $ff0000) shr 16) - ((Color2 and $ff0000) shr 16)) )) <= Tolerance;
-
-    2:
-      begin
-        ColorToHSL(Color1, H1, S1, L1);
-        ColorToHSL(Color2, H2, S2, L2);
-        Result := (Abs(H1 - H2) <= (Tolerance * HueMod)) and
-                  (Abs(S1 - S2) <= (Tolerance * SatMod)) and
-                  (Abs(L1 - L2) <= Tolerance);
-      end;
-  end;
+  Client_HSL3.Text := FloatToStrF(C.l, ffFixed, 5, 3);               //l
 end;
 
 procedure TMainForm.DisplayCurrentColor(aColor: Integer);
 begin
   Client_Color.Text := IntToStr(aColor);
-  Colors_Color.Text := IntTostr(aColor);
-  Colors_Tolerance.Text := IntToStr(BestTolerance);
-  Colors_Shape.Brush.Color := aColor;
+//  Colors_Shape.Brush.Color := aColor;
   Client_Shape.Brush.Color := aColor;
-  Colors_Shape.Repaint;
+//  Colors_Shape.Repaint;
   Client_Shape.Repaint;
   FillColorValues(ColourRec(aColor));
 end;
@@ -651,13 +583,13 @@ begin
   TolLabel.Caption := 'Tolerance - '+IntToStr(BestTolerance);
   HueModLabel.Caption := 'Hue mod: '+FloatToStrF(HueMod, ffFixed, 5, 2);
   SatModLabel.Caption := 'Sat mod: '+FloatToStrF(SatMod, ffFixed, 5, 2);
-  Colors_BestCol.Text := IntToStr(BestColor);
+//  Colors_BestCol.Text := IntToStr(BestColor);
   Client_Color.Text:=IntToStr(BestColor);
 
   case CTSgroup.ItemIndex of
-    0,1: begin Colors_RGBTol.Text := IntToStr(BestTolerance); Client_RGBTol.Text := IntToStr(BestTolerance); end;
-    2: begin Colors_HueMod.Text := FloatToStrF(HueMod, ffFixed, 5, 2); Colors_SatMod.Text := FloatToStrF(SatMod, ffFixed, 5, 2); Colors_HSLTol.Text := IntToStr(BestTolerance); Client_HueMod.Text := FloatToStrF(HueMod, ffFixed, 5, 2); Client_SatMod.Text := FloatToStrF(SatMod, ffFixed, 5, 2); Client_HSLTol.Text := IntToStr(BestTolerance); end;
-    3: begin Colors_RGBTol.Text := IntToStr(BestTolerance); Client_RGBTol.Text := IntToStr(BestTolerance); end;
+    0,1: begin  Client_RGBTol.Text := IntToStr(BestTolerance); end;
+    2: begin  Client_HueMod.Text := FloatToStrF(HueMod, ffFixed, 5, 2); Client_SatMod.Text := FloatToStrF(SatMod, ffFixed, 5, 2); Client_HSLTol.Text := IntToStr(BestTolerance); end;
+    3: begin  Client_RGBTol.Text := IntToStr(BestTolerance); end;
   end;
 
 end;
@@ -667,21 +599,15 @@ begin
     Storage.Clear;
     HueMod := 0.0;   SatMod := 0.0;
     BestColor := 0;  BestTolerance := 0;
-    Colors_RGB1.Text := '';  Colors_RGB2.Text := '';  Colors_RGB3.Text := '';
-    Colors_HSL1.Text := '';  Colors_HSL2.Text := '';  Colors_HSL3.Text := '';
-    Colors_XYZ1.Text := '';  Colors_XYZ2.Text := '';  Colors_XYZ3.Text := '';
     Client_RGB1.Text := '';  Client_RGB2.Text := '';  Client_RGB3.Text := '';
     Client_HSL1.Text := '';  Client_HSL2.Text := '';  Client_HSL3.Text := '';
     Client_XYZ1.Text := '';  Client_XYZ2.Text := '';  Client_XYZ3.Text := '';
-    Colors_Color.Text := ''; Colors_Tolerance.Text := '';
-    Colors_BestCol.Text := ''; Colors_RGBTol.Text := '';  Colors_XYZTol.Text := '';
-    Colors_HueMod.Text := '';  Colors_SatMod.Text := '';  Colors_HSLTol.Text := '';
     Client_Color.Text := '';   Client_RGBTol.Text := '';  Client_HueMod.Text := '';
     Client_SatMod.Text := '';  Client_HSLTol.Text := '';  Client_XYZTol.Text := '';
     HueModLabel.Caption := 'Hue mod: 0,00'; SatModLabel.Caption := 'Sat mod: 0,00';
     BestColorLabel.Caption := 'Best color'; TolLabel.Caption := 'Tolerance';
     FindObj_UpText.Text := 'Take'; FindObj_Size.Text := '10';
-    Colors_Shape.Brush.Color := clWhite; client_Shape.Brush.Color := clWhite;
+    client_Shape.Brush.Color := clWhite;
   end;
 
 procedure TMainForm.ImageFromClient;
@@ -963,7 +889,7 @@ begin
   bmpBuffer:=TMufasabitmap.Create;
   MMLClient:=TClient.Create;
   MMLClient.IOManager.GetDimensions(w,h);
-  Self.Caption:='ACA Remake by Cynic for'+ {$IFDEF WINDOWS}'Win'{$ELSE}'*nix'{$ENDIF}+'(Based on ACA v2 source code)';
+  Self.Caption:='ACA Remake by Cynic for'+GenSpaces(1)+ {$IFDEF WINDOWS}'Win'{$ELSE}'*nix'{$ENDIF}+'(Based on ACA v2 source code)';
   bmp.SetSize(w,h);
   bmpBuffer.SetSize(w,h);
   bmp.CopyClientToBitmap(MMLClient.IOManager,true,0,0,0,0,w-1,h-1);
@@ -984,12 +910,6 @@ begin
    end else exit;
 end;
 
-procedure TMainForm.pBoxChange(Sender: TObject);
-begin
-  if not (Storage.Count > 0) then exit;
-  ToListBox;
-end;
-
 procedure TMainForm.pBoxSelect(Sender: TObject);
 begin
   if not (Storage.Count > 0) then exit;
@@ -999,11 +919,15 @@ begin
 end;
 
 procedure TMainForm.Savebitmap1Click(Sender: TObject);
+var
+  b: TBitmap;
 begin
+  b:= BMP.ToTbitmap;
  if SavePictureDialog1.Execute then
    begin
-   BMP.ToTbitmap.SaveToFile(SavePictureDialog1.FileName);
+   b.SaveToFile(SavePictureDialog1.FileName);
    end else exit;
+   b.Free;
 end;
 
 procedure TMainForm.ToolButton1Click(Sender: TObject);
@@ -1104,9 +1028,29 @@ begin
   UpdateBitmap(BMP);
 end;
 
+procedure TMainForm.ClearList1Click(Sender: TObject);
+begin
+
+end;
+
+
 procedure TMainForm.CTS3ModChange(Sender: TObject);
 begin
   DefaultCTS3Mod:=CTS3Mod.Value;
+end;
+
+procedure TMainForm.DeleteDuplicates2Click(Sender: TObject);
+var
+  I, K: Integer;
+begin
+  if not Storage.Count > 0 then Exit;
+  for I := 0 to Storage.Items[CurrIndex].ColorList.Count - 1 do
+  for K := Storage.Items[CurrIndex].ColorList.Count - 1 downto I+1 do
+    if Storage.Items[CurrIndex].ColorList[K].aColor.Colour = Storage.Items[CurrIndex].ColorList[I].aColor.Colour then
+    begin
+      Storage.Items[CurrIndex].ColorList.Delete(k);
+    end;
+  ToListBox;
 end;
 
 procedure TMainForm.FindObj_ClearFunctionClick(Sender: TObject);
@@ -1144,12 +1088,15 @@ procedure TMainForm.ClientImageMouseMove(Sender: TObject; Shift: TShiftState;
   X, Y: Integer);
 var
   Col: TColor;
+  b: TBitmap;
+
 begin
   Col:=BMP.FastGetPixel(x,y);
   FillColorValues(ColourRec(Col));
   Client_Shape.Brush.Color := Col;
   StatusBar1.Panels.Items[0].Text := IntToStr(X)+':'+IntToStr(Y);
   StatusBar1.Panels.Items[1].Text := IntToStr(Col);
+  b:=BMP.ToTBitmap;
    with Client_ZoomImage.Canvas do
       begin
         Pen.Color := clBlack;
@@ -1159,11 +1106,12 @@ begin
         Brush.Style := bsDiagCross;
         Brush.Color := clNavy;
         Rectangle(0, 0, 70, 70);
-        CopyRect(Rect(1, 1, 69, 69),BMP.TOTbitmap.Canvas, Rect(X - 2, Y -2, X + 3, Y + 3));
+        CopyRect(Rect(1, 1, 69, 69),b.Canvas, Rect(X - 2, Y -2, X + 3, Y + 3));
         Brush.Style := bsClear;
         Pen.Color := clRed;
         Rectangle(28, 28, 42, 42);
       end;
+   b.Free;
 end;
 
 procedure TMainForm.ColorsKeyDown(Sender: TObject; var Key: Word;
@@ -1185,16 +1133,16 @@ begin
   if not (Storage.Count > 0) then exit;
     Storage.Items[CurrIndex].CTS:=CTSGroup.ItemIndex;
     CalculateBestColor(Storage.Items[CurrIndex]);
-    i := StrToIntDef(Trim(Colors_Color.Text), -1);
+    i := StrToIntDef(Trim(client_Color.Text), -1);
     if (i > -1) then
-      Colors_Tolerance.Text := IntToStr(BestTolerance);
+      client_Color.Text := IntToStr(BestTolerance);
     HueModLabel.Visible := (CTSGroup.ItemIndex = 2);
     SatModLabel.Visible := (CTSGroup.ItemIndex = 2);
     case CTSgroup.ItemIndex of
-      0: begin Colors_RGBTol.Enabled := True;  Colors_HueMod.Enabled := False; Colors_SatMod.Enabled := False; Colors_HSLTol.Enabled := False; {Colors_XYZTol.Enabled := False;} Client_RGBTol.Enabled := True;   Client_HueMod.Enabled := False; Client_SatMod.Enabled := False; Client_HSLTol.Enabled := False; {Client_XYZTol.Enabled := False;} AutoColor_HSLRange.Enabled := True; FindObj_RGBRange.Enabled := True; end;
-      1: begin Colors_RGBTol.Enabled := True;  Colors_HueMod.Enabled := False; Colors_SatMod.Enabled := False; Colors_HSLTol.Enabled := False; {Colors_XYZTol.Enabled := False;} Client_RGBTol.Enabled := True;   Client_HueMod.Enabled := False; Client_SatMod.Enabled := False; Client_HSLTol.Enabled := False; {Client_XYZTol.Enabled := False;} AutoColor_HSLRange.Enabled := True; FindObj_HSLRange.Enabled := True; end;
-      2: begin Colors_RGBTol.Enabled := False; Colors_HueMod.Enabled := True;  Colors_SatMod.Enabled := True;  Colors_HSLTol.Enabled := True;  {Colors_XYZTol.Enabled := False;} Client_RGBTol.Enabled := False;  Client_HueMod.Enabled := True;  Client_SatMod.Enabled := True;  Client_HSLTol.Enabled := True;  {Client_XYZTol.Enabled := False;} AutoColor_HSLRange.Enabled := False; FindObj_HSLRange.Enabled := False; end;
-      3: begin Colors_RGBTol.Enabled := False; Colors_HueMod.Enabled := False; Colors_SatMod.Enabled := False; Colors_HSLTol.Enabled := False; {Colors_XYZTol.Enabled := True; } Client_RGBTol.Enabled := False;  Client_HueMod.Enabled := False; Client_SatMod.Enabled := False; Client_HSLTol.Enabled := False; {Client_XYZTol.Enabled := True; } AutoColor_HSLRange.Enabled := True; FindObj_HSLRange.Enabled := True; end;
+      0: begin Client_RGBTol.Enabled := True;   Client_HueMod.Enabled := False; Client_SatMod.Enabled := False; Client_HSLTol.Enabled := False; {Client_XYZTol.Enabled := False;} AutoColor_HSLRange.Enabled := True; FindObj_RGBRange.Enabled := True; end;
+      1: begin Client_RGBTol.Enabled := True;   Client_HueMod.Enabled := False; Client_SatMod.Enabled := False; Client_HSLTol.Enabled := False; {Client_XYZTol.Enabled := False;} AutoColor_HSLRange.Enabled := True; FindObj_HSLRange.Enabled := True; end;
+      2: begin Client_RGBTol.Enabled := False;  Client_HueMod.Enabled := True;  Client_SatMod.Enabled := True;  Client_HSLTol.Enabled := True;  {Client_XYZTol.Enabled := False;} AutoColor_HSLRange.Enabled := False; FindObj_HSLRange.Enabled := False; end;
+      3: begin Client_RGBTol.Enabled := False;  Client_HueMod.Enabled := False; Client_SatMod.Enabled := False; Client_HSLTol.Enabled := False; {Client_XYZTol.Enabled := True; } AutoColor_HSLRange.Enabled := True; FindObj_HSLRange.Enabled := True; end;
     end;
     StatusBar1.Panels.Items[2].Text := 'Changed cts to '+IntToStr(CTSgroup.ItemIndex);
   end;
