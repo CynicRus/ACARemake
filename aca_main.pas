@@ -318,9 +318,9 @@ var
   CurrProfile: TColorProfile;
   i: integer;
 begin
-  if (CurrIndex < 0) or (CurrIndex> Storage.Count) then exit;
-  CurrProfile:= Storage.Items[CurrIndex];
   Colors.Clear;
+  if (CurrIndex < 0) or (CurrIndex> Storage.Count) or (pbox.Items.Count=0) then exit;
+  CurrProfile:= Storage.Items[CurrIndex];
   for i:=0 to CurrProfile.ColorList.Count -1 do
    begin
      Colors.Items.Add(ColourToString(CurrProfile.ColorList[i].aColor,5));
@@ -332,7 +332,7 @@ procedure TMainForm.ToComboBox;
 var
   i: integer;
 begin
-  Pbox.Items.Clear;
+  Pbox.Clear;
   if not (storage.Count > 0) then exit;
   for i:=0 to storage.Count -1 do
      begin
@@ -1078,8 +1078,10 @@ end;
 procedure TMainForm.DeleteProfileBtnClick(Sender: TObject);
 begin
   if not Storage.Count > 0 then exit;
-  Storage.Delete(CurrIndex);
-  pbox.Items.Delete(CurrIndex);
+  if (pbox.ItemIndex = -1) or (pbox.Items.Count = 0) then exit;
+//  Pbox.Items.Clear;
+  Storage.Delete(pbox.ItemIndex);
+  //pbox.Items.Delete(CurrIndex);
   ToComboBox;
   ToListBox;
 end;
