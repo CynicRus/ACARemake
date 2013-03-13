@@ -21,6 +21,7 @@ type
     ImgFromClient: TButton;
     DeleteProfileBtn: TButton;
     Label2: TLabel;
+    Client_ZoomImage: TPaintBox;
     pBox: TComboBox;
     ClientImage: TImage;
     Label1: TLabel;
@@ -83,7 +84,6 @@ type
     Client_HueMod: TLabeledEdit;
     GroupBox7: TGroupBox;
     Client_Shape: TShape;
-    Client_ZoomImage: TImage;
     ImagePopupMenu: TPopupMenu;
     PickColor1: TMenuItem;
     N4: TMenuItem;
@@ -143,6 +143,7 @@ type
     procedure Btn_MarkColorsClick(Sender: TObject);
     procedure Btn_RefreshImageClick(Sender: TObject);
     procedure ClearList1Click(Sender: TObject);
+    procedure Client_ZoomImagePaint(Sender: TObject);
     procedure CTS3ModChange(Sender: TObject);
     procedure DeleteDuplicates2Click(Sender: TObject);
     procedure FindObj_ClearFunctionClick(Sender: TObject);
@@ -349,7 +350,7 @@ var
  Prof: TColorProfile;
  UserString: string;
 begin
- if InputQuery('Add color profile name:', 'Type in new path name', UserString)
+ if InputQuery('Add color profile name:', 'Type in new profile name', UserString)
   then
    begin
     Prof:=Storage.AddItem;
@@ -872,7 +873,7 @@ begin
          Add('  SetupSRL;');
          //Add('  AutoColor;');
          for j:=0 to Engine.Count-1 do
-            Add(genspaces(2)+Engine.Items[i].Name+'(x,y)'+';');
+            Add(genspaces(2)+Engine.Items[j].Name+'(x,y)'+';');
          Add('end.');
         StatusBar1.Panels.Items[2].Text := 'Generated function';
       end;
@@ -1033,6 +1034,20 @@ begin
 
 end;
 
+procedure TMainForm.Client_ZoomImagePaint(Sender: TObject);
+begin
+  with Client_ZoomImage.Canvas do
+      begin
+        Pen.Color := clBlack;
+        Brush.Style := bsSolid;
+        Brush.Color := clWhite;
+        Rectangle(0, 0, 70, 70);
+        Brush.Style := bsDiagCross;
+        Brush.Color := clNavy;
+        Brush.Style := bsClear;
+      end;
+end;
+
 
 procedure TMainForm.CTS3ModChange(Sender: TObject);
 begin
@@ -1091,8 +1106,11 @@ procedure TMainForm.ClientImageMouseMove(Sender: TObject; Shift: TShiftState;
 var
   Col: TColor;
   b: TBitmap;
-
+  tmp: TMufasaBitmap;
+  ZoomRect: TRect;
+  ZoomRatio: integer;
 begin
+  ZoomRatio:=100;
   Col:=BMP.FastGetPixel(x,y);
   FillColorValues(ColourRec(Col));
   Client_Shape.Brush.Color := Col;
@@ -1101,17 +1119,15 @@ begin
   b:=BMP.ToTBitmap;
    with Client_ZoomImage.Canvas do
       begin
-        Pen.Color := clBlack;
-        Brush.Style := bsSolid;
-        Brush.Color := clWhite;
-        Rectangle(0, 0, 70, 70);
-        Brush.Style := bsDiagCross;
-        Brush.Color := clNavy;
-        Rectangle(0, 0, 70, 70);
-        CopyRect(Rect(1, 1, 69, 69),b.Canvas, Rect(X - 2, Y -2, X + 3, Y + 3));
-        Brush.Style := bsClear;
+
+        ZoomRect:=Rect(X - 2, Y -2, X + 3, Y + 3);
+        InflateRect(ZoomRect, Round(Width / (2 * ZoomRatio)), Round(Height / (2 * ZoomRatio)));
+        //CopyRect(Rect(1, 1, 69, 69),b.Canvas, Rect(X - 2, Y -2, X + 3, Y + 3));
+        StretchBlt(Handle, 1, 1, 69, 69, B.Canvas.Handle, ZoomRect.Left, ZoomRect.Top, ZoomRect.Right - ZoomRect.Left, ZoomRect.Bottom - ZoomRect.Top, SRCCOPY);
+       // BitBlt(Handle, 0, 0, 69,  69, b.Canvas.Handle, X, Y, SRCCOPY);
+      //  StretchDraw(Rect(0,0,Height,Width),B);
         Pen.Color := clRed;
-        Rectangle(28, 28, 42, 42);
+        Rectangle(28, 28, 42, 42)
       end;
    b.Free;
 end;
