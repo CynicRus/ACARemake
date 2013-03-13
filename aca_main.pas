@@ -8,7 +8,7 @@ uses
   LCLIntf, LCLType, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
   ComCtrls, Menus, ExtCtrls, StdCtrls, Buttons, ExtDlgs, Grids, Spin,
   SynHighlighterPas, SynEdit, SynEditHighlighter,Client,IOManager,{$IFDEF MSWINDOWS}os_windows,{$ELSE} os_linux,{$ENDIF}
-  MufasaTypes,Colour_conv,Bitmaps,Windowselector,aca_types,aca_utils,aca_base;
+  MufasaTypes,Colour_conv,Bitmaps,Windowselector,aca_types,aca_utils,aca_base, types;
 
 type
 
@@ -99,6 +99,7 @@ type
     ToolButton2: TToolButton;
     ToolButton3: TToolButton;
     ToolButton4: TToolButton;
+    ZoomBar: TTrackBar;
     Wholeclient1: TMenuItem;
     Minimap1: TMenuItem;
     Mainscreen1: TMenuItem;
@@ -164,6 +165,7 @@ type
     procedure ToolButton3Click(Sender: TObject);
     procedure ToolButton3MouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
+    procedure ZoomBarChange(Sender: TObject);
   private
     StatusText: string;
     procedure ResetBuffer;
@@ -199,6 +201,7 @@ var
   MinC,MaxC: TColourRec;
   OldRect: TRect;
   Select: TMWindowSelector;
+  ZoomRatio: integer;
  // MarkCol, ColFormat: Integer;
 implementation
 
@@ -896,6 +899,7 @@ begin
   bmp.CopyClientToBitmap(MMLClient.IOManager,true,0,0,0,0,w-1,h-1);
   select:=TMWindowSelector.Create(nil);
   DefaultCTS3Mod:=CTS3Mod.Value;
+  ZoomRatio:=ZoomBar.Position;
   //CTS:=CTSGroup.ItemIndex;
   //resetbuffer;
   UpdateBitmap(bmp);
@@ -946,6 +950,11 @@ procedure TMainForm.ToolButton3MouseDown(Sender: TObject; Button: TMouseButton;
 begin
   MMLClient.IOManager.SetTarget(Select.Drag);
   ImageFromClient;
+end;
+
+procedure TMainForm.ZoomBarChange(Sender: TObject);
+begin
+  ZoomRatio:=ZoomBar.Position;
 end;
 
 procedure TMainForm.ClientImageMouseDown(Sender: TObject; Button: TMouseButton;
@@ -1034,6 +1043,7 @@ begin
 
 end;
 
+
 procedure TMainForm.Client_ZoomImagePaint(Sender: TObject);
 begin
   with Client_ZoomImage.Canvas do
@@ -1108,9 +1118,8 @@ var
   b: TBitmap;
   tmp: TMufasaBitmap;
   ZoomRect: TRect;
-  ZoomRatio: integer;
 begin
-  ZoomRatio:=100;
+  //ZoomRatio:=100;
   Col:=BMP.FastGetPixel(x,y);
   FillColorValues(ColourRec(Col));
   Client_Shape.Brush.Color := Col;
