@@ -1,11 +1,11 @@
 object MainForm: TMainForm
   Left = 362
-  Height = 648
+  Height = 638
   Top = 286
   Width = 795
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
-  ClientHeight = 628
+  ClientHeight = 618
   ClientWidth = 795
   Color = clBtnFace
   Font.Color = clWindowText
@@ -17,7 +17,7 @@ object MainForm: TMainForm
   LCLVersion = '1.0.4.0'
   object PageControl: TPageControl
     Left = 0
-    Height = 579
+    Height = 569
     Top = 26
     Width = 664
     ActivePage = ClientTab
@@ -26,7 +26,7 @@ object MainForm: TMainForm
     TabOrder = 0
     object ClientTab: TTabSheet
       Caption = 'Client'
-      ClientHeight = 553
+      ClientHeight = 543
       ClientWidth = 656
       ImageIndex = 1
       object ScrollBox2: TScrollBox
@@ -1957,12 +1957,12 @@ object MainForm: TMainForm
   end
   object ColorPanel: TPanel
     Left = 664
-    Height = 579
+    Height = 569
     Top = 26
     Width = 131
     Align = alRight
     BevelOuter = bvNone
-    ClientHeight = 579
+    ClientHeight = 569
     ClientWidth = 131
     TabOrder = 1
     object BestColorLabel: TLabel
@@ -2001,8 +2001,8 @@ object MainForm: TMainForm
     end
     object Colors: TListBox
       Left = 0
-      Height = 296
-      Top = 40
+      Height = 288
+      Top = 86
       Width = 131
       Align = alCustom
       ItemHeight = 0
@@ -2055,18 +2055,18 @@ object MainForm: TMainForm
       TabOrder = 2
     end
     object AddProfileBtn: TButton
-      Left = 8
+      Left = 2
       Height = 25
-      Top = 344
+      Top = 38
       Width = 56
       Caption = 'Add'
       OnClick = AddProfileBtnClick
       TabOrder = 3
     end
     object DeleteProfileBtn: TButton
-      Left = 72
+      Left = 67
       Height = 25
-      Top = 344
+      Top = 38
       Width = 55
       Caption = 'Delete'
       OnClick = DeleteProfileBtnClick
@@ -2092,11 +2092,19 @@ object MainForm: TMainForm
       Caption = 'CTS3Mod:'
       ParentColor = False
     end
+    object Label3: TLabel
+      Left = 2
+      Height = 14
+      Top = 70
+      Width = 35
+      Caption = 'Colors:'
+      ParentColor = False
+    end
   end
   object StatusBar1: TStatusBar
     Left = 0
     Height = 23
-    Top = 605
+    Top = 595
     Width = 795
     Panels = <    
       item
@@ -2360,7 +2368,7 @@ object MainForm: TMainForm
           FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB
           00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FFFB00FF
         }
-        ShortCut = 116
+        OnClick = ImgFromClientClick
       end
       object Refreshimage1: TMenuItem
         Caption = 'Refresh image'
@@ -2392,7 +2400,7 @@ object MainForm: TMainForm
           9BEEF7EEFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF8FBF8D7E7D7A6CAA38FC08C90
           C28E91C48F90C38FA6CDA3D5E5D5F7FAF7FFFFFFFFFFFFFFFFFF
         }
-        ShortCut = 117
+        OnClick = Btn_RefreshImageClick
       end
     end
     object Colors1: TMenuItem

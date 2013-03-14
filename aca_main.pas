@@ -22,6 +22,7 @@ type
     DeleteProfileBtn: TButton;
     Label2: TLabel;
     Client_ZoomImage: TPaintBox;
+    Label3: TLabel;
     pBox: TComboBox;
     ClientImage: TImage;
     Label1: TLabel;
@@ -173,7 +174,7 @@ type
     procedure PickColor(aColor: TColor);
     procedure ToListBox();
     procedure ToComboBox();
-    procedure AddNewProfile();
+    function AddNewProfile():boolean;
     procedure FillColorValues(C: TColourRec);
     procedure DisplayCurrentColor(aColor: Integer);
     procedure CalculateBestColor(P: TColorProfile);
@@ -348,7 +349,7 @@ begin
   CurrIndex:=i;
 end;
 
-procedure TMainForm.AddNewProfile;
+function TMainForm.AddNewProfile():boolean;
 var
  Prof: TColorProfile;
  UserString: string;
@@ -361,8 +362,9 @@ begin
     prof.CTS:=CTSGroup.ItemIndex;
     ToComboBox;
     ToListBox;
+    Result:=true;
    end
- else exit;
+ else result:=false;
 end;
 
 procedure TMainForm.FillColorValues(C: TColourRec);
@@ -961,9 +963,11 @@ procedure TMainForm.ClientImageMouseDown(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 var
   Col: TColor;
+  b: boolean;
 begin
   if not (Storage.Count > 0) then
-   AddNewProfile;
+   b:=AddNewProfile;
+  if not b then exit;
   if (Button = mbLeft) then
    begin
      Col:=bmp.FastGetPixel(X,Y);
