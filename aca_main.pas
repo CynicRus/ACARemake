@@ -85,26 +85,12 @@ type
     Client_HueMod: TLabeledEdit;
     GroupBox7: TGroupBox;
     Client_Shape: TShape;
-    ImagePopupMenu: TPopupMenu;
-    PickColor1: TMenuItem;
-    N4: TMenuItem;
-    Savebitmap2: TMenuItem;
-    Loadbitmap1: TMenuItem;
-    Pastebitmap1: TMenuItem;
-    N5: TMenuItem;
-    Refreshimage2: TMenuItem;
-    Reloadfromclient2: TMenuItem;
-    MarkColorsearharea1: TMenuItem;
     ToolBar1: TToolBar;
     ToolButton1: TToolButton;
     ToolButton2: TToolButton;
     ToolButton3: TToolButton;
     ToolButton4: TToolButton;
     ZoomBar: TTrackBar;
-    Wholeclient1: TMenuItem;
-    Minimap1: TMenuItem;
-    Mainscreen1: TMenuItem;
-    Inventory1: TMenuItem;
     Panel1: TPanel;
     SynPasSyn1: TSynPasSyn;
     GroupBox8: TGroupBox;
@@ -114,8 +100,6 @@ type
     AutoColor_AreaButtons: TRadioGroup;
     GroupBox9: TGroupBox;
     Timer: TTimer;
-    N6: TMenuItem;
-    CustomArea: TMenuItem;
     AutoColor_CreateFunction: TBitBtn;
     AutoColor_ClearFunction: TBitBtn;
     TabSheet1: TTabSheet;
@@ -130,12 +114,6 @@ type
     FindObj_UpText: TLabeledEdit;
     FindObj_Size: TLabeledEdit;
     FindObj_arLength: TCheckBox;
-    MarkingColor1: TMenuItem;
-    MCol_Red: TMenuItem;
-    MCol_Green: TMenuItem;
-    MCol_Blue: TMenuItem;
-    MCol_White: TMenuItem;
-    MCol_Black: TMenuItem;
     AutoColor_SpiralSearch: TCheckBox;
     Help1: TMenuItem;
     procedure AddProfileBtnClick(Sender: TObject);
@@ -231,7 +209,7 @@ implementation
        sTol := (SatMod * Tolerance);
    end;}
    UpdateBitmap(BMP);
-   if (CustomArea.Checked) and ((OldRect.Bottom - OldRect.Top) > 0) and ((OldRect.Right - OldRect.Left) > 0) then
+  { if (CustomArea.Checked) and ((OldRect.Bottom - OldRect.Top) > 0) and ((OldRect.Right - OldRect.Left) > 0) then
    begin
      SearchArea := OldRect;
      InFlateRect(SearchArea, -1, -1);
@@ -248,7 +226,8 @@ implementation
    if (Inventory1.Checked) then
      SearchArea := Rect(547, 202, 737, 466)
    else
-     SearchArea := Rect(0, 0, BmpBuffer.Width -1, BmpBuffer.Height -1);
+     SearchArea := Rect(0, 0, BmpBuffer.Width -1, BmpBuffer.Height -1);}
+   SearchArea := Rect(0, 0, BmpBuffer.Width -1, BmpBuffer.Height -1);
 
    TempClient:=Tclient.Create();
    TempClient.IOManager.SetTarget(BmpBuffer);
@@ -895,7 +874,7 @@ begin
   bmpBuffer:=TMufasabitmap.Create;
   MMLClient:=TClient.Create;
   MMLClient.IOManager.GetDimensions(w,h);
-  Self.Caption:='ACA Remake by Cynic for'+GenSpaces(1)+ {$IFDEF WINDOWS}'Win'{$ELSE}'*nix'{$ENDIF}+'(Based on ACA v2 source code)';
+  Self.Caption:='ACA Remake by Cynic for'+GenSpaces(1)+ {$IFDEF WINDOWS}'Win'{$ELSE}'*nix'{$ENDIF}+GenSpaces(1)+'(Based on ACA v2 source code)';
   bmp.SetSize(w,h);
   bmpBuffer.SetSize(w,h);
   bmp.CopyClientToBitmap(MMLClient.IOManager,true,0,0,0,0,w-1,h-1);
@@ -1072,7 +1051,7 @@ procedure TMainForm.DeleteDuplicates2Click(Sender: TObject);
 var
   I, K: Integer;
 begin
-  if not Storage.Count > 0 then Exit;
+  if not Storage.Items[CurrIndex].ColorList.Count > 0 then Exit;
   for I := 0 to Storage.Items[CurrIndex].ColorList.Count - 1 do
   for K := Storage.Items[CurrIndex].ColorList.Count - 1 downto I+1 do
     if Storage.Items[CurrIndex].ColorList[K].aColor.Colour = Storage.Items[CurrIndex].ColorList[I].aColor.Colour then
