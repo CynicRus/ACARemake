@@ -1,10 +1,13 @@
 object MainForm: TMainForm
 <<<<<<< HEAD
+<<<<<<< HEAD
   Left = 291
   Height = 631
   Top = 155
   Width = 791
 =======
+=======
+>>>>>>> idynin/master
   Left = 354
   Height = 638
   Top = 53
@@ -597,6 +600,9 @@ object MainForm: TMainForm
             Top = 72
 =======
             Top = 79
+<<<<<<< HEAD
+>>>>>>> idynin/master
+=======
 >>>>>>> idynin/master
             Width = 110
             Caption = 'Reload from Client'
@@ -1978,7 +1984,11 @@ object MainForm: TMainForm
     OnClick = ColorPanelClick
     object BestColorLabel: TLabel
 <<<<<<< HEAD
+<<<<<<< HEAD
       Left = 3
+=======
+      Left = 2
+>>>>>>> idynin/master
 =======
       Left = 2
 >>>>>>> idynin/master
@@ -1990,7 +2000,11 @@ object MainForm: TMainForm
     end
     object TolLabel: TLabel
 <<<<<<< HEAD
+<<<<<<< HEAD
       Left = 3
+=======
+      Left = 2
+>>>>>>> idynin/master
 =======
       Left = 2
 >>>>>>> idynin/master
@@ -2002,7 +2016,11 @@ object MainForm: TMainForm
     end
     object HueModLabel: TLabel
 <<<<<<< HEAD
+<<<<<<< HEAD
       Left = 3
+=======
+      Left = 2
+>>>>>>> idynin/master
 =======
       Left = 2
 >>>>>>> idynin/master
@@ -2015,7 +2033,11 @@ object MainForm: TMainForm
     end
     object SatModLabel: TLabel
 <<<<<<< HEAD
+<<<<<<< HEAD
       Left = 3
+=======
+      Left = 2
+>>>>>>> idynin/master
 =======
       Left = 2
 >>>>>>> idynin/master
@@ -2045,6 +2067,9 @@ object MainForm: TMainForm
 =======
       Height = 108
       Top = 454
+<<<<<<< HEAD
+>>>>>>> idynin/master
+=======
 >>>>>>> idynin/master
       Width = 58
       AutoFill = True
@@ -2081,9 +2106,12 @@ object MainForm: TMainForm
       Left = 2
       Height = 21
 <<<<<<< HEAD
+<<<<<<< HEAD
       Top = 16
       Width = 118
 =======
+=======
+>>>>>>> idynin/master
       Top = 22
       Width = 128
 >>>>>>> idynin/master
@@ -2111,7 +2139,11 @@ object MainForm: TMainForm
     end
     object CTS3Mod: TFloatSpinEdit
 <<<<<<< HEAD
+<<<<<<< HEAD
       Left = 66
+=======
+      Left = 69
+>>>>>>> idynin/master
 =======
       Left = 69
 >>>>>>> idynin/master
@@ -2127,7 +2159,11 @@ object MainForm: TMainForm
     end
     object Label2: TLabel
 <<<<<<< HEAD
+<<<<<<< HEAD
       Left = 70
+=======
+      Left = 69
+>>>>>>> idynin/master
 =======
       Left = 69
 >>>>>>> idynin/master
