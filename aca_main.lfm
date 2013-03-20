@@ -1,18 +1,10 @@
 object MainForm: TMainForm
-<<<<<<< HEAD
-<<<<<<< HEAD
-  Left = 291
-  Height = 631
-  Top = 155
-  Width = 791
-=======
-=======
->>>>>>> idynin/master
+
   Left = 354
   Height = 638
   Top = 53
   Width = 795
->>>>>>> idynin/master
+
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
   ClientHeight = 611
@@ -596,14 +588,7 @@ object MainForm: TMainForm
           object ImgFromClient: TButton
             Left = 65
             Height = 25
-<<<<<<< HEAD
-            Top = 72
-=======
             Top = 79
-<<<<<<< HEAD
->>>>>>> idynin/master
-=======
->>>>>>> idynin/master
             Width = 110
             Caption = 'Reload from Client'
             OnClick = ImgFromClientClick
@@ -1983,15 +1968,7 @@ object MainForm: TMainForm
     TabOrder = 1
     OnClick = ColorPanelClick
     object BestColorLabel: TLabel
-<<<<<<< HEAD
-<<<<<<< HEAD
-      Left = 3
-=======
       Left = 2
->>>>>>> idynin/master
-=======
-      Left = 2
->>>>>>> idynin/master
       Height = 14
       Top = 376
       Width = 51
@@ -1999,15 +1976,8 @@ object MainForm: TMainForm
       ParentColor = False
     end
     object TolLabel: TLabel
-<<<<<<< HEAD
-<<<<<<< HEAD
-      Left = 3
-=======
+
       Left = 2
->>>>>>> idynin/master
-=======
-      Left = 2
->>>>>>> idynin/master
       Height = 14
       Top = 390
       Width = 48
@@ -2015,15 +1985,7 @@ object MainForm: TMainForm
       ParentColor = False
     end
     object HueModLabel: TLabel
-<<<<<<< HEAD
-<<<<<<< HEAD
-      Left = 3
-=======
       Left = 2
->>>>>>> idynin/master
-=======
-      Left = 2
->>>>>>> idynin/master
       Height = 14
       Top = 409
       Width = 72
@@ -2032,15 +1994,7 @@ object MainForm: TMainForm
       Visible = False
     end
     object SatModLabel: TLabel
-<<<<<<< HEAD
-<<<<<<< HEAD
-      Left = 3
-=======
       Left = 2
->>>>>>> idynin/master
-=======
-      Left = 2
->>>>>>> idynin/master
       Height = 14
       Top = 426
       Width = 69
@@ -2061,16 +2015,8 @@ object MainForm: TMainForm
     end
     object CTSgroup: TRadioGroup
       Left = 0
-<<<<<<< HEAD
-      Height = 120
-      Top = 438
-=======
       Height = 108
       Top = 454
-<<<<<<< HEAD
->>>>>>> idynin/master
-=======
->>>>>>> idynin/master
       Width = 58
       AutoFill = True
       Caption = 'CTS'
@@ -2105,16 +2051,8 @@ object MainForm: TMainForm
     object pBox: TComboBox
       Left = 2
       Height = 21
-<<<<<<< HEAD
-<<<<<<< HEAD
-      Top = 16
-      Width = 118
-=======
-=======
->>>>>>> idynin/master
       Top = 22
       Width = 128
->>>>>>> idynin/master
       ItemHeight = 13
       OnSelect = pBoxSelect
       TabOrder = 2
@@ -2138,15 +2076,7 @@ object MainForm: TMainForm
       TabOrder = 4
     end
     object CTS3Mod: TFloatSpinEdit
-<<<<<<< HEAD
-<<<<<<< HEAD
-      Left = 66
-=======
       Left = 69
->>>>>>> idynin/master
-=======
-      Left = 69
->>>>>>> idynin/master
       Height = 21
       Top = 454
       Width = 56
@@ -2158,15 +2088,8 @@ object MainForm: TMainForm
       Value = 1
     end
     object Label2: TLabel
-<<<<<<< HEAD
-<<<<<<< HEAD
-      Left = 70
-=======
+
       Left = 69
->>>>>>> idynin/master
-=======
-      Left = 69
->>>>>>> idynin/master
       Height = 14
       Top = 438
       Width = 50
@@ -2679,8 +2602,6 @@ object MainForm: TMainForm
     left = 448
     top = 160
   end
-<<<<<<< HEAD
-=======
   object ImagePopupMenu: TPopupMenu
     left = 168
     top = 88
@@ -2938,7 +2859,6 @@ object MainForm: TMainForm
       }
     end
   end
->>>>>>> idynin/master
   object SynPasSyn1: TSynPasSyn
     DefaultFilter = 'Scar Files|*scar'
     Enabled = False
