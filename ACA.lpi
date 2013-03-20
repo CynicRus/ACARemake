@@ -41,7 +41,7 @@
         <PackageName Value="LCL"/>
       </Item3>
     </RequiredPackages>
-    <Units Count="28">
+    <Units Count="29">
       <Unit0>
         <Filename Value="ACA.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -185,6 +185,10 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="windowselector"/>
       </Unit27>
+      <Unit28>
+        <Filename Value="..\SimbaLocal\Projects\Simba\Simba.inc"/>
+        <IsPartOfProject Value="True"/>
+      </Unit28>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
@@ -194,7 +198,7 @@
       <Filename Value="ACA"/>
     </Target>
     <SearchPaths>
-      <IncludeFiles Value="$(ProjOutDir)"/>
+      <IncludeFiles Value="$(ProjOutDir);..\SimbaLocal\Projects\Simba"/>
       <OtherUnitFiles Value="..\SimbaLocal\Units\MMLCore;..\SimbaLocal\Units\Misc\DCPCrypt;..\SimbaLocal\Units\MMLAddon"/>
       <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
