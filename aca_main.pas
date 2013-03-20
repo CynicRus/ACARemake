@@ -1,3 +1,5 @@
+{%RunCommand $MakeExe($(EdFile)) strip --strip-all}
+{%BuildCommand $(CompPath) $(EdFile) strip --strip-all}
 unit ACA_main;
 
 {$mode objfpc}{$H+}
@@ -23,6 +25,7 @@ type
     Label2: TLabel;
     Client_ZoomImage: TPaintBox;
     Label3: TLabel;
+    OpenProfilesDialog: TOpenDialog;
     pBox: TComboBox;
     ClientImage: TImage;
     Label1: TLabel;
@@ -46,6 +49,7 @@ type
     ColorPanel: TPanel;
     Colors: TListBox;
     BestColorLabel: TLabel;
+    SaveProfilesDialog: TSaveDialog;
     SynEdit1: TSynEdit;
     SynEdit2: TSynEdit;
     TolLabel: TLabel;
@@ -96,10 +100,11 @@ type
     Reloadfromclient2: TMenuItem;
     MarkColorsearharea1: TMenuItem;
     ToolBar1: TToolBar;
-    ToolButton1: TToolButton;
+    OpenProfilesButton: TToolButton;
     ToolButton2: TToolButton;
-    ToolButton3: TToolButton;
+    SelectClientTarget: TToolButton;
     ToolButton4: TToolButton;
+    SaveProfilesButton: TToolButton;
     ZoomBar: TTrackBar;
     Wholeclient1: TMenuItem;
     Minimap1: TMenuItem;
@@ -145,13 +150,17 @@ type
     procedure Btn_MarkColorsClick(Sender: TObject);
     procedure Btn_RefreshImageClick(Sender: TObject);
     procedure ClearList1Click(Sender: TObject);
+    procedure ClearList2Click(Sender: TObject);
     procedure Client_ZoomImagePaint(Sender: TObject);
+    procedure ColorPanelClick(Sender: TObject);
     procedure CTS3ModChange(Sender: TObject);
+    procedure Deleteduplicates1Click(Sender: TObject);
     procedure DeleteDuplicates2Click(Sender: TObject);
+    procedure DeleteProfileBtnClick(Sender: TObject);
+    procedure Exit1Click(Sender: TObject);
     procedure FindObj_ClearFunctionClick(Sender: TObject);
     procedure FindObj_CreateFunctionClick(Sender: TObject);
     procedure ImgFromClientClick(Sender: TObject);
-    procedure DeleteProfileBtnClick(Sender: TObject);
     procedure ClientImageMouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
     procedure ClientImageMouseMove(Sender: TObject; Shift: TShiftState; X,
@@ -159,12 +168,14 @@ type
     procedure ColorsKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure CTSgroupClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure Open1Click(Sender: TObject);
     procedure Openbitmap1Click(Sender: TObject);
     procedure pBoxSelect(Sender: TObject);
+    procedure Saveas1Click(Sender: TObject);
     procedure Savebitmap1Click(Sender: TObject);
-    procedure ToolButton1Click(Sender: TObject);
-    procedure ToolButton3Click(Sender: TObject);
-    procedure ToolButton3MouseDown(Sender: TObject; Button: TMouseButton;
+    procedure OpenProfilesButtonClick(Sender: TObject);
+    procedure SaveProfilesButtonClick(Sender: TObject);
+    procedure SelectClientTargetMouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
     procedure ZoomBarChange(Sender: TObject);
   private
@@ -908,6 +919,11 @@ begin
   StatusBar1.Panels.Items[2].Text := 'ACA succesfully loaded..';
 end;
 
+procedure TMainForm.Open1Click(Sender: TObject);
+begin
+  OpenProfilesButton.OnClick(Sender);
+end;
+
 procedure TMainForm.Openbitmap1Click(Sender: TObject);
 begin
   if OpenPictureDialog1.Execute then
@@ -925,6 +941,11 @@ begin
   ToListBox;
 end;
 
+procedure TMainForm.Saveas1Click(Sender: TObject);
+begin
+  SaveProfilesButton.OnClick(Sender);
+end;
+
 procedure TMainForm.Savebitmap1Click(Sender: TObject);
 var
   b: TBitmap;
@@ -937,17 +958,23 @@ begin
    b.Free;
 end;
 
-procedure TMainForm.ToolButton1Click(Sender: TObject);
+procedure TMainForm.OpenProfilesButtonClick(Sender: TObject);
 begin
-  Application.Terminate;
+  if OpenProfilesDialog.Execute then begin
+    pBox.Clear;
+    Storage.LoadFromFile(OpenProfilesDialog.FileName);
+    ToComboBox();
+    ToListBox();
+  end;
 end;
 
-procedure TMainForm.ToolButton3Click(Sender: TObject);
+procedure TMainForm.SaveProfilesButtonClick(Sender: TObject);
 begin
-
+  if SaveProfilesDialog.Execute then
+    Storage.SaveToFile(SaveProfilesDialog.FileName);
 end;
 
-procedure TMainForm.ToolButton3MouseDown(Sender: TObject; Button: TMouseButton;
+procedure TMainForm.SelectClientTargetMouseDown(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 begin
   MMLClient.IOManager.SetTarget(Select.Drag);
@@ -1047,6 +1074,11 @@ begin
 
 end;
 
+procedure TMainForm.ClearList2Click(Sender: TObject);
+begin
+  Colors.Clear();
+end;
+
 
 procedure TMainForm.Client_ZoomImagePaint(Sender: TObject);
 begin
@@ -1062,10 +1094,20 @@ begin
       end;
 end;
 
+procedure TMainForm.ColorPanelClick(Sender: TObject);
+begin
+
+end;
+
 
 procedure TMainForm.CTS3ModChange(Sender: TObject);
 begin
   DefaultCTS3Mod:=CTS3Mod.Value;
+end;
+
+procedure TMainForm.Deleteduplicates1Click(Sender: TObject);
+begin
+   DeleteDuplicates2Click(Sender);
 end;
 
 procedure TMainForm.DeleteDuplicates2Click(Sender: TObject);
@@ -1074,12 +1116,28 @@ var
 begin
   if not Storage.Count > 0 then Exit;
   for I := 0 to Storage.Items[CurrIndex].ColorList.Count - 1 do
-  for K := Storage.Items[CurrIndex].ColorList.Count - 1 downto I+1 do
+  for K := Storage.Items[CurrIndex].ColorList.Count - 1 downto I + 1 do
     if Storage.Items[CurrIndex].ColorList[K].aColor.Colour = Storage.Items[CurrIndex].ColorList[I].aColor.Colour then
     begin
       Storage.Items[CurrIndex].ColorList.Delete(k);
     end;
   ToListBox;
+end;
+
+procedure TMainForm.DeleteProfileBtnClick(Sender: TObject);
+begin
+  if not Storage.Count > 0 then exit;
+  if (pbox.ItemIndex = -1) or (pbox.Items.Count = 0) then exit;
+  // Pbox.Items.Clear;
+  Storage.Delete(pbox.ItemIndex);
+  // pbox.Items.Delete(CurrIndex);
+  ToComboBox;
+  ToListBox;
+end;
+
+procedure TMainForm.Exit1Click(Sender: TObject);
+begin
+  Application.Terminate;
 end;
 
 procedure TMainForm.FindObj_ClearFunctionClick(Sender: TObject);
@@ -1102,17 +1160,6 @@ end;
 procedure TMainForm.ImgFromClientClick(Sender: TObject);
 begin
   ImageFromClient;
-end;
-
-procedure TMainForm.DeleteProfileBtnClick(Sender: TObject);
-begin
-  if not Storage.Count > 0 then exit;
-  if (pbox.ItemIndex = -1) or (pbox.Items.Count = 0) then exit;
-//  Pbox.Items.Clear;
-  Storage.Delete(pbox.ItemIndex);
-  //pbox.Items.Delete(CurrIndex);
-  ToComboBox;
-  ToListBox;
 end;
 
 procedure TMainForm.ClientImageMouseMove(Sender: TObject; Shift: TShiftState;
