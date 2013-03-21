@@ -10,7 +10,7 @@ uses
   LCLIntf, LCLType, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
   ComCtrls, Menus, ExtCtrls, StdCtrls, Buttons, ExtDlgs, Grids, Spin,
   SynHighlighterPas, SynEdit, SynEditHighlighter,Client,IOManager,{$IFDEF MSWINDOWS}os_windows,{$ELSE} os_linux,{$ENDIF}
-  MufasaTypes,Colour_conv,Bitmaps,Windowselector,aca_types,aca_utils,aca_base, types;
+  MufasaTypes,Colour_conv,Bitmaps,Windowselector,aca_types,aca_utils,aca_base, types, LMessages;
 
 type
 
@@ -130,7 +130,6 @@ type
     procedure ClearList1Click(Sender: TObject);
     procedure ClearList2Click(Sender: TObject);
     procedure Client_ZoomImagePaint(Sender: TObject);
-    procedure ColorPanelClick(Sender: TObject);
     procedure CTS3ModChange(Sender: TObject);
     procedure Deleteduplicates1Click(Sender: TObject);
     procedure DeleteDuplicates2Click(Sender: TObject);
@@ -138,6 +137,7 @@ type
     procedure Exit1Click(Sender: TObject);
     procedure FindObj_ClearFunctionClick(Sender: TObject);
     procedure FindObj_CreateFunctionClick(Sender: TObject);
+    procedure FormShortCut(var Msg: TLMKey; var Handled: Boolean);
     procedure ImgFromClientClick(Sender: TObject);
     procedure ClientImageMouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
@@ -1073,12 +1073,6 @@ begin
       end;
 end;
 
-procedure TMainForm.ColorPanelClick(Sender: TObject);
-begin
-
-end;
-
-
 procedure TMainForm.CTS3ModChange(Sender: TObject);
 begin
   DefaultCTS3Mod:=CTS3Mod.Value;
@@ -1134,6 +1128,15 @@ begin
   CreateFindObject(Storage,ST);
   SynEdit2.Text:=St.Text;
   st.Free;
+end;
+
+procedure TMainForm.FormShortCut(var Msg: TLMKey; var Handled: Boolean);
+begin
+  if Msg.CharCode = VK_F5 then
+     begin
+       ImageFromClient;
+       Handled:=true;
+     end;
 end;
 
 procedure TMainForm.ImgFromClientClick(Sender: TObject);
