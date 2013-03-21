@@ -1,35 +1,34 @@
 object MainForm: TMainForm
-
   Left = 354
   Height = 638
   Top = 53
   Width = 795
-
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
-  ClientHeight = 611
-  ClientWidth = 791
+  ClientHeight = 618
+  ClientWidth = 795
   Color = clBtnFace
   Font.Color = clWindowText
   Font.Height = -11
   Font.Name = 'Tahoma'
   Menu = MainMenu
   OnCreate = FormCreate
+  OnShortCut = FormShortCut
   Position = poDesktopCenter
   LCLVersion = '1.0.6.0'
   object PageControl: TPageControl
     Left = 0
-    Height = 562
+    Height = 569
     Top = 26
-    Width = 660
+    Width = 664
     ActivePage = ClientTab
     Align = alClient
     TabIndex = 0
     TabOrder = 0
     object ClientTab: TTabSheet
       Caption = 'Client'
-      ClientHeight = 536
-      ClientWidth = 652
+      ClientHeight = 543
+      ClientWidth = 656
       ImageIndex = 1
       object ScrollBox2: TScrollBox
         Left = 0
@@ -1957,16 +1956,15 @@ object MainForm: TMainForm
     end
   end
   object ColorPanel: TPanel
-    Left = 660
-    Height = 562
+    Left = 664
+    Height = 569
     Top = 26
     Width = 131
     Align = alRight
     BevelOuter = bvNone
-    ClientHeight = 562
+    ClientHeight = 569
     ClientWidth = 131
     TabOrder = 1
-    OnClick = ColorPanelClick
     object BestColorLabel: TLabel
       Left = 2
       Height = 14
@@ -1976,7 +1974,6 @@ object MainForm: TMainForm
       ParentColor = False
     end
     object TolLabel: TLabel
-
       Left = 2
       Height = 14
       Top = 390
@@ -2028,7 +2025,7 @@ object MainForm: TMainForm
       ChildSizing.ShrinkVertical = crsScaleChilds
       ChildSizing.Layout = cclLeftToRightThenTopToBottom
       ChildSizing.ControlsPerLine = 1
-      ClientHeight = 102
+      ClientHeight = 90
       ClientWidth = 54
       ItemIndex = 1
       Items.Strings = (
@@ -2088,7 +2085,6 @@ object MainForm: TMainForm
       Value = 1
     end
     object Label2: TLabel
-
       Left = 69
       Height = 14
       Top = 438
@@ -2108,8 +2104,8 @@ object MainForm: TMainForm
   object StatusBar1: TStatusBar
     Left = 0
     Height = 23
-    Top = 588
-    Width = 791
+    Top = 595
+    Width = 795
     Panels = <    
       item
         Width = 80
@@ -2126,7 +2122,7 @@ object MainForm: TMainForm
     Left = 0
     Height = 26
     Top = 0
-    Width = 791
+    Width = 795
     Caption = 'ToolBar1'
     Images = BtnList
     TabOrder = 3
