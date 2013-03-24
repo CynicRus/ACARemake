@@ -20,12 +20,37 @@ type
     AddProfileBtn: TButton;
     BtnList: TImageList;
     CTS3Mod: TFloatSpinEdit;
+    CustomArea: TMenuItem;
+    ImagePopupMenu: TPopupMenu;
     ImgFromClient: TButton;
     DeleteProfileBtn: TButton;
+    Inventory1: TMenuItem;
     Label2: TLabel;
     Client_ZoomImage: TPaintBox;
     Label3: TLabel;
+    Loadbitmap1: TMenuItem;
+    Mainscreen1: TMenuItem;
+    MarkColorsearharea1: TMenuItem;
+    MarkingColor1: TMenuItem;
+    MCol_Black: TMenuItem;
+    MCol_Blue: TMenuItem;
+    MCol_Green: TMenuItem;
+    MCol_Red: TMenuItem;
+    MCol_White: TMenuItem;
+    Client1: TMenuItem;
+    ClearColors1: TMenuItem;
+    LoadBitmap2: TMenuItem;
+    RefreshImage1: TMenuItem;
+    ReloadFromClient1: TMenuItem;
+    SaveBitmap1: TMenuItem;
+    Colors1: TMenuItem;
+    ClearDuplicates1: TMenuItem;
+    Minimap1: TMenuItem;
+    N4: TMenuItem;
+    N5: TMenuItem;
+    N6: TMenuItem;
     OpenProfilesDialog: TOpenDialog;
+    Pastebitmap1: TMenuItem;
     pBox: TComboBox;
     ClientImage: TImage;
     Label1: TLabel;
@@ -37,18 +62,14 @@ type
     N1: TMenuItem;
     Exit1: TMenuItem;
     Open1: TMenuItem;
+    PickColor1: TMenuItem;
+    Refreshimage2: TMenuItem;
+    Reloadfromclient2: TMenuItem;
     Saveas1: TMenuItem;
-    Client1: TMenuItem;
-    Openbitmap1: TMenuItem;
-    Copybitmapfromclipboard1: TMenuItem;
-    N3: TMenuItem;
-    Reloadfromclient1: TMenuItem;
-    Refreshimage1: TMenuItem;
-    Colors1: TMenuItem;
-    Deleteduplicates1: TMenuItem;
     ColorPanel: TPanel;
     Colors: TListBox;
     BestColorLabel: TLabel;
+    Savebitmap2: TMenuItem;
     SaveProfilesDialog: TSaveDialog;
     SynEdit1: TSynEdit;
     SynEdit2: TSynEdit;
@@ -74,12 +95,10 @@ type
     CTSgroup: TRadioGroup;
     HueModLabel: TLabel;
     SatModLabel: TLabel;
-    ClearList2: TMenuItem;
     OpenPictureDialog1: TOpenPictureDialog;
     SavePictureDialog1: TSavePictureDialog;
     SaveDialog1: TSaveDialog;
     OpenDialog1: TOpenDialog;
-    Savebitmap1: TMenuItem;
     GroupBox6: TGroupBox;
     Client_Color: TLabeledEdit;
     Client_RGBTol: TLabeledEdit;
@@ -95,6 +114,7 @@ type
     SelectClientTarget: TToolButton;
     ToolButton4: TToolButton;
     SaveProfilesButton: TToolButton;
+    Wholeclient1: TMenuItem;
     ZoomBar: TTrackBar;
     Panel1: TPanel;
     SynPasSyn1: TSynPasSyn;
@@ -120,13 +140,13 @@ type
     FindObj_Size: TLabeledEdit;
     FindObj_arLength: TCheckBox;
     AutoColor_SpiralSearch: TCheckBox;
-    Help1: TMenuItem;
     procedure AddProfileBtnClick(Sender: TObject);
     procedure AutoColor_ClearFunctionClick(Sender: TObject);
     procedure AutoColor_CreateFunctionClick(Sender: TObject);
     procedure Btn_MarkBestClick(Sender: TObject);
     procedure Btn_MarkColorsClick(Sender: TObject);
     procedure Btn_RefreshImageClick(Sender: TObject);
+    procedure ClearDuplicates1Click(Sender: TObject);
     procedure ClearList1Click(Sender: TObject);
     procedure ClearList2Click(Sender: TObject);
     procedure Client_ZoomImagePaint(Sender: TObject);
@@ -146,12 +166,19 @@ type
     procedure ColorsKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure CTSgroupClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure LoadBitmap2Click(Sender: TObject);
+    procedure ClearColors1Click(Sender: TObject);
+    procedure RefreshImage1Click(Sender: TObject);
+    procedure ReloadFromClient1Click(Sender: TObject);
     procedure Open1Click(Sender: TObject);
     procedure Openbitmap1Click(Sender: TObject);
     procedure pBoxSelect(Sender: TObject);
+    procedure Refreshimage2Click(Sender: TObject);
+    procedure Reloadfromclient2Click(Sender: TObject);
     procedure Saveas1Click(Sender: TObject);
     procedure Savebitmap1Click(Sender: TObject);
     procedure OpenProfilesButtonClick(Sender: TObject);
+    procedure Savebitmap2Click(Sender: TObject);
     procedure SaveProfilesButtonClick(Sender: TObject);
     procedure SelectClientTargetMouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
@@ -898,6 +925,26 @@ begin
   StatusBar1.Panels.Items[2].Text := 'ACA succesfully loaded..';
 end;
 
+procedure TMainForm.LoadBitmap2Click(Sender: TObject);
+begin
+  Openbitmap1Click(Sender);
+end;
+
+procedure TMainForm.ClearColors1Click(Sender: TObject);
+begin
+  ClearList1Click(Sender);
+end;
+
+procedure TMainForm.RefreshImage1Click(Sender: TObject);
+begin
+  Refreshimage2Click(Sender);
+end;
+
+procedure TMainForm.ReloadFromClient1Click(Sender: TObject);
+begin
+  Reloadfromclient2Click(Sender);
+end;
+
 procedure TMainForm.Open1Click(Sender: TObject);
 begin
   OpenProfilesButton.OnClick(Sender);
@@ -909,7 +956,7 @@ begin
    begin
    BMP.LoadFromFile(OpenPictureDialog1.FileName);
    UpdateBitmap(BMP);
-   end else exit;
+   end
 end;
 
 procedure TMainForm.pBoxSelect(Sender: TObject);
@@ -918,6 +965,16 @@ begin
   CurrIndex:=Pbox.ItemIndex;
   CTSGroup.ItemIndex:=Storage.Items[CurrIndex].CTS;
   ToListBox;
+end;
+
+procedure TMainForm.Refreshimage2Click(Sender: TObject);
+begin
+  Btn_RefreshImageClick(Sender);
+end;
+
+procedure TMainForm.Reloadfromclient2Click(Sender: TObject);
+begin
+  ImgFromClientClick(Sender);
 end;
 
 procedure TMainForm.Saveas1Click(Sender: TObject);
@@ -932,8 +989,8 @@ begin
   b:= BMP.ToTbitmap;
  if SavePictureDialog1.Execute then
    begin
-   b.SaveToFile(SavePictureDialog1.FileName);
-   end else exit;
+     b.SaveToFile(SavePictureDialog1.FileName);
+   end;
    b.Free;
 end;
 
@@ -945,6 +1002,11 @@ begin
     ToComboBox();
     ToListBox();
   end;
+end;
+
+procedure TMainForm.Savebitmap2Click(Sender: TObject);
+begin
+ Savebitmap1Click(Sender);
 end;
 
 procedure TMainForm.SaveProfilesButtonClick(Sender: TObject);
@@ -1048,14 +1110,23 @@ begin
   UpdateBitmap(BMP);
 end;
 
+procedure TMainForm.ClearDuplicates1Click(Sender: TObject);
+begin
+  DeleteDuplicates2Click(Sender);
+end;
+
 procedure TMainForm.ClearList1Click(Sender: TObject);
 begin
-
+  Colors.Clear();
+  try
+     Storage.Items[CurrIndex].ColorList.Clear;
+  except
+  end;
 end;
 
 procedure TMainForm.ClearList2Click(Sender: TObject);
 begin
-  Colors.Clear();
+  ClearList1Click(Sender);
 end;
 
 
@@ -1087,7 +1158,11 @@ procedure TMainForm.DeleteDuplicates2Click(Sender: TObject);
 var
   I, K: Integer;
 begin
-  if not Storage.Items[CurrIndex].ColorList.Count > 0 then Exit;
+  try
+    if not Storage.Items[CurrIndex].ColorList.Count > 0 then Exit;
+  except
+    Exit;
+  end;
   for I := 0 to Storage.Items[CurrIndex].ColorList.Count - 1 do
   for K := Storage.Items[CurrIndex].ColorList.Count - 1 downto I + 1 do
     if Storage.Items[CurrIndex].ColorList[K].aColor.Colour = Storage.Items[CurrIndex].ColorList[I].aColor.Colour then
