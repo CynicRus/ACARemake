@@ -5,7 +5,7 @@ unit aca_base;
 interface
 
 uses
-  Classes, SysUtils,Variants,Graphics,Math, XMLRead, XMLWrite, Dom,aca_types;
+  Classes, SysUtils,Variants,Graphics,Math, laz2_XMLRead, laz2_XMLWrite, laz2_Dom, aca_types;
 type
 
  { TColorEngine }
@@ -25,7 +25,7 @@ procedure TColorEngine.LoadFromFile(aFileName: string);
    var
      I: Integer;
      oColor: TColorItem;
-     oNode,oNode1: TDOMNode;
+     oNode: TDOMNode;
    begin
      for I := 0 to aParentNode.ChildNodes.Count - 1 do
      begin
