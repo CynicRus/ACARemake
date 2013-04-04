@@ -28,6 +28,10 @@ type
     Label2: TLabel;
     Client_ZoomImage: TPaintBox;
     Label3: TLabel;
+    Label4: TLabel;
+    Label5: TLabel;
+    Label6: TLabel;
+    Label7: TLabel;
     Loadbitmap1: TMenuItem;
     Mainscreen1: TMenuItem;
     MarkColorsearharea1: TMenuItem;
