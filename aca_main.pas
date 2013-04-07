@@ -28,6 +28,10 @@ type
     Label2: TLabel;
     Client_ZoomImage: TPaintBox;
     Label3: TLabel;
+    Label4: TLabel;
+    Label5: TLabel;
+    Label6: TLabel;
+    Label7: TLabel;
     Loadbitmap1: TMenuItem;
     Mainscreen1: TMenuItem;
     MarkColorsearharea1: TMenuItem;
@@ -450,7 +454,8 @@ begin
   r := Ceil((maxC.r - minC.r) / 2.0);
   g := Ceil((maxC.g - minC.g) / 2.0);
   b := Ceil((maxC.b - minC.b) / 2.0);
-  BestColor := RGBToColor(MinC.r + r, MinC.g + g, MinC.b + b);
+  BestColor := RGBToColor(LongInt(MinC.r + r),
+            LongInt(MinC.g + g), LongInt(MinC.b + b));
   BestTolerance := Max(Max(r, g), b);
 end;
 
@@ -461,7 +466,8 @@ begin
   r := Ceil((maxC.r - minC.r) / 2.0);
   g := Ceil((maxC.g - minC.g) / 2.0);
   b := Ceil((maxC.b - minC.b) / 2.0);
-  BestColor := RGBToColor(MinC.r + r, MinC.g + g, MinC.b + b);
+  BestColor := RGBToColor(LongInt(MinC.r + r),
+            LongInt(MinC.g + g), LongInt(MinC.b + b));
   BestTolerance := Ceil(Sqrt(r*r + g*g + b*b));
 end;
 
