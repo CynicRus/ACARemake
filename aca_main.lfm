@@ -1,13 +1,11 @@
 object MainForm: TMainForm
-  Left = 354
-  Height = 638
-  Top = 53
-  Width = 795
-  BorderIcons = [biSystemMenu, biMinimize]
-  BorderStyle = bsSingle
-  ClientHeight = 618
-  ClientWidth = 795
-  Color = clBtnFace
+  Left = 336
+  Height = 615
+  Top = 71
+  Width = 964
+  ClientHeight = 596
+  ClientWidth = 964
+  Color = clBackground
   Font.Color = clWindowText
   Font.Height = -11
   Font.Name = 'Tahoma'
@@ -15,107 +13,291 @@ object MainForm: TMainForm
   OnCreate = FormCreate
   OnShortCut = FormShortCut
   Position = poDesktopCenter
-  LCLVersion = '1.0.6.0'
+  LCLVersion = '1.0.8.0'
   object PageControl: TPageControl
-    Left = 0
-    Height = 569
-    Top = 26
-    Width = 664
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = ToolBar1
+    AnchorSideTop.Side = asrBottom
+    AnchorSideRight.Control = ColorPanel
+    AnchorSideBottom.Control = StatusBar1
+    Left = 6
+    Height = 541
+    Top = 32
+    Width = 803
     ActivePage = ClientTab
-    Align = alClient
+    Anchors = [akTop, akLeft, akRight, akBottom]
+    BorderSpacing.Around = 6
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    ParentFont = False
     TabIndex = 0
     TabOrder = 0
     object ClientTab: TTabSheet
+      AnchorSideLeft.Control = PageControl
+      AnchorSideTop.Control = PageControl
+      AnchorSideRight.Control = PageControl
+      AnchorSideRight.Side = asrBottom
+      AnchorSideBottom.Control = PageControl
+      AnchorSideBottom.Side = asrBottom
       Caption = 'Client'
-      ClientHeight = 543
-      ClientWidth = 656
+      ClientHeight = 518
+      ClientWidth = 799
       ImageIndex = 1
       object ScrollBox2: TScrollBox
+        AnchorSideLeft.Control = ClientTab
+        AnchorSideTop.Control = ClientTab
+        AnchorSideRight.Control = ClientTab
+        AnchorSideRight.Side = asrBottom
+        AnchorSideBottom.Control = Panel1
         Left = 0
-        Height = 289
+        Height = 273
         Top = 0
-        Width = 652
-        HorzScrollBar.Page = 648
-        VertScrollBar.Page = 285
-        ClientHeight = 285
-        ClientWidth = 648
+        Width = 799
+        HorzScrollBar.Page = 799
+        VertScrollBar.Page = 273
+        Anchors = [akTop, akLeft, akRight, akBottom]
+        BorderStyle = bsNone
+        ClientHeight = 273
+        ClientWidth = 799
         TabOrder = 0
         object ClientImage: TImage
+          AnchorSideLeft.Control = ScrollBox2
+          AnchorSideTop.Control = ScrollBox2
+          AnchorSideRight.Control = ScrollBox2
+          AnchorSideRight.Side = asrBottom
+          AnchorSideBottom.Control = ScrollBox2
+          AnchorSideBottom.Side = asrBottom
           Left = 0
-          Height = 90
+          Height = 273
           Top = 0
-          Width = 90
+          Width = 799
+          Anchors = [akTop, akLeft, akRight, akBottom]
           OnMouseDown = ClientImageMouseDown
           OnMouseMove = ClientImageMouseMove
         end
       end
       object Panel1: TPanel
+        AnchorSideLeft.Control = ClientTab
+        AnchorSideTop.Control = ScrollBox2
+        AnchorSideTop.Side = asrBottom
+        AnchorSideRight.Control = ClientTab
+        AnchorSideRight.Side = asrBottom
+        AnchorSideBottom.Control = ClientTab
+        AnchorSideBottom.Side = asrBottom
         Left = 0
-        Height = 249
-        Top = 291
-        Width = 657
+        Height = 241
+        Top = 277
+        Width = 799
+        Anchors = [akLeft, akRight, akBottom]
+        BorderSpacing.Top = 4
         BevelOuter = bvNone
-        ClientHeight = 249
-        ClientWidth = 657
-        FullRepaint = False
+        ClientHeight = 241
+        ClientWidth = 799
+        DragCursor = crDefault
         TabOrder = 1
+        object GroupBox5: TGroupBox
+          AnchorSideLeft.Control = Label7
+          AnchorSideTop.Control = Label7
+          AnchorSideRight.Control = GroupBox7
+          AnchorSideRight.Side = asrBottom
+          AnchorSideBottom.Control = GroupBox4
+          AnchorSideBottom.Side = asrBottom
+          Left = 459
+          Height = 111
+          Top = 125
+          Width = 224
+          Anchors = [akTop, akLeft, akRight, akBottom]
+          BorderSpacing.Left = 5
+          BorderSpacing.Top = 5
+          Caption = 'Mark Colors'
+          ClientHeight = 96
+          ClientWidth = 220
+          Color = clBackground
+          ParentColor = False
+          TabOrder = 3
+          object Btn_MarkColors: TBitBtn
+            AnchorSideLeft.Control = GroupBox5
+            AnchorSideLeft.Side = asrCenter
+            AnchorSideTop.Control = GroupBox5
+            AnchorSideRight.Side = asrBottom
+            AnchorSideBottom.Control = Btn_MarkBest
+            Left = 36
+            Height = 22
+            Top = 5
+            Width = 149
+            Anchors = [akLeft, akBottom]
+            BorderSpacing.Left = 20
+            BorderSpacing.Right = 20
+            Caption = 'Mark Color'
+            OnClick = Btn_MarkColorsClick
+            TabOrder = 0
+          end
+          object Btn_MarkBest: TBitBtn
+            AnchorSideLeft.Control = Btn_MarkColors
+            AnchorSideTop.Control = Btn_MarkColors
+            AnchorSideTop.Side = asrBottom
+            AnchorSideRight.Control = Btn_MarkColors
+            AnchorSideRight.Side = asrBottom
+            AnchorSideBottom.Control = Label6
+            AnchorSideBottom.Side = asrBottom
+            Left = 36
+            Height = 22
+            Top = 27
+            Width = 149
+            Anchors = [akLeft, akRight, akBottom]
+            Caption = 'Mark best color'
+            OnClick = Btn_MarkBestClick
+            TabOrder = 1
+          end
+          object Btn_RefreshImage: TBitBtn
+            AnchorSideLeft.Control = Btn_MarkColors
+            AnchorSideTop.Control = Label6
+            AnchorSideTop.Side = asrBottom
+            AnchorSideRight.Control = Btn_MarkColors
+            AnchorSideRight.Side = asrBottom
+            AnchorSideBottom.Control = ImgFromClient
+            Left = 36
+            Height = 22
+            Top = 49
+            Width = 149
+            Anchors = [akTop, akLeft, akRight]
+            Caption = 'Refresh image'
+            OnClick = Btn_RefreshImageClick
+            TabOrder = 2
+          end
+          object ImgFromClient: TButton
+            AnchorSideLeft.Control = Btn_MarkColors
+            AnchorSideTop.Control = Btn_RefreshImage
+            AnchorSideTop.Side = asrBottom
+            AnchorSideRight.Control = Btn_MarkColors
+            AnchorSideRight.Side = asrBottom
+            AnchorSideBottom.Control = GroupBox5
+            AnchorSideBottom.Side = asrBottom
+            Left = 36
+            Height = 22
+            Top = 71
+            Width = 149
+            Anchors = [akTop, akLeft, akRight]
+            BorderSpacing.Bottom = 1
+            Caption = 'Reload from Client'
+            OnClick = ImgFromClientClick
+            TabOrder = 3
+          end
+          object Label6: TLabel
+            AnchorSideLeft.Control = GroupBox5
+            AnchorSideLeft.Side = asrCenter
+            AnchorSideTop.Control = GroupBox5
+            AnchorSideTop.Side = asrCenter
+            Left = 110
+            Height = 1
+            Top = 48
+            Width = 1
+            ParentColor = False
+          end
+        end
         object GroupBox7: TGroupBox
-          Left = 396
-          Height = 119
-          Top = 0
-          Width = 256
+          AnchorSideLeft.Control = Label7
+          AnchorSideTop.Control = GroupBox6
+          AnchorSideRight.Control = Panel1
+          AnchorSideRight.Side = asrBottom
+          AnchorSideBottom.Control = Label7
+          AnchorSideBottom.Side = asrBottom
+          Left = 459
+          Height = 114
+          Top = 2
+          Width = 224
+          Anchors = [akTop, akLeft, akBottom]
+          BorderSpacing.Left = 5
+          BorderSpacing.Bottom = 5
           Caption = 'Detail'
-          ClientHeight = 101
-          ClientWidth = 252
-          TabOrder = 0
+          ClientHeight = 99
+          ClientWidth = 220
+          Color = clBackground
+          ParentColor = False
+          TabOrder = 1
           object Client_Shape: TShape
-            Left = 137
+            AnchorSideLeft.Control = ZoomBar
+            AnchorSideLeft.Side = asrBottom
+            AnchorSideRight.Side = asrBottom
+            Left = 133
             Height = 70
-            Top = 6
+            Top = 13
             Width = 70
+            Anchors = [akLeft]
           end
           object Client_ZoomImage: TPaintBox
-            Left = 30
+            AnchorSideTop.Control = Client_Shape
+            AnchorSideRight.Control = ZoomBar
+            AnchorSideBottom.Control = Client_Shape
+            AnchorSideBottom.Side = asrBottom
+            Left = 17
             Height = 70
-            Top = 6
+            Top = 13
             Width = 70
+            Anchors = [akTop, akRight, akBottom]
             OnPaint = Client_ZoomImagePaint
           end
           object ZoomBar: TTrackBar
-            Left = 102
-            Height = 85
-            Top = -3
-            Width = 25
+            AnchorSideLeft.Control = GroupBox7
+            AnchorSideLeft.Side = asrCenter
+            AnchorSideTop.Control = GroupBox7
+            AnchorSideTop.Side = asrCenter
+            AnchorSideBottom.Side = asrBottom
+            Left = 95
+            Height = 88
+            Top = 5
+            Width = 30
             Max = 101
             Min = 1
             OnChange = ZoomBarChange
             Orientation = trVertical
             Position = 100
             Reversed = True
+            BorderSpacing.Left = 8
+            BorderSpacing.Right = 8
             TabOrder = 0
           end
         end
         object GroupBox6: TGroupBox
-          Left = 6
-          Height = 119
-          Top = 0
-          Width = 377
+          AnchorSideLeft.Control = Panel1
+          AnchorSideTop.Control = Panel1
+          AnchorSideRight.Control = Label7
+          AnchorSideRight.Side = asrBottom
+          AnchorSideBottom.Control = Label7
+          AnchorSideBottom.Side = asrBottom
+          Left = 118
+          Height = 114
+          Top = 2
+          Width = 332
+          Anchors = [akTop, akRight, akBottom]
+          BorderSpacing.Top = 2
+          BorderSpacing.Right = 5
+          BorderSpacing.Bottom = 5
           Caption = 'Colors and Tolerances'
-          ClientHeight = 101
-          ClientWidth = 373
-          TabOrder = 1
+          ClientHeight = 99
+          ClientWidth = 328
+          Color = clBackground
+          ParentColor = False
+          TabOrder = 0
           object Client_Color: TLabeledEdit
-            Left = 22
-            Height = 24
-            Top = 18
+            AnchorSideTop.Control = Client_HueMod
+            AnchorSideRight.Control = Client_HueMod
+            AnchorSideBottom.Control = Client_SatMod
+            AnchorSideBottom.Side = asrBottom
+            Left = 9
+            Height = 25
+            Top = 21
             Width = 78
+            Anchors = [akTop, akRight]
+            BorderSpacing.Bottom = 20
             EditLabel.AnchorSideLeft.Control = Client_Color
             EditLabel.AnchorSideRight.Control = Client_Color
             EditLabel.AnchorSideRight.Side = asrBottom
             EditLabel.AnchorSideBottom.Control = Client_Color
-            EditLabel.Left = 22
+            EditLabel.Left = 9
             EditLabel.Height = 14
-            EditLabel.Top = 1
+            EditLabel.Top = 4
             EditLabel.Width = 78
             EditLabel.Caption = 'Color'
             EditLabel.ParentColor = False
@@ -127,18 +309,26 @@ object MainForm: TMainForm
             TabOrder = 0
           end
           object Client_RGBTol: TLabeledEdit
-            Left = 22
-            Height = 24
-            Top = 61
-            Width = 57
+            AnchorSideLeft.Control = Client_Color
+            AnchorSideTop.Control = Client_Color
+            AnchorSideTop.Side = asrBottom
+            AnchorSideRight.Control = Client_Color
+            AnchorSideRight.Side = asrBottom
+            AnchorSideBottom.Control = Client_SatMod
+            AnchorSideBottom.Side = asrBottom
+            Left = 9
+            Height = 25
+            Top = 66
+            Width = 78
+            Anchors = [akTop, akLeft, akRight]
             EditLabel.AnchorSideLeft.Control = Client_RGBTol
             EditLabel.AnchorSideRight.Control = Client_RGBTol
             EditLabel.AnchorSideRight.Side = asrBottom
             EditLabel.AnchorSideBottom.Control = Client_RGBTol
-            EditLabel.Left = 22
+            EditLabel.Left = 9
             EditLabel.Height = 14
-            EditLabel.Top = 44
-            EditLabel.Width = 57
+            EditLabel.Top = 49
+            EditLabel.Width = 78
             EditLabel.Caption = 'RGB Tol'
             EditLabel.ParentColor = False
             Font.CharSet = ANSI_CHARSET
@@ -149,18 +339,26 @@ object MainForm: TMainForm
             TabOrder = 1
           end
           object Client_XYZTol: TLabeledEdit
-            Left = 139
-            Height = 24
-            Top = 18
-            Width = 57
+            AnchorSideLeft.Control = Client_HSLTol
+            AnchorSideLeft.Side = asrBottom
+            AnchorSideTop.Control = Client_HSLTol
+            AnchorSideRight.Side = asrBottom
+            AnchorSideBottom.Control = Client_HSLTol
+            AnchorSideBottom.Side = asrBottom
+            Left = 243
+            Height = 25
+            Top = 21
+            Width = 78
+            Anchors = [akTop, akLeft, akBottom]
+            AutoSize = False
             EditLabel.AnchorSideLeft.Control = Client_XYZTol
             EditLabel.AnchorSideRight.Control = Client_XYZTol
             EditLabel.AnchorSideRight.Side = asrBottom
             EditLabel.AnchorSideBottom.Control = Client_XYZTol
-            EditLabel.Left = 139
+            EditLabel.Left = 243
             EditLabel.Height = 14
-            EditLabel.Top = 1
-            EditLabel.Width = 57
+            EditLabel.Top = 4
+            EditLabel.Width = 78
             EditLabel.Caption = 'XYZ Tol'
             EditLabel.ParentColor = False
             Enabled = False
@@ -172,18 +370,26 @@ object MainForm: TMainForm
             TabOrder = 2
           end
           object Client_HSLTol: TLabeledEdit
-            Left = 294
-            Height = 24
-            Top = 18
-            Width = 57
+            AnchorSideLeft.Control = Client_HueMod
+            AnchorSideLeft.Side = asrBottom
+            AnchorSideTop.Control = Client_HueMod
+            AnchorSideRight.Side = asrBottom
+            AnchorSideBottom.Control = Client_HueMod
+            AnchorSideBottom.Side = asrBottom
+            Left = 165
+            Height = 25
+            Top = 21
+            Width = 66
+            Anchors = [akTop, akLeft, akBottom]
+            BorderSpacing.Right = 12
             EditLabel.AnchorSideLeft.Control = Client_HSLTol
             EditLabel.AnchorSideRight.Control = Client_HSLTol
             EditLabel.AnchorSideRight.Side = asrBottom
             EditLabel.AnchorSideBottom.Control = Client_HSLTol
-            EditLabel.Left = 294
+            EditLabel.Left = 165
             EditLabel.Height = 14
-            EditLabel.Top = 1
-            EditLabel.Width = 57
+            EditLabel.Top = 4
+            EditLabel.Width = 66
             EditLabel.Caption = 'HSL Tol'
             EditLabel.ParentColor = False
             Enabled = False
@@ -195,18 +401,25 @@ object MainForm: TMainForm
             TabOrder = 3
           end
           object Client_SatMod: TLabeledEdit
-            Left = 230
-            Height = 24
-            Top = 61
-            Width = 57
+            AnchorSideLeft.Control = Client_HueMod
+            AnchorSideTop.Control = Client_RGBTol
+            AnchorSideRight.Control = Client_HueMod
+            AnchorSideRight.Side = asrBottom
+            AnchorSideBottom.Control = Client_RGBTol
+            AnchorSideBottom.Side = asrBottom
+            Left = 99
+            Height = 25
+            Top = 66
+            Width = 60
+            Anchors = [akTop, akLeft, akRight, akBottom]
             EditLabel.AnchorSideLeft.Control = Client_SatMod
             EditLabel.AnchorSideRight.Control = Client_SatMod
             EditLabel.AnchorSideRight.Side = asrBottom
             EditLabel.AnchorSideBottom.Control = Client_SatMod
-            EditLabel.Left = 230
+            EditLabel.Left = 99
             EditLabel.Height = 14
-            EditLabel.Top = 44
-            EditLabel.Width = 57
+            EditLabel.Top = 49
+            EditLabel.Width = 60
             EditLabel.Caption = 'Sat mod'
             EditLabel.ParentColor = False
             Enabled = False
@@ -218,18 +431,27 @@ object MainForm: TMainForm
             TabOrder = 4
           end
           object Client_HueMod: TLabeledEdit
-            Left = 230
-            Height = 24
-            Top = 18
-            Width = 57
+            AnchorSideLeft.Control = Client_SatMod
+            AnchorSideRight.Control = Label5
+            AnchorSideRight.Side = asrBottom
+            AnchorSideBottom.Control = Label5
+            AnchorSideBottom.Side = asrBottom
+            Left = 99
+            Height = 25
+            Top = 21
+            Width = 60
+            Anchors = [akRight, akBottom]
+            BorderSpacing.Left = 12
+            BorderSpacing.Right = 6
+            BorderSpacing.Bottom = 4
             EditLabel.AnchorSideLeft.Control = Client_HueMod
             EditLabel.AnchorSideRight.Control = Client_HueMod
             EditLabel.AnchorSideRight.Side = asrBottom
             EditLabel.AnchorSideBottom.Control = Client_HueMod
-            EditLabel.Left = 230
+            EditLabel.Left = 99
             EditLabel.Height = 14
-            EditLabel.Top = 1
-            EditLabel.Width = 57
+            EditLabel.Top = 4
+            EditLabel.Width = 60
             EditLabel.Caption = 'Hue mod'
             EditLabel.ParentColor = False
             Enabled = False
@@ -240,32 +462,61 @@ object MainForm: TMainForm
             ParentFont = False
             TabOrder = 5
           end
+          object Label5: TLabel
+            AnchorSideLeft.Control = GroupBox6
+            AnchorSideLeft.Side = asrCenter
+            AnchorSideTop.Control = GroupBox6
+            AnchorSideTop.Side = asrCenter
+            Left = 164
+            Height = 1
+            Top = 49
+            Width = 1
+            ParentColor = False
+          end
         end
         object GroupBox4: TGroupBox
-          Left = 6
-          Height = 120
+          AnchorSideLeft.Control = GroupBox6
+          AnchorSideTop.Control = Label7
+          AnchorSideRight.Control = Label7
+          AnchorSideRight.Side = asrBottom
+          AnchorSideBottom.Control = Panel1
+          AnchorSideBottom.Side = asrBottom
+          Left = 118
+          Height = 111
           Top = 125
-          Width = 377
+          Width = 332
+          Anchors = [akTop, akLeft, akRight, akBottom]
+          BorderSpacing.Top = 5
+          BorderSpacing.Right = 5
+          BorderSpacing.Bottom = 5
           Caption = 'Hover Color'
-          ClientHeight = 102
-          ClientWidth = 373
+          ClientHeight = 96
+          ClientWidth = 328
+          Color = clBackground
+          ParentColor = False
           TabOrder = 2
           object Client_HSL1: TLabeledEdit
-            Left = 302
-            Height = 24
-            Top = 11
-            Width = 57
+            AnchorSideLeft.Control = Client_HSL2
+            AnchorSideTop.Control = Client_XYZ1
+            AnchorSideRight.Control = Client_HSL2
+            AnchorSideRight.Side = asrBottom
+            AnchorSideBottom.Control = Client_XYZ1
+            AnchorSideBottom.Side = asrBottom
+            Left = 221
+            Height = 25
+            Top = 6
+            Width = 60
+            Anchors = [akTop, akLeft, akRight, akBottom]
             Color = clWhite
             EditLabel.AnchorSideTop.Control = Client_HSL1
             EditLabel.AnchorSideTop.Side = asrCenter
             EditLabel.AnchorSideRight.Control = Client_HSL1
-            EditLabel.AnchorSideBottom.Control = Client_HSL1
             EditLabel.AnchorSideBottom.Side = asrBottom
-            EditLabel.Left = 253
+            EditLabel.Left = 207
             EditLabel.Height = 14
-            EditLabel.Top = 16
-            EditLabel.Width = 44
-            EditLabel.Caption = 'H - Value'
+            EditLabel.Top = 11
+            EditLabel.Width = 9
+            EditLabel.Caption = 'H'
             EditLabel.ParentColor = False
             EditLabel.ParentFont = False
             EditLabel.Font.CharSet = ANSI_CHARSET
@@ -284,21 +535,27 @@ object MainForm: TMainForm
             TabOrder = 0
           end
           object Client_RGB1: TLabeledEdit
-            Left = 62
-            Height = 24
-            Top = 11
+            AnchorSideLeft.Control = Client_RGB2
+            AnchorSideTop.Control = Client_XYZ1
+            AnchorSideRight.Control = Client_RGB2
+            AnchorSideRight.Side = asrBottom
+            AnchorSideBottom.Control = Client_XYZ1
+            AnchorSideBottom.Side = asrBottom
+            Left = 50
+            Height = 25
+            Top = 6
             Width = 57
+            Anchors = [akTop, akLeft, akRight, akBottom]
             Color = clWhite
             EditLabel.AnchorSideTop.Control = Client_RGB1
             EditLabel.AnchorSideTop.Side = asrCenter
             EditLabel.AnchorSideRight.Control = Client_RGB1
-            EditLabel.AnchorSideBottom.Control = Client_RGB1
             EditLabel.AnchorSideBottom.Side = asrBottom
-            EditLabel.Left = 13
+            EditLabel.Left = 37
             EditLabel.Height = 14
-            EditLabel.Top = 16
-            EditLabel.Width = 44
-            EditLabel.Caption = 'R - Value'
+            EditLabel.Top = 11
+            EditLabel.Width = 8
+            EditLabel.Caption = 'R'
             EditLabel.ParentColor = False
             EditLabel.ParentFont = False
             EditLabel.Font.CharSet = ANSI_CHARSET
@@ -317,21 +574,26 @@ object MainForm: TMainForm
             TabOrder = 1
           end
           object Client_RGB2: TLabeledEdit
-            Left = 62
-            Height = 24
-            Top = 43
+            AnchorSideTop.Control = Client_HSL2
+            AnchorSideTop.Side = asrCenter
+            AnchorSideRight.Control = Client_XYZ2
+            AnchorSideBottom.Side = asrBottom
+            Left = 50
+            Height = 25
+            Top = 36
             Width = 57
+            Anchors = [akTop, akRight]
+            BorderSpacing.Right = 27
             Color = clWhite
             EditLabel.AnchorSideTop.Control = Client_RGB2
             EditLabel.AnchorSideTop.Side = asrCenter
             EditLabel.AnchorSideRight.Control = Client_RGB2
-            EditLabel.AnchorSideBottom.Control = Client_RGB2
             EditLabel.AnchorSideBottom.Side = asrBottom
-            EditLabel.Left = 13
+            EditLabel.Left = 35
             EditLabel.Height = 14
-            EditLabel.Top = 48
-            EditLabel.Width = 44
-            EditLabel.Caption = 'G - Value'
+            EditLabel.Top = 41
+            EditLabel.Width = 10
+            EditLabel.Caption = 'G'
             EditLabel.ParentColor = False
             EditLabel.ParentFont = False
             EditLabel.Font.CharSet = ANSI_CHARSET
@@ -350,21 +612,27 @@ object MainForm: TMainForm
             TabOrder = 2
           end
           object Client_RGB3: TLabeledEdit
-            Left = 62
-            Height = 24
-            Top = 75
+            AnchorSideLeft.Control = Client_RGB2
+            AnchorSideTop.Control = Client_XYZ3
+            AnchorSideRight.Control = Client_RGB2
+            AnchorSideRight.Side = asrBottom
+            AnchorSideBottom.Control = Client_XYZ3
+            AnchorSideBottom.Side = asrBottom
+            Left = 50
+            Height = 25
+            Top = 66
             Width = 57
+            Anchors = [akTop, akLeft, akRight, akBottom]
             Color = clWhite
             EditLabel.AnchorSideTop.Control = Client_RGB3
             EditLabel.AnchorSideTop.Side = asrCenter
             EditLabel.AnchorSideRight.Control = Client_RGB3
-            EditLabel.AnchorSideBottom.Control = Client_RGB3
             EditLabel.AnchorSideBottom.Side = asrBottom
-            EditLabel.Left = 14
+            EditLabel.Left = 36
             EditLabel.Height = 14
-            EditLabel.Top = 80
-            EditLabel.Width = 43
-            EditLabel.Caption = 'B - Value'
+            EditLabel.Top = 71
+            EditLabel.Width = 9
+            EditLabel.Caption = 'B'
             EditLabel.ParentColor = False
             EditLabel.ParentFont = False
             EditLabel.Font.CharSet = ANSI_CHARSET
@@ -383,21 +651,27 @@ object MainForm: TMainForm
             TabOrder = 3
           end
           object Client_HSL3: TLabeledEdit
-            Left = 302
-            Height = 24
-            Top = 75
-            Width = 57
+            AnchorSideLeft.Control = Client_HSL2
+            AnchorSideTop.Control = Client_XYZ3
+            AnchorSideRight.Control = Client_HSL2
+            AnchorSideRight.Side = asrBottom
+            AnchorSideBottom.Control = Client_XYZ3
+            AnchorSideBottom.Side = asrBottom
+            Left = 221
+            Height = 25
+            Top = 66
+            Width = 60
+            Anchors = [akTop, akLeft, akRight, akBottom]
             Color = clWhite
             EditLabel.AnchorSideTop.Control = Client_HSL3
             EditLabel.AnchorSideTop.Side = asrCenter
             EditLabel.AnchorSideRight.Control = Client_HSL3
-            EditLabel.AnchorSideBottom.Control = Client_HSL3
             EditLabel.AnchorSideBottom.Side = asrBottom
-            EditLabel.Left = 255
+            EditLabel.Left = 209
             EditLabel.Height = 14
-            EditLabel.Top = 80
-            EditLabel.Width = 42
-            EditLabel.Caption = 'L - Value'
+            EditLabel.Top = 71
+            EditLabel.Width = 7
+            EditLabel.Caption = 'L'
             EditLabel.ParentColor = False
             EditLabel.ParentFont = False
             EditLabel.Font.CharSet = ANSI_CHARSET
@@ -416,27 +690,35 @@ object MainForm: TMainForm
             TabOrder = 4
           end
           object Client_HSL2: TLabeledEdit
-            Left = 302
-            Height = 24
-            Top = 43
-            Width = 57
+            AnchorSideLeft.Control = Client_XYZ2
+            AnchorSideLeft.Side = asrBottom
+            AnchorSideTop.Control = Client_XYZ2
+            AnchorSideRight.Control = Client_HSL1
+            AnchorSideRight.Side = asrBottom
+            AnchorSideBottom.Control = Client_XYZ2
+            AnchorSideBottom.Side = asrBottom
+            Left = 221
+            Height = 25
+            Top = 36
+            Width = 60
+            Anchors = [akTop, akLeft, akBottom]
             Color = clWhite
             EditLabel.AnchorSideTop.Control = Client_HSL2
             EditLabel.AnchorSideTop.Side = asrCenter
             EditLabel.AnchorSideRight.Control = Client_HSL2
-            EditLabel.AnchorSideBottom.Control = Client_HSL2
             EditLabel.AnchorSideBottom.Side = asrBottom
-            EditLabel.Left = 254
+            EditLabel.Left = 207
             EditLabel.Height = 14
-            EditLabel.Top = 48
-            EditLabel.Width = 43
-            EditLabel.Caption = 'S - Value'
+            EditLabel.Top = 41
+            EditLabel.Width = 9
+            EditLabel.Caption = 'S'
             EditLabel.ParentColor = False
             EditLabel.ParentFont = False
             EditLabel.Font.CharSet = ANSI_CHARSET
             EditLabel.Font.Color = clWindowText
             EditLabel.Font.Height = -11
             EditLabel.Font.Name = 'Tahoma'
+            EditLabel.Layout = tlCenter
             Font.CharSet = ANSI_CHARSET
             Font.Color = clWindowText
             Font.Height = -13
@@ -449,21 +731,26 @@ object MainForm: TMainForm
             TabOrder = 5
           end
           object Client_XYZ3: TLabeledEdit
-            Left = 182
-            Height = 24
-            Top = 75
-            Width = 57
+            AnchorSideLeft.Control = Client_XYZ2
+            AnchorSideTop.Control = Client_XYZ2
+            AnchorSideTop.Side = asrBottom
+            AnchorSideRight.Control = Client_XYZ2
+            AnchorSideRight.Side = asrBottom
+            Left = 134
+            Height = 25
+            Top = 66
+            Width = 60
+            Anchors = [akTop, akLeft, akRight]
             Color = clWhite
             EditLabel.AnchorSideTop.Control = Client_XYZ3
             EditLabel.AnchorSideTop.Side = asrCenter
             EditLabel.AnchorSideRight.Control = Client_XYZ3
-            EditLabel.AnchorSideBottom.Control = Client_XYZ3
             EditLabel.AnchorSideBottom.Side = asrBottom
-            EditLabel.Left = 134
+            EditLabel.Left = 119
             EditLabel.Height = 14
-            EditLabel.Top = 80
-            EditLabel.Width = 43
-            EditLabel.Caption = 'Z - Value'
+            EditLabel.Top = 71
+            EditLabel.Width = 10
+            EditLabel.Caption = 'Z'
             EditLabel.ParentColor = False
             EditLabel.ParentFont = False
             EditLabel.Font.CharSet = ANSI_CHARSET
@@ -482,21 +769,25 @@ object MainForm: TMainForm
             TabOrder = 6
           end
           object Client_XYZ1: TLabeledEdit
-            Left = 182
-            Height = 24
-            Top = 11
-            Width = 57
+            AnchorSideLeft.Control = Client_XYZ2
+            AnchorSideRight.Control = Client_XYZ2
+            AnchorSideRight.Side = asrBottom
+            AnchorSideBottom.Control = Client_XYZ2
+            Left = 134
+            Height = 25
+            Top = 6
+            Width = 60
+            Anchors = [akLeft, akRight, akBottom]
             Color = clWhite
             EditLabel.AnchorSideTop.Control = Client_XYZ1
             EditLabel.AnchorSideTop.Side = asrCenter
             EditLabel.AnchorSideRight.Control = Client_XYZ1
-            EditLabel.AnchorSideBottom.Control = Client_XYZ1
             EditLabel.AnchorSideBottom.Side = asrBottom
-            EditLabel.Left = 134
+            EditLabel.Left = 121
             EditLabel.Height = 14
-            EditLabel.Top = 16
-            EditLabel.Width = 43
-            EditLabel.Caption = 'X - Value'
+            EditLabel.Top = 11
+            EditLabel.Width = 8
+            EditLabel.Caption = 'X'
             EditLabel.ParentColor = False
             EditLabel.ParentFont = False
             EditLabel.Font.CharSet = ANSI_CHARSET
@@ -515,21 +806,26 @@ object MainForm: TMainForm
             TabOrder = 7
           end
           object Client_XYZ2: TLabeledEdit
-            Left = 182
-            Height = 24
-            Top = 43
-            Width = 57
+            AnchorSideLeft.Control = GroupBox4
+            AnchorSideLeft.Side = asrCenter
+            AnchorSideTop.Control = GroupBox4
+            AnchorSideTop.Side = asrCenter
+            Left = 134
+            Height = 25
+            Top = 36
+            Width = 60
+            BorderSpacing.Right = 22
+            BorderSpacing.Around = 5
             Color = clWhite
             EditLabel.AnchorSideTop.Control = Client_XYZ2
             EditLabel.AnchorSideTop.Side = asrCenter
             EditLabel.AnchorSideRight.Control = Client_XYZ2
-            EditLabel.AnchorSideBottom.Control = Client_XYZ2
             EditLabel.AnchorSideBottom.Side = asrBottom
-            EditLabel.Left = 134
+            EditLabel.Left = 121
             EditLabel.Height = 14
-            EditLabel.Top = 48
-            EditLabel.Width = 43
-            EditLabel.Caption = 'Y - Value'
+            EditLabel.Top = 41
+            EditLabel.Width = 8
+            EditLabel.Caption = 'Y'
             EditLabel.ParentColor = False
             EditLabel.ParentFont = False
             EditLabel.Font.CharSet = ANSI_CHARSET
@@ -548,150 +844,163 @@ object MainForm: TMainForm
             TabOrder = 8
           end
         end
-        object GroupBox5: TGroupBox
-          Left = 396
-          Height = 120
-          Top = 125
-          Width = 256
-          Caption = 'Mark Colors'
-          ClientHeight = 102
-          ClientWidth = 252
-          TabOrder = 3
-          object Btn_MarkColors: TBitBtn
-            Left = 65
-            Height = 25
-            Top = 0
-            Width = 110
-            Caption = 'Mark Color'
-            OnClick = Btn_MarkColorsClick
-            TabOrder = 0
-          end
-          object Btn_MarkBest: TBitBtn
-            Left = 65
-            Height = 25
-            Top = 24
-            Width = 110
-            Caption = 'Mark best color'
-            OnClick = Btn_MarkBestClick
-            TabOrder = 1
-          end
-          object Btn_RefreshImage: TBitBtn
-            Left = 65
-            Height = 25
-            Top = 48
-            Width = 110
-            Caption = 'Refresh image'
-            OnClick = Btn_RefreshImageClick
-            TabOrder = 2
-          end
-          object ImgFromClient: TButton
-            Left = 65
-            Height = 25
-            Top = 72
-            Width = 110
-            Caption = 'Reload from Client'
-            OnClick = ImgFromClientClick
-            TabOrder = 3
-          end
+        object Label4: TLabel
+          AnchorSideLeft.Control = Panel1
+          AnchorSideLeft.Side = asrCenter
+          AnchorSideTop.Control = Panel1
+          AnchorSideTop.Side = asrCenter
+          Left = 399
+          Height = 1
+          Top = 120
+          Width = 1
+          BorderSpacing.Right = 54
+          ParentColor = False
+        end
+        object Label7: TLabel
+          AnchorSideLeft.Control = Label4
+          AnchorSideLeft.Side = asrBottom
+          AnchorSideTop.Control = Label4
+          AnchorSideTop.Side = asrCenter
+          Left = 454
+          Height = 1
+          Top = 120
+          Width = 1
+          ParentColor = False
         end
       end
     end
     object AutoColorTab: TTabSheet
+      AnchorSideLeft.Control = PageControl
+      AnchorSideTop.Control = PageControl
+      AnchorSideRight.Control = PageControl
+      AnchorSideRight.Side = asrBottom
+      AnchorSideBottom.Control = PageControl
+      AnchorSideBottom.Side = asrBottom
       Caption = 'AutoColor Function'
-      ClientHeight = 543
-      ClientWidth = 654
+      ClientHeight = 518
+      ClientWidth = 799
       ImageIndex = 2
       object GroupBox8: TGroupBox
-        Left = 448
-        Height = 73
-        Top = 440
-        Width = 193
+        AnchorSideLeft.Control = AutoColor_AreaButtons
+        AnchorSideLeft.Side = asrBottom
+        AnchorSideTop.Control = AutoColor_AreaButtons
+        AnchorSideRight.Control = AutoColorTab
+        AnchorSideRight.Side = asrBottom
+        AnchorSideBottom.Control = AutoColor_AreaButtons
+        AnchorSideBottom.Side = asrBottom
+        Left = 518
+        Height = 80
+        Top = 424
+        Width = 219
+        Anchors = [akTop, akLeft, akBottom]
         Caption = 'Validate colors with'
-        ClientHeight = 55
-        ClientWidth = 189
-        Color = clBtnFace
+        ChildSizing.EnlargeHorizontal = crsHomogenousSpaceResize
+        ChildSizing.EnlargeVertical = crsHomogenousSpaceResize
+        ClientHeight = 65
+        ClientWidth = 215
+        Color = clBackground
         ParentColor = False
         TabOrder = 0
         object AutoColor_RGBRange: TCheckBox
-          Left = 5
-          Height = 19
-          Top = 5
-          Width = 76
+          AnchorSideLeft.Control = GroupBox8
+          AnchorSideTop.Control = GroupBox8
+          AnchorSideRight.Side = asrBottom
+          AnchorSideBottom.Side = asrBottom
+          Left = 7
+          Height = 25
+          Top = 7
+          Width = 102
+          AutoSize = False
+          BorderSpacing.Left = 7
+          BorderSpacing.Top = 7
+          BorderSpacing.Bottom = 1
           Caption = 'RGB ranges'
           TabOrder = 0
         end
         object AutoColor_HSLRange: TCheckBox
-          Left = 5
-          Height = 19
-          Top = 30
-          Width = 74
+          AnchorSideLeft.Control = AutoColor_RGBRange
+          AnchorSideTop.Control = AutoColor_RGBRange
+          AnchorSideTop.Side = asrBottom
+          AnchorSideRight.Control = AutoColor_RGBRange
+          AnchorSideRight.Side = asrBottom
+          AnchorSideBottom.Side = asrBottom
+          Left = 7
+          Height = 25
+          Top = 33
+          Width = 102
+          Anchors = [akTop, akLeft, akRight]
+          AutoSize = False
           Caption = 'HSL ranges'
           Checked = True
           State = cbChecked
           TabOrder = 1
         end
         object AutoColor_XYZRange: TCheckBox
-          Left = 102
-          Height = 19
-          Top = 5
-          Width = 74
+          AnchorSideLeft.Control = AutoColor_SpiralSearch
+          AnchorSideTop.Control = AutoColor_RGBRange
+          AnchorSideRight.Control = AutoColor_SpiralSearch
+          AnchorSideRight.Side = asrBottom
+          AnchorSideBottom.Control = AutoColor_RGBRange
+          AnchorSideBottom.Side = asrBottom
+          Left = 109
+          Height = 25
+          Top = 7
+          Width = 100
+          Anchors = [akTop, akLeft, akRight, akBottom]
+          AutoSize = False
           Caption = 'XYZ ranges'
           Checked = True
           State = cbChecked
           TabOrder = 2
         end
         object AutoColor_SpiralSearch: TCheckBox
-          Left = 102
-          Height = 19
-          Top = 29
-          Width = 82
+          AnchorSideLeft.Control = AutoColor_HSLRange
+          AnchorSideLeft.Side = asrBottom
+          AnchorSideTop.Control = AutoColor_HSLRange
+          AnchorSideRight.Control = AutoColor_XYZRange
+          AnchorSideRight.Side = asrBottom
+          AnchorSideBottom.Control = AutoColor_HSLRange
+          AnchorSideBottom.Side = asrBottom
+          Left = 109
+          Height = 25
+          Top = 33
+          Width = 100
+          Anchors = [akTop, akLeft, akBottom]
+          AutoSize = False
           Caption = 'Spiral Search'
           Checked = True
           State = cbChecked
           TabOrder = 3
         end
       end
-      object AutoColor_AreaButtons: TRadioGroup
-        Left = 229
-        Height = 73
-        Top = 440
-        Width = 193
-        AutoFill = True
-        Caption = 'Area'
-        ChildSizing.LeftRightSpacing = 6
-        ChildSizing.TopBottomSpacing = 6
-        ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
-        ChildSizing.EnlargeVertical = crsHomogenousChildResize
-        ChildSizing.ShrinkHorizontal = crsScaleChilds
-        ChildSizing.ShrinkVertical = crsScaleChilds
-        ChildSizing.Layout = cclLeftToRightThenTopToBottom
-        ChildSizing.ControlsPerLine = 2
-        ClientHeight = 55
-        ClientWidth = 189
-        Columns = 2
-        ItemIndex = 0
-        Items.Strings = (
-          'Whole client'
-          'Minimap'
-          'Mainscreen'
-          'Inventory'
-        )
-        TabOrder = 1
-      end
       object GroupBox9: TGroupBox
-        Left = 16
-        Height = 73
-        Top = 440
-        Width = 185
+        AnchorSideLeft.Control = AutoColorTab
+        AnchorSideTop.Control = AutoColor_AreaButtons
+        AnchorSideRight.Control = AutoColor_AreaButtons
+        AnchorSideBottom.Control = AutoColor_AreaButtons
+        AnchorSideBottom.Side = asrBottom
+        Left = 62
+        Height = 80
+        Top = 424
+        Width = 182
+        Anchors = [akTop, akRight, akBottom]
+        BorderSpacing.Right = 47
         Caption = 'Function'
-        ClientHeight = 55
-        ClientWidth = 181
-        TabOrder = 2
+        ClientHeight = 65
+        ClientWidth = 178
+        TabOrder = 1
         object AutoColor_CreateFunction: TBitBtn
-          Left = 30
+          AnchorSideLeft.Control = GroupBox9
+          AnchorSideLeft.Side = asrCenter
+          AnchorSideTop.Control = GroupBox9
+          AnchorSideRight.Control = GroupBox9
+          AnchorSideRight.Side = asrCenter
+          AnchorSideBottom.Side = asrBottom
+          Left = 29
           Height = 25
-          Top = 0
+          Top = 7
           Width = 121
+          BorderSpacing.Top = 7
           Caption = 'Create function'
           Glyph.Data = {
             36030000424D3603000000000000360000002800000010000000100000000100
@@ -725,10 +1034,19 @@ object MainForm: TMainForm
           TabOrder = 0
         end
         object AutoColor_ClearFunction: TBitBtn
-          Left = 30
+          AnchorSideLeft.Control = AutoColor_CreateFunction
+          AnchorSideTop.Control = AutoColor_CreateFunction
+          AnchorSideTop.Side = asrBottom
+          AnchorSideRight.Control = AutoColor_CreateFunction
+          AnchorSideRight.Side = asrBottom
+          AnchorSideBottom.Control = GroupBox9
+          AnchorSideBottom.Side = asrBottom
+          Left = 29
           Height = 25
-          Top = 26
+          Top = 33
           Width = 121
+          Anchors = [akLeft, akRight, akBottom]
+          BorderSpacing.Bottom = 7
           Caption = 'Clear function'
           Glyph.Data = {
             36030000424D3603000000000000360000002800000010000000100000000100
@@ -763,17 +1081,23 @@ object MainForm: TMainForm
         end
       end
       inline SynEdit1: TSynEdit
-        Left = -4
-        Height = 438
+        AnchorSideLeft.Control = AutoColorTab
+        AnchorSideTop.Control = AutoColorTab
+        AnchorSideRight.Control = AutoColorTab
+        AnchorSideRight.Side = asrBottom
+        AnchorSideBottom.Control = AutoColor_AreaButtons
+        Left = 0
+        Height = 414
         Top = 0
-        Width = 664
+        Width = 799
+        Anchors = [akTop, akLeft, akRight, akBottom]
         Font.Height = -13
         Font.Name = 'Courier New'
         Font.Pitch = fpFixed
         Font.Quality = fqNonAntialiased
         ParentColor = False
         ParentFont = False
-        TabOrder = 3
+        TabOrder = 2
         Gutter.Width = 57
         Gutter.MouseActions = <>
         RightGutter.Width = 0
@@ -1247,6 +1571,8 @@ object MainForm: TMainForm
           object SynGutterSeparator1: TSynGutterSeparator
             Width = 2
             MouseActions = <>
+            MarkupInfo.Background = clWhite
+            MarkupInfo.Foreground = clGray
           end
           object SynGutterCodeFolding1: TSynGutterCodeFolding
             MouseActions = <>
@@ -1257,26 +1583,72 @@ object MainForm: TMainForm
           end
         end
       end
+      object AutoColor_AreaButtons: TRadioGroup
+        AnchorSideLeft.Control = AutoColorTab
+        AnchorSideLeft.Side = asrCenter
+        AnchorSideTop.Control = SynEdit1
+        AnchorSideTop.Side = asrBottom
+        AnchorSideBottom.Side = asrBottom
+        Left = 291
+        Height = 80
+        Top = 424
+        Width = 217
+        Anchors = [akLeft, akBottom]
+        AutoFill = False
+        BorderSpacing.Around = 10
+        Caption = 'Area'
+        ChildSizing.LeftRightSpacing = 6
+        ChildSizing.TopBottomSpacing = 6
+        ChildSizing.EnlargeHorizontal = crsHomogenousSpaceResize
+        ChildSizing.EnlargeVertical = crsHomogenousSpaceResize
+        ChildSizing.ShrinkHorizontal = crsScaleChilds
+        ChildSizing.ShrinkVertical = crsScaleChilds
+        ChildSizing.Layout = cclLeftToRightThenTopToBottom
+        ChildSizing.ControlsPerLine = 2
+        ClientHeight = 65
+        ClientWidth = 213
+        Color = clBackground
+        Columns = 2
+        ItemIndex = 0
+        Items.Strings = (
+          'Whole client'
+          'Minimap'
+          'Mainscreen'
+          'Inventory'
+        )
+        ParentColor = False
+        TabOrder = 3
+      end
     end
     object TabSheet1: TTabSheet
       Caption = 'FindObject Function'
-      ClientHeight = 532
-      ClientWidth = 656
+      ClientHeight = 518
+      ClientWidth = 799
       ImageIndex = 3
       object GroupBox10: TGroupBox
-        Left = 16
-        Height = 73
-        Top = 440
-        Width = 185
+        AnchorSideTop.Control = GroupBox12
+        AnchorSideRight.Control = GroupBox12
+        AnchorSideBottom.Control = GroupBox12
+        AnchorSideBottom.Side = asrBottom
+        Left = 62
+        Height = 80
+        Top = 424
+        Width = 182
+        Anchors = [akTop, akRight, akBottom]
+        BorderSpacing.Right = 47
         Caption = 'Function'
-        ClientHeight = 55
-        ClientWidth = 181
+        ClientHeight = 65
+        ClientWidth = 178
         TabOrder = 0
         object FindObj_CreateFunction: TBitBtn
-          Left = 30
+          AnchorSideLeft.Control = GroupBox10
+          AnchorSideLeft.Side = asrCenter
+          AnchorSideTop.Control = GroupBox10
+          Left = 29
           Height = 25
-          Top = 0
+          Top = 7
           Width = 121
+          BorderSpacing.Top = 7
           Caption = 'Create function'
           Glyph.Data = {
             36030000424D3603000000000000360000002800000010000000100000000100
@@ -1310,10 +1682,19 @@ object MainForm: TMainForm
           TabOrder = 0
         end
         object FindObj_ClearFunction: TBitBtn
-          Left = 30
+          AnchorSideLeft.Control = FindObj_CreateFunction
+          AnchorSideTop.Control = FindObj_CreateFunction
+          AnchorSideTop.Side = asrBottom
+          AnchorSideRight.Control = FindObj_CreateFunction
+          AnchorSideRight.Side = asrBottom
+          AnchorSideBottom.Control = GroupBox10
+          AnchorSideBottom.Side = asrBottom
+          Left = 29
           Height = 25
-          Top = 26
+          Top = 33
           Width = 121
+          Anchors = [akLeft, akRight, akBottom]
+          BorderSpacing.Bottom = 7
           Caption = 'Clear function'
           Glyph.Data = {
             36030000424D3603000000000000360000002800000010000000100000000100
@@ -1348,49 +1729,90 @@ object MainForm: TMainForm
         end
       end
       object GroupBox11: TGroupBox
-        Left = 448
-        Height = 73
-        Top = 440
-        Width = 193
+        AnchorSideLeft.Control = GroupBox12
+        AnchorSideLeft.Side = asrBottom
+        AnchorSideTop.Control = GroupBox12
+        AnchorSideRight.Side = asrBottom
+        AnchorSideBottom.Control = GroupBox12
+        AnchorSideBottom.Side = asrBottom
+        Left = 518
+        Height = 80
+        Top = 424
+        Width = 219
+        Anchors = [akTop, akLeft, akBottom]
         Caption = 'Validate colors with'
-        ClientHeight = 55
-        ClientWidth = 189
-        Color = clBtnFace
+        ClientHeight = 65
+        ClientWidth = 215
+        Color = clBackground
         ParentColor = False
         TabOrder = 1
         object FindObj_RGBRange: TCheckBox
-          Left = 5
-          Height = 19
-          Top = 5
-          Width = 76
+          AnchorSideLeft.Control = GroupBox11
+          AnchorSideTop.Control = GroupBox11
+          AnchorSideRight.Side = asrBottom
+          AnchorSideBottom.Side = asrBottom
+          Left = 7
+          Height = 25
+          Top = 7
+          Width = 102
+          AutoSize = False
+          BorderSpacing.Left = 7
+          BorderSpacing.Top = 7
+          BorderSpacing.Bottom = 1
           Caption = 'RGB ranges'
           TabOrder = 0
         end
         object FindObj_HSLRange: TCheckBox
-          Left = 5
-          Height = 19
-          Top = 30
-          Width = 74
+          AnchorSideLeft.Control = FindObj_RGBRange
+          AnchorSideTop.Control = FindObj_RGBRange
+          AnchorSideTop.Side = asrBottom
+          AnchorSideRight.Control = FindObj_RGBRange
+          AnchorSideRight.Side = asrBottom
+          AnchorSideBottom.Side = asrBottom
+          Left = 7
+          Height = 25
+          Top = 33
+          Width = 102
+          Anchors = [akTop, akLeft, akRight, akBottom]
+          AutoSize = False
           Caption = 'HSL ranges'
           Checked = True
           State = cbChecked
           TabOrder = 1
         end
         object FindObj_XYZRange: TCheckBox
-          Left = 102
-          Height = 19
-          Top = 5
-          Width = 74
+          AnchorSideLeft.Control = FindObj_RGBRange
+          AnchorSideLeft.Side = asrBottom
+          AnchorSideTop.Control = FindObj_RGBRange
+          AnchorSideRight.Control = GroupBox11
+          AnchorSideRight.Side = asrBottom
+          AnchorSideBottom.Control = FindObj_RGBRange
+          AnchorSideBottom.Side = asrBottom
+          Left = 109
+          Height = 25
+          Top = 7
+          Width = 106
+          Anchors = [akTop, akLeft, akRight, akBottom]
+          AutoSize = False
           Caption = 'XYZ ranges'
           Checked = True
           State = cbChecked
           TabOrder = 2
         end
         object FindObj_arLength: TCheckBox
-          Left = 102
-          Height = 19
-          Top = 30
-          Width = 80
+          AnchorSideLeft.Control = FindObj_HSLRange
+          AnchorSideLeft.Side = asrBottom
+          AnchorSideTop.Control = FindObj_HSLRange
+          AnchorSideRight.Control = FindObj_XYZRange
+          AnchorSideRight.Side = asrBottom
+          AnchorSideBottom.Control = FindObj_HSLRange
+          AnchorSideBottom.Side = asrBottom
+          Left = 109
+          Height = 25
+          Top = 33
+          Width = 106
+          Anchors = [akTop, akLeft, akRight, akBottom]
+          AutoSize = False
           Caption = 'Array length'
           Checked = True
           State = cbChecked
@@ -1398,71 +1820,105 @@ object MainForm: TMainForm
         end
       end
       object GroupBox12: TGroupBox
-        Left = 229
-        Height = 73
-        Top = 440
-        Width = 193
+        AnchorSideLeft.Control = TabSheet1
+        AnchorSideLeft.Side = asrCenter
+        AnchorSideBottom.Side = asrBottom
+        Left = 291
+        Height = 80
+        Top = 424
+        Width = 217
+        Anchors = [akLeft, akBottom]
+        BorderSpacing.Around = 10
         Caption = 'Function Variables'
-        ClientHeight = 55
-        ClientWidth = 189
-        Color = clBtnFace
+        ClientHeight = 65
+        ClientWidth = 213
+        Color = clBackground
         ParentColor = False
         TabOrder = 2
-        Visible = False
         object FindObj_UpText: TLabeledEdit
-          Left = 86
-          Height = 24
-          Top = 4
+          AnchorSideLeft.Control = GroupBox12
+          AnchorSideLeft.Side = asrCenter
+          AnchorSideTop.Control = GroupBox12
+          AnchorSideRight.Control = GroupBox12
+          AnchorSideRight.Side = asrBottom
+          Left = 106
+          Height = 25
+          Top = 7
           Width = 80
+          Alignment = taCenter
+          Anchors = []
+          AutoSize = False
+          BorderSpacing.Top = 7
+          BorderSpacing.Bottom = 1
           EditLabel.AnchorSideTop.Control = FindObj_UpText
           EditLabel.AnchorSideTop.Side = asrCenter
           EditLabel.AnchorSideRight.Control = FindObj_UpText
           EditLabel.AnchorSideBottom.Control = FindObj_UpText
           EditLabel.AnchorSideBottom.Side = asrBottom
-          EditLabel.Left = 14
+          EditLabel.Left = 19
           EditLabel.Height = 14
-          EditLabel.Top = 9
-          EditLabel.Width = 69
-          EditLabel.Caption = 'Object Uptext'
+          EditLabel.Top = 12
+          EditLabel.Width = 81
+          EditLabel.Caption = 'Object Uptext:'
+          EditLabel.Color = clBackground
           EditLabel.ParentColor = False
           Font.CharSet = ANSI_CHARSET
           Font.Color = clWindowText
           Font.Height = -13
           Font.Name = 'Courier New'
           LabelPosition = lpLeft
+          LabelSpacing = 6
           ParentFont = False
           TabOrder = 0
         end
         object FindObj_Size: TLabeledEdit
-          Left = 86
-          Height = 24
-          Top = 28
+          AnchorSideLeft.Control = FindObj_UpText
+          AnchorSideTop.Control = FindObj_UpText
+          AnchorSideTop.Side = asrBottom
+          AnchorSideRight.Control = FindObj_UpText
+          AnchorSideRight.Side = asrBottom
+          AnchorSideBottom.Control = GroupBox12
+          AnchorSideBottom.Side = asrBottom
+          Left = 106
+          Height = 25
+          Top = 33
           Width = 80
+          Anchors = [akTop, akLeft, akRight]
+          AutoSize = False
+          BorderSpacing.Bottom = 7
           EditLabel.AnchorSideTop.Control = FindObj_Size
           EditLabel.AnchorSideTop.Side = asrCenter
           EditLabel.AnchorSideRight.Control = FindObj_Size
           EditLabel.AnchorSideBottom.Control = FindObj_Size
           EditLabel.AnchorSideBottom.Side = asrBottom
-          EditLabel.Left = 18
+          EditLabel.Left = 20
           EditLabel.Height = 14
-          EditLabel.Top = 33
-          EditLabel.Width = 65
-          EditLabel.Caption = 'Max Distance'
+          EditLabel.Top = 38
+          EditLabel.Width = 80
+          EditLabel.Caption = 'Max Distance:'
+          EditLabel.Color = clBackground
           EditLabel.ParentColor = False
           Font.CharSet = ANSI_CHARSET
           Font.Color = clWindowText
           Font.Height = -13
           Font.Name = 'Courier New'
           LabelPosition = lpLeft
+          LabelSpacing = 6
           ParentFont = False
           TabOrder = 1
         end
       end
       inline SynEdit2: TSynEdit
-        Left = -20
-        Height = 432
+        AnchorSideLeft.Control = TabSheet1
+        AnchorSideTop.Control = TabSheet1
+        AnchorSideRight.Control = TabSheet1
+        AnchorSideRight.Side = asrBottom
+        AnchorSideBottom.Control = GroupBox12
+        Left = 0
+        Height = 414
         Top = 0
-        Width = 680
+        Width = 799
+        Anchors = [akTop, akLeft, akRight, akBottom]
         Font.Height = -13
         Font.Name = 'Courier New'
         Font.Pitch = fpFixed
@@ -1943,6 +2399,8 @@ object MainForm: TMainForm
           object SynGutterSeparator1: TSynGutterSeparator
             Width = 2
             MouseActions = <>
+            MarkupInfo.Background = clWhite
+            MarkupInfo.Foreground = clGray
           end
           object SynGutterCodeFolding1: TSynGutterCodeFolding
             MouseActions = <>
@@ -1956,66 +2414,117 @@ object MainForm: TMainForm
     end
   end
   object ColorPanel: TPanel
-    Left = 664
-    Height = 569
-    Top = 26
-    Width = 131
+    AnchorSideLeft.Control = PageControl
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = ToolBar1
+    AnchorSideTop.Side = asrBottom
+    AnchorSideRight.Control = Owner
+    AnchorSideRight.Side = asrBottom
+    AnchorSideBottom.Control = StatusBar1
+    Left = 817
+    Height = 537
+    Top = 34
+    Width = 139
     Align = alRight
+    BorderSpacing.Around = 8
     BevelOuter = bvNone
-    ClientHeight = 569
-    ClientWidth = 131
+    ClientHeight = 537
+    ClientWidth = 139
+    Color = clBackground
+    ParentColor = False
     TabOrder = 1
     object BestColorLabel: TLabel
-      Left = 2
+      AnchorSideLeft.Control = ColorPanel
+      AnchorSideTop.Control = Colors
+      AnchorSideTop.Side = asrBottom
+      AnchorSideBottom.Control = TolLabel
+      Left = 4
       Height = 14
-      Top = 376
-      Width = 51
+      Top = 342
+      Width = 63
+      Anchors = [akLeft, akBottom]
+      BorderSpacing.Around = 4
       Caption = 'Best color '
       ParentColor = False
     end
     object TolLabel: TLabel
-      Left = 2
+      AnchorSideLeft.Control = ColorPanel
+      AnchorSideTop.Control = BestColorLabel
+      AnchorSideTop.Side = asrBottom
+      AnchorSideBottom.Control = HueModLabel
+      Left = 4
       Height = 14
-      Top = 390
-      Width = 48
+      Top = 360
+      Width = 56
+      Anchors = [akLeft, akBottom]
+      BorderSpacing.Around = 4
       Caption = 'Tolerance'
       ParentColor = False
     end
     object HueModLabel: TLabel
-      Left = 2
+      AnchorSideLeft.Control = ColorPanel
+      AnchorSideTop.Control = TolLabel
+      AnchorSideTop.Side = asrBottom
+      AnchorSideBottom.Control = SatModLabel
+      Left = 4
       Height = 14
-      Top = 409
-      Width = 72
+      Top = 378
+      Width = 85
+      Anchors = [akLeft, akBottom]
+      BorderSpacing.Around = 4
       Caption = 'Hue mod: 0,00'
       ParentColor = False
       Visible = False
     end
     object SatModLabel: TLabel
-      Left = 2
+      AnchorSideLeft.Control = ColorPanel
+      AnchorSideTop.Control = HueModLabel
+      AnchorSideTop.Side = asrBottom
+      AnchorSideBottom.Control = CTSgroup
+      Left = 4
       Height = 14
-      Top = 426
-      Width = 69
+      Top = 396
+      Width = 82
+      Anchors = [akLeft, akBottom]
+      BorderSpacing.Bottom = 4
+      BorderSpacing.Around = 4
       Caption = 'Sat mod: 0,00'
       ParentColor = False
       Visible = False
     end
     object Colors: TListBox
-      Left = 3
-      Height = 288
-      Top = 86
-      Width = 126
+      AnchorSideLeft.Control = ColorPanel
+      AnchorSideTop.Control = Label3
+      AnchorSideTop.Side = asrBottom
+      AnchorSideRight.Control = ColorPanel
+      AnchorSideRight.Side = asrBottom
+      AnchorSideBottom.Control = BestColorLabel
+      Left = 0
+      Height = 242
+      Top = 96
+      Width = 139
       Align = alCustom
+      Anchors = [akTop, akLeft, akRight, akBottom]
       ItemHeight = 0
       OnKeyDown = ColorsKeyDown
       PopupMenu = ColorPopupMenu
-      TabOrder = 0
+      ScrollWidth = 137
+      TabOrder = 3
+      TopIndex = -1
     end
     object CTSgroup: TRadioGroup
-      Left = 0
-      Height = 108
-      Top = 454
+      AnchorSideLeft.Control = Colors
+      AnchorSideTop.Control = SatModLabel
+      AnchorSideTop.Side = asrBottom
+      AnchorSideBottom.Control = ColorPanel
+      AnchorSideBottom.Side = asrBottom
+      Left = 4
+      Height = 115
+      Top = 418
       Width = 58
+      Anchors = [akLeft, akBottom]
       AutoFill = True
+      BorderSpacing.Around = 4
       Caption = 'CTS'
       ChildSizing.LeftRightSpacing = 6
       ChildSizing.TopBottomSpacing = 6
@@ -2025,7 +2534,7 @@ object MainForm: TMainForm
       ChildSizing.ShrinkVertical = crsScaleChilds
       ChildSizing.Layout = cclLeftToRightThenTopToBottom
       ChildSizing.ControlsPerLine = 1
-      ClientHeight = 90
+      ClientHeight = 100
       ClientWidth = 54
       ItemIndex = 1
       Items.Strings = (
@@ -2035,48 +2544,77 @@ object MainForm: TMainForm
         '3'
       )
       OnClick = CTSgroupClick
-      TabOrder = 1
+      TabOrder = 4
     end
     object Label1: TLabel
-      Left = 0
+      AnchorSideLeft.Control = ColorPanel
+      AnchorSideLeft.Side = asrCenter
+      AnchorSideTop.Control = ColorPanel
+      Left = 25
       Height = 14
-      Top = 6
-      Width = 75
+      Top = 4
+      Width = 88
+      BorderSpacing.Around = 4
       Caption = 'Current profile:'
       ParentColor = False
     end
     object pBox: TComboBox
+      AnchorSideLeft.Control = ColorPanel
+      AnchorSideTop.Control = Label1
+      AnchorSideTop.Side = asrBottom
+      AnchorSideRight.Control = ColorPanel
+      AnchorSideRight.Side = asrBottom
       Left = 2
-      Height = 21
+      Height = 25
       Top = 22
-      Width = 128
-      ItemHeight = 13
+      Width = 135
+      Anchors = [akTop, akLeft, akRight]
+      BorderSpacing.Around = 2
+      ItemHeight = 0
       OnSelect = pBoxSelect
-      TabOrder = 2
+      TabOrder = 0
     end
     object AddProfileBtn: TButton
-      Left = 0
+      AnchorSideLeft.Control = pBox
+      AnchorSideTop.Control = pBox
+      AnchorSideTop.Side = asrBottom
+      AnchorSideRight.Control = ColorPanel
+      AnchorSideRight.Side = asrBottom
+      Left = 2
       Height = 25
-      Top = 46
-      Width = 59
+      Top = 49
+      Width = 58
       Caption = 'Add'
       OnClick = AddProfileBtnClick
-      TabOrder = 3
+      TabOrder = 1
     end
     object DeleteProfileBtn: TButton
-      Left = 69
+      AnchorSideLeft.Control = AddProfileBtn
+      AnchorSideLeft.Side = asrBottom
+      AnchorSideTop.Control = pBox
+      AnchorSideTop.Side = asrBottom
+      AnchorSideRight.Control = pBox
+      AnchorSideRight.Side = asrBottom
+      Left = 60
       Height = 25
-      Top = 46
-      Width = 59
+      Top = 49
+      Width = 77
+      Anchors = [akTop, akLeft, akRight]
       Caption = 'Delete'
       OnClick = DeleteProfileBtnClick
-      TabOrder = 4
+      TabOrder = 2
     end
     object CTS3Mod: TFloatSpinEdit
-      Left = 69
-      Height = 21
-      Top = 470
-      Width = 56
+      AnchorSideLeft.Control = Label2
+      AnchorSideTop.Control = Label2
+      AnchorSideTop.Side = asrBottom
+      AnchorSideRight.Control = Label2
+      AnchorSideRight.Side = asrBottom
+      Left = 79
+      Height = 23
+      Top = 436
+      Width = 58
+      Anchors = [akTop, akLeft, akRight]
       Increment = 0.1
       MaxValue = 100
       MinValue = 0
@@ -2085,27 +2623,41 @@ object MainForm: TMainForm
       Value = 1
     end
     object Label2: TLabel
-      Left = 69
+      AnchorSideLeft.Control = CTSgroup
+      AnchorSideLeft.Side = asrBottom
+      AnchorSideTop.Control = CTSgroup
+      AnchorSideRight.Control = ColorPanel
+      AnchorSideRight.Side = asrBottom
+      Left = 79
       Height = 14
-      Top = 454
-      Width = 50
+      Top = 418
+      Width = 58
+      Anchors = [akTop, akRight]
+      BorderSpacing.Right = 2
+      BorderSpacing.Bottom = 4
       Caption = 'CTS3Mod:'
       ParentColor = False
     end
     object Label3: TLabel
-      Left = 2
+      AnchorSideLeft.Control = ColorPanel
+      AnchorSideLeft.Side = asrCenter
+      AnchorSideTop.Control = AddProfileBtn
+      AnchorSideTop.Side = asrBottom
+      AnchorSideBottom.Control = Colors
+      Left = 48
       Height = 14
-      Top = 70
-      Width = 35
+      Top = 78
+      Width = 42
+      BorderSpacing.Around = 4
       Caption = 'Colors:'
       ParentColor = False
     end
   end
   object StatusBar1: TStatusBar
     Left = 0
-    Height = 23
-    Top = 595
-    Width = 795
+    Height = 17
+    Top = 579
+    Width = 964
     Panels = <    
       item
         Width = 80
@@ -2122,7 +2674,7 @@ object MainForm: TMainForm
     Left = 0
     Height = 26
     Top = 0
-    Width = 795
+    Width = 964
     Caption = 'ToolBar1'
     Images = BtnList
     TabOrder = 3
