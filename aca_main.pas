@@ -326,6 +326,7 @@ begin
        height:=abmp.Height;
      end;
   b:= bmpbuffer.ToTBitmap;
+  ClientImage.SetBounds(ClientImage.Left,ClientImage.Top,abmp.Width,abmp.Height);
   ClientImage.Picture.Bitmap.Assign(b);
   b.Free;
 end;
@@ -918,6 +919,7 @@ begin
   bmpBuffer:=TMufasabitmap.Create;
   MMLClient:=TClient.Create;
   MMLClient.IOManager.GetDimensions(w,h);
+  MMLClient.IOManager.SetGrabberType(1);
   Self.Caption:='ACA Remake by Cynic for'+GenSpaces(1)+ {$IFDEF WINDOWS}'Win'{$ELSE}'*nix'{$ENDIF}+GenSpaces(1)+'(Based on ACA v2 source code)';
   bmp.SetSize(w,h);
   bmpBuffer.SetSize(w,h);
@@ -1024,6 +1026,7 @@ end;
 procedure TMainForm.SelectClientTargetMouseDown(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 begin
+  MMLCLient.IOManager.SetGrabberType(1);
   MMLClient.IOManager.SetTarget(Select.Drag);
   ImageFromClient;
 end;
@@ -1044,11 +1047,18 @@ begin
   if not b then exit;
   if (Button = mbLeft) then
    begin
+     try
      Col:=bmp.FastGetPixel(X,Y);
-     PickColor(Col);
-     ToListBox;
-     CalculateBestColor(Storage.Items[CurrIndex]);
-     DisplayCurrentColor(Col);
+     except
+       Col:=0;
+     end;
+     if (Col > 0) then
+      begin
+       PickColor(Col);
+       ToListBox;
+       CalculateBestColor(Storage.Items[CurrIndex]);
+       DisplayCurrentColor(Col);
+      end;
    end;
 end;
 
@@ -1234,7 +1244,12 @@ var
   ZoomRect: TRect;
 begin
   //ZoomRatio:=100;
+  try
   Col:=BMP.FastGetPixel(x,y);
+
+  except
+    Col:=0;
+  end;
   FillColorValues(ColourRec(Col));
   Client_Shape.Brush.Color := Col;
   StatusBar1.Panels.Items[0].Text := IntToStr(X)+':'+IntToStr(Y);
@@ -1257,13 +1272,15 @@ end;
 
 procedure TMainForm.ColorsKeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
+var
+  i: integer;
 begin
   if not (storage.Count > 0) then exit;
   if not (Colors.ItemIndex > -1) then  exit;
-  if Key = VK_DELETE then
-    begin
-     Storage.Items[CurrIndex].ColorList.Delete(Colors.ItemIndex);
-    end;
+  case Key of
+   VK_DELETE: Storage.Items[CurrIndex].ColorList.Delete(Colors.ItemIndex);
+   VK_CONTROL: Storage.Items[CurrIndex].ColorList.Clear;
+  end;
   toListBox;
 end;
 
